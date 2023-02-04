@@ -2,8 +2,8 @@ const pluginsConf = require('./config/pluginsConf.js');
 const { readFileList, readTotalFileWords, readEachFileWords } = require('./webSiteInfo/readFile');
 module.exports = {
   base: '/', //设置站点根路径
-  title: 'xustudyxu\'s Blog',
-  description: '一起学习编程!',
+  title: '百里登风的博客',
+  description: '张弓折扇风雨历，畅叙平生快意！',
   dest: 'docs/.vuepress/dist',
   // port: '7777',
   plugins: pluginsConf,
@@ -20,7 +20,7 @@ module.exports = {
     `],
     ['script', { src: 'https://fastly.jsdelivr.net/npm/twikoo@1.5.11/dist/twikoo.all.min.js' }],
     ['script', { href: './js/index.js', async: 'async' }],
-    ['link', { rel: 'icon', href: 'https://cdn.staticaly.com/gh/xustudyxu/image-hosting@master/20220627/mmexport1656324824543.124zxwkqyzlc.webp' }],
+    ['link', { rel: 'icon', href: 'https://typora001-zc.oss-cn-chengdu.aliyuncs.com/typoraImg/personPhoto.webp' }],
     // ['link', { rel: 'stylesheet', href: './css/style.css' }],
     ['script', { charset: 'utf-8', href: './js/main.js' }],
     ['meta', { name: 'referrer', content: 'no-referrer-when-downgrade' }],
@@ -48,7 +48,7 @@ module.exports = {
     //     appId: '4YPBTYO9VH',
     // },
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
-    repo: 'xustudyxu/xustudyxu.github.io',
+    repo: 'ZHANGChang47/BlogVuePress',
     // 自定义仓库链接文字。默认从 `themeConfig.repo` 中自动推断为
     // "GitHub"/"GitLab"/"Bitbucket" 其中之一，或是 "Source"。
     repoLabel: '查看源码',
@@ -57,11 +57,11 @@ module.exports = {
     // 以下为可选的编辑链接选项
 
     // // 假如你的文档仓库和项目本身不在一个仓库：
-    docsRepo: 'xustudyxu/xustudyxu.github.io',
+    docsRepo: 'ZHANGChang47/BlogVuePress',
     // // 假如文档不是放在仓库的根目录下：
     docsDir: 'docs',
     // // 假如文档放在一个特定的分支下：
-    docsBranch: 'master',
+    docsBranch: 'main',
     // // 默认是 false, 设置为 true 来启用
 
     //首页大图+全背景图
@@ -82,38 +82,38 @@ module.exports = {
         {
           iconClass: 'icon-youjian',
           title: '发邮件',
-          link: 'mailto:1812903531@qq.com',
+          link: 'mailto:2648492063@qq.com',
         },
         {
           iconClass: 'icon-github',
           title: 'GitHub',
-          link: 'https://github.com/xustudyxu',
+          link: 'https://github.com/ZHANGChang47',
         },
         {
           iconClass: 'icon-weixin',
           title: '微信',
-          link: 'https://frxcat.fun/img/wx.png',
+          link: 'https://typora001-zc.oss-cn-chengdu.aliyuncs.com/typoraImg/Snipaste_2023-02-03_22-33-33.webp',
         },
       ],
     },
     author: {
-      name: 'xu', // 必需
+      name: '张畅', // 必需
     },
     // 博主信息 (显示在首页侧边栏)
     blogger: {
-      avatar: 'https://cdn.staticaly.com/gh/xustudyxu/image-hosting@master/20220627/mmexport1656324824543.124zxwkqyzlc.webp',
-      name: 'xustudyxu',
-      slogan: '一起学习编程!',
+      avatar: 'https://typora001-zc.oss-cn-chengdu.aliyuncs.com/typoraImg/personPhoto.webp',
+      name: '百里登风',
+      slogan: '张弓折扇风雨历，畅叙平生快意!',
     },
     footer: {
-      createYear: 2021, // 博客创建年份
+      createYear: 2022, // 博客创建年份
       copyrightInfo:
-        'xustudyxu |<a href="https://beian.miit.gov.cn" target="_blank">豫ICP备2022008983号</a><br>	<img src="http://www.beian.gov.cn/img/new/gongan.png" border="0" /></a>	 		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41018302000331" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px;">豫公网安备 41018302000331号</p></a>'
+        '张畅 |<a href="https://beian.miit.gov.cn" target="_blank">陕ICP备2022001001号</a><br>	<img src="http://www.beian.gov.cn/img/new/gongan.png" border="0" /></a>	 		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41018302000331" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px;">豫公网安备 41018302000331号</p></a>'
     },
 
     // 站点配置（首页 & 文章页）
     blogInfo: {
-      blogCreate: '2021-7-13', // 博客创建时间
+      blogCreate: '2022-1-1', // 博客创建时间
       indexView: true,  // 开启首页的访问量和排名统计，默认 true（开启）
       pageView: true,  // 开启文章页的浏览量统计，默认 true（开启）
       readingTime: true,  // 开启文章页的预计阅读时间，条件：开启 eachFileWords，默认 true（开启）。可在 eachFileWords 的 readEachFileWords 的第二个和第三个参数自定义，默认 1 分钟 300 中文、160 英文

@@ -70,10 +70,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xustudyxu/xustudyxu.github.io.git"
+    "url": "git+https://github.com/ZHANGChang47/BlogVuePress"
   },
   "bugs": {
-    "url": "https://github.com/xustudyxu/xustudyxu.github.io/issues"
+    "url": "https://github.com/ZHANGChang47/BlogVuePress/issues"
   },
-  "homepage": "https://github.com/xustudyxu/xustudyxu.github.io#readme"
+  "homepage": "https://github.com/ZHANGChang47/BlogVuePress#readme"
 }
