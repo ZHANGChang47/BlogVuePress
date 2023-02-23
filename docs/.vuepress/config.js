@@ -108,7 +108,7 @@ module.exports = {
     footer: {
       createYear: 2022, // 博客创建年份
       copyrightInfo:
-        '张畅 |<a href="https://beian.miit.gov.cn" target="_blank">陕ICP备2022001001号</a><br>	<img src="http://www.beian.gov.cn/img/new/gongan.png" border="0" /></a>	 		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41018302000331" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px;">豫公网安备 41018302000331号</p></a>'
+        '张畅 |<a href="https://beian.miit.gov.cn" target="_blank">陕ICP备2022001001号</a><br>	<img src="http://www.beian.gov.cn/img/new/gongan.png" border="0" /></a>	 		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41018302000331" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px;">冀公网安备 13112802000237号</p></a>'
     },
 
     // 站点配置（首页 & 文章页）
