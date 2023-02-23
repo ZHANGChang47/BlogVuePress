@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>EL表达式与JSTL标签库 | 百里登风的博客</title>
+    <meta name="generator" content="VuePress 1.9.8">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e1aa9d15d62220ec692a843c08c79000";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>        
+    </script>
+    <script src="https://fastly.jsdelivr.net/npm/twikoo@1.5.11/dist/twikoo.all.min.js"></script>
+    <script href="./js/index.js" async="async"></script>
+    <link rel="icon" href="https://typora001-zc.oss-cn-chengdu.aliyuncs.com/typoraImg/personPhoto.webp">
+    <script charset="utf-8" href="./js/main.js"></script>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_3077305_pt8umhrn4k9.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_3114978_qe0b39no76.css">
+    <meta name="description" content="张弓折扇风雨历，畅叙平生快意！">
+    <meta name="image" content="https://cdn.nlark.com/yuque/0/2021/png/1379492/1623727440250-d2998281-f9fc-41af-9f36-a8319889a6cd.png">
+    <meta name="twitter:title" content="EL表达式与JSTL标签库">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2021/png/1379492/1623727440250-d2998281-f9fc-41af-9f36-a8319889a6cd.png">
+    <meta name="twitter:url" content="https://frxcat.fun/02.JavaWeb/04.EL%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8EJSTL%E6%A0%87%E7%AD%BE%E5%BA%93.html">
+    <meta name="twitter:site" content="@frxcat">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="EL表达式与JSTL标签库">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/1379492/1623727440250-d2998281-f9fc-41af-9f36-a8319889a6cd.png">
+    <meta property="og:url" content="https://frxcat.fun/02.JavaWeb/04.EL%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8EJSTL%E6%A0%87%E7%AD%BE%E5%BA%93.html">
+    <meta property="og:site_name" content="frxcat">
+    <meta property="article:published_time" content="2023-02-03T23:55:23.000Z">
+    <meta property="article:tag" content="null">
+    <meta itemprop="name" content="EL表达式与JSTL标签库">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://cdn.nlark.com/yuque/0/2021/png/1379492/1623727440250-d2998281-f9fc-41af-9f36-a8319889a6cd.png">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="baidu-site-verification" content="code-5aMKYEt9fV">
+    <link rel="preload" href="/assets/css/0.styles.79be46fe.css" as="style"><link rel="preload" href="/assets/js/app.bb5e25c9.js" as="script"><link rel="preload" href="/assets/js/2.108e92a1.js" as="script"><link rel="preload" href="/assets/js/43.d9e8ef5e.js" as="script"><link rel="preload" href="/assets/js/5.73b07204.js" as="script"><link rel="preload" href="/assets/js/13.9b1b1c77.js" as="script"><link rel="preload" href="/assets/js/14.e2f4930c.js" as="script"><link rel="preload" href="/assets/js/9.5b9b4ae3.js" as="script"><link rel="preload" href="/assets/js/10.68c0c324.js" as="script"><link rel="prefetch" href="/assets/js/11.ef1511e2.js"><link rel="prefetch" href="/assets/js/12.da9b2478.js"><link rel="prefetch" href="/assets/js/15.cd646c33.js"><link rel="prefetch" href="/assets/js/16.3ec04fab.js"><link rel="prefetch" href="/assets/js/17.6e9ef9cc.js"><link rel="prefetch" href="/assets/js/18.493ad1ad.js"><link rel="prefetch" href="/assets/js/19.e0f986d5.js"><link rel="prefetch" href="/assets/js/20.b8528c67.js"><link rel="prefetch" href="/assets/js/21.fad22d46.js"><link rel="prefetch" href="/assets/js/22.8b0c4122.js"><link rel="prefetch" href="/assets/js/23.3e372155.js"><link rel="prefetch" href="/assets/js/24.3b7e2a1d.js"><link rel="prefetch" href="/assets/js/25.9a80a2fa.js"><link rel="prefetch" href="/assets/js/26.a83bf322.js"><link rel="prefetch" href="/assets/js/27.592a3fdd.js"><link rel="prefetch" href="/assets/js/28.a8d69689.js"><link rel="prefetch" href="/assets/js/29.bb969429.js"><link rel="prefetch" href="/assets/js/3.c65ee6b2.js"><link rel="prefetch" href="/assets/js/30.7d78332c.js"><link rel="prefetch" href="/assets/js/31.3f6e4842.js"><link rel="prefetch" href="/assets/js/32.b52e67f7.js"><link rel="prefetch" href="/assets/js/33.1a666e7d.js"><link rel="prefetch" href="/assets/js/34.4b8f1385.js"><link rel="prefetch" href="/assets/js/35.87ca92cc.js"><link rel="prefetch" href="/assets/js/36.fc40f016.js"><link rel="prefetch" href="/assets/js/37.be3bf444.js"><link rel="prefetch" href="/assets/js/38.eeafc53c.js"><link rel="prefetch" href="/assets/js/39.f34be6d8.js"><link rel="prefetch" href="/assets/js/4.c0fd3b18.js"><link rel="prefetch" href="/assets/js/40.9791c200.js"><link rel="prefetch" href="/assets/js/41.020877c5.js"><link rel="prefetch" href="/assets/js/42.45c39e58.js"><link rel="prefetch" href="/assets/js/44.464ccf3b.js"><link rel="prefetch" href="/assets/js/45.cb64e9da.js"><link rel="prefetch" href="/assets/js/46.0c9a8ead.js"><link rel="prefetch" href="/assets/js/47.a2e35d4f.js"><link rel="prefetch" href="/assets/js/48.098763ec.js"><link rel="prefetch" href="/assets/js/49.07c62b3b.js"><link rel="prefetch" href="/assets/js/50.fc5f88a3.js"><link rel="prefetch" href="/assets/js/51.e2f578ac.js"><link rel="prefetch" href="/assets/js/52.9e3e4056.js"><link rel="prefetch" href="/assets/js/53.f916bd38.js"><link rel="prefetch" href="/assets/js/54.e7c11e98.js"><link rel="prefetch" href="/assets/js/55.0e0a561a.js"><link rel="prefetch" href="/assets/js/56.b2f3577e.js"><link rel="prefetch" href="/assets/js/57.9e884be2.js"><link rel="prefetch" href="/assets/js/58.2fac2650.js"><link rel="prefetch" href="/assets/js/59.3b25f511.js"><link rel="prefetch" href="/assets/js/6.ed952e3d.js"><link rel="prefetch" href="/assets/js/60.bf607c06.js"><link rel="prefetch" href="/assets/js/61.d726e61a.js"><link rel="prefetch" href="/assets/js/62.edf6d32a.js"><link rel="prefetch" href="/assets/js/63.e30fdc11.js"><link rel="prefetch" href="/assets/js/64.922b4a17.js"><link rel="prefetch" href="/assets/js/65.9a3b347a.js"><link rel="prefetch" href="/assets/js/66.5ef4606b.js"><link rel="prefetch" href="/assets/js/67.d90678f1.js"><link rel="prefetch" href="/assets/js/68.91fa461c.js"><link rel="prefetch" href="/assets/js/69.1957f6af.js"><link rel="prefetch" href="/assets/js/7.355266c2.js"><link rel="prefetch" href="/assets/js/70.6ebb8af5.js"><link rel="prefetch" href="/assets/js/71.eee0b217.js"><link rel="prefetch" href="/assets/js/72.39ed8920.js"><link rel="prefetch" href="/assets/js/73.47121ddc.js"><link rel="prefetch" href="/assets/js/74.87a10f99.js"><link rel="prefetch" href="/assets/js/75.0b311495.js"><link rel="prefetch" href="/assets/js/76.268ef349.js"><link rel="prefetch" href="/assets/js/77.58de46fb.js"><link rel="prefetch" href="/assets/js/78.25b31166.js"><link rel="prefetch" href="/assets/js/79.d4ff4d30.js"><link rel="prefetch" href="/assets/js/8.f50cf6d8.js"><link rel="prefetch" href="/assets/js/80.c33be335.js"><link rel="prefetch" href="/assets/js/81.a24132da.js"><link rel="prefetch" href="/assets/js/82.00055c83.js"><link rel="prefetch" href="/assets/js/83.c39146f0.js"><link rel="prefetch" href="/assets/js/84.7c66fe01.js"><link rel="prefetch" href="/assets/js/85.c2a04d1e.js"><link rel="prefetch" href="/assets/js/86.b42a4e19.js"><link rel="prefetch" href="/assets/js/87.bdc4c3c8.js"><link rel="prefetch" href="/assets/js/88.deac45a6.js"><link rel="prefetch" href="/assets/js/89.8f2d6a69.js"><link rel="prefetch" href="/assets/js/90.e5dd302c.js"><link rel="prefetch" href="/assets/js/91.bbe5babf.js"><link rel="prefetch" href="/assets/js/92.74872263.js"><link rel="prefetch" href="/assets/js/93.8b3117a7.js"><link rel="prefetch" href="/assets/js/94.b33e3700.js"><link rel="prefetch" href="/assets/js/95.1ce3db13.js"><link rel="prefetch" href="/assets/js/96.6fda4bae.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.79be46fe.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">百里登风的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="散文随笔" class="dropdown-title"><!----> <span class="title" style="display:;">散文随笔</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/00.散文随笔/00.沧桑百年史，爱国西交情.html" class="nav-link">沧桑百年史，爱国西交情</a></li><li class="dropdown-item"><!----> <a href="/00.散文随笔/01.静谧之眼.html" class="nav-link">静谧之眼</a></li><li class="dropdown-item"><!----> <a href="/00.散文随笔/02.承党恩泽，物阜民丰.html" class="nav-link">承党恩泽，物阜民丰</a></li><li class="dropdown-item"><!----> <a href="/00.散文随笔/03.历边海防学院记.html" class="nav-link">历边海防学院记</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java基础" class="dropdown-title"><!----> <span class="title" style="display:;">Java基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/01.Java基础/00.Java基础总结.html" class="nav-link">Java基础总结</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/01.Java开发介绍.html" class="nav-link">Java开发介绍</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/02.Java基础编程.html" class="nav-link">Java基础编程</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/03.方法与数组.html" class="nav-link">方法与数组</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/04.面向对象.html" class="nav-link">面向对象</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/05.异常处理.html" class="nav-link">异常处理</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/06.常用类库API.html" class="nav-link">常用类库API</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/07.文件IO操作.html" class="nav-link">文件IO操作</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/08.集合.html" class="nav-link">集合</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/09.多线程与并发.html" class="nav-link">多线程与并发</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/10.反射与内省.html" class="nav-link">反射与内省</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/11.泛型.html" class="nav-link">泛型</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/12.正则表达式.html" class="nav-link">正则表达式</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/13.枚举.html" class="nav-link">枚举</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/14.注解.html" class="nav-link">注解</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/15.GUI事件处理.html" class="nav-link">GUI事件处理</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/16.网络编程.html" class="nav-link">网络编程</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/17.JVM.html" class="nav-link">JVM</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/18.JUC.html" class="nav-link">JUC</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="JavaWeb" class="dropdown-title"><!----> <span class="title" style="display:;">JavaWeb</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/02.JavaWeb/00.JavaWeb总结.html" class="nav-link">JavaWeb总结</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/01.Servlet.html" class="nav-link">Servlet</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/02.Web项目架构与数据库使用.html" class="nav-link">Web项目架构与数据库使用</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/03.Jsp与Listener.html" class="nav-link">Jsp与Listener</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/04.EL表达式与JSTL标签库.html" class="nav-link">EL表达式与JSTL标签库</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/05.文件的上传与下载.html" class="nav-link">文件的上传与下载</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/06.Web项目延伸完善.html" class="nav-link">Web项目延伸完善</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/07.cookie与session.html" class="nav-link">cookie与session</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/08.Filter与ThreadLocal.html" class="nav-link">Filter与ThreadLocal</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/09.i18n国际化.html" class="nav-link">i18n国际化</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/10.Web项目延伸完善(2).html" class="nav-link">Web项目延伸完善(2)</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Spring生态" class="dropdown-title"><!----> <span class="title" style="display:;">Spring生态</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/03.Spring生态/00.Spring.html" class="nav-link">Spring</a></li><li class="dropdown-item"><!----> <a href="/03.Spring生态/01.SpringMVC.html" class="nav-link">SpringMVC</a></li><li class="dropdown-item"><!----> <a href="/03.Spring生态/02.SpringBoot.html" class="nav-link">SpringBoot</a></li><li class="dropdown-item"><!----> <a href="/03.Spring生态/03.SpringCloud.html" class="nav-link">SpringCloud</a></li><li class="dropdown-item"><!----> <a href="/03.Spring生态/04.SpringSecurity.html" class="nav-link">SpringSecurity</a></li><li class="dropdown-item"><!----> <a href="/03.Spring生态/05.SpringSecurity与JWT.html" class="nav-link">SpringSecurity与JWT</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><!----> <span class="title" style="display:;">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/04.前端/00.Html.html" class="nav-link">Html</a></li><li class="dropdown-item"><!----> <a href="/04.前端/01.Css.html" class="nav-link">Css</a></li><li class="dropdown-item"><!----> <a href="/04.前端/02.JavaScript.html" class="nav-link">JavaScript</a></li><li class="dropdown-item"><!----> <a href="/04.前端/03.jQuery.html" class="nav-link">jQuery</a></li><li class="dropdown-item"><!----> <a href="/04.前端/04.Vue1.md.html" class="nav-link">Vue1</a></li><li class="dropdown-item"><!----> <a href="/04.前端/04.Vue2.html" class="nav-link">Vue2</a></li><li class="dropdown-item"><!----> <a href="/04.前端/06.Vue2项目笔记.html" class="nav-link">Vue2项目笔记</a></li><li class="dropdown-item"><!----> <a href="/04.前端/07.Vue3项目笔记.html" class="nav-link">Vue3项目笔记</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据库" class="dropdown-title"><!----> <span class="title" style="display:;">数据库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/05.数据库/00.MySQL.html" class="nav-link">MySQL</a></li><li class="dropdown-item"><!----> <a href="/05.数据库/01.Redis.html" class="nav-link">Git</a></li><li class="dropdown-item"><!----> <a href="/05.数据库/02.MyBatis.html" class="nav-link">MyBatis</a></li><li class="dropdown-item"><!----> <a href="/05.数据库/03.MyBatisPlus.html" class="nav-link">MyBatisPlus</a></li><li class="dropdown-item"><!----> <a href="/05.数据库/04.tkMapper.html" class="nav-link">tkMapper</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工具" class="dropdown-title"><!----> <span class="title" style="display:;">工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/06.工具/00.Linux.html" class="nav-link">Linux</a></li><li class="dropdown-item"><!----> <a href="/06.工具/01.Git.html" class="nav-link">Git</a></li><li class="dropdown-item"><!----> <a href="/06.工具/02.Maven.html" class="nav-link">Maven</a></li><li class="dropdown-item"><!----> <a href="/06.工具/03.配置文件.html" class="nav-link">配置文件</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="组件" class="dropdown-title"><!----> <span class="title" style="display:;">组件</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/07.组件/00.Json与XML.html" class="nav-link">Json与XML</a></li><li class="dropdown-item"><!----> <a href="/07.组件/01.Ajax.html" class="nav-link">Ajax</a></li><li class="dropdown-item"><!----> <a href="/07.组件/02.Log.html" class="nav-link">Log</a></li><li class="dropdown-item"><!----> <a href="/07.组件/03.Swagger.html" class="nav-link">Swagger</a></li><li class="dropdown-item"><!----> <a href="/07.组件/04.RabbitMQ.html" class="nav-link">RabbitMQ</a></li><li class="dropdown-item"><!----> <a href="/07.组件/05.ElasticSearch.html" class="nav-link">ElasticSearch</a></li><li class="dropdown-item"><!----> <a href="/07.组件/06.Gateway.html" class="nav-link">Gateway</a></li><li class="dropdown-item"><!----> <a href="/07.组件/07.分布式锁.html" class="nav-link">分布式锁</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="项目" class="dropdown-title"><!----> <span class="title" style="display:;">项目</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/08.项目/00.云E办/00.云E办后端笔记.html" class="nav-link">云E办后端笔记</a></li><li class="dropdown-item"><!----> <a href="/08.项目/00.云E办/01.云E办前端笔记.html" class="nav-link">云E办前端笔记</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="算法" class="dropdown-title"><!----> <span class="title" style="display:;">算法</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/09.算法/00.算法入门.html" class="nav-link">算法入门</a></li><li class="dropdown-item"><!----> <a href="/09.算法/01.算法基础.html" class="nav-link">算法基础</a></li><li class="dropdown-item"><!----> <a href="/09.算法/02.排序算法.html" class="nav-link">排序算法</a></li><li class="dropdown-item"><!----> <a href="/09.算法/03.二分查找总结.html" class="nav-link">二分查找总结</a></li><li class="dropdown-item"><!----> <a href="/09.算法/04.全排列与子集.html" class="nav-link">全排列与子集</a></li><li class="dropdown-item"><!----> <a href="/09.算法/05.链表翻转.html" class="nav-link">链表翻转</a></li><li class="dropdown-item"><!----> <a href="/09.算法/06.Scanner在ACM模式下应用.html" class="nav-link">Scanner在ACM模式下应用</a></li><li class="dropdown-item"><!----> <a href="/09.算法/07.Utils工具类.html" class="nav-link">Utils工具类</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link">归档</a></li></ul></div></div> <a href="https://github.com/ZHANGChang47/BlogVuePress" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><div class="blogger"><img src="https://typora001-zc.oss-cn-chengdu.aliyuncs.com/typoraImg/personPhoto.webp"> <div class="blogger-info"><h3>百里登风</h3> <span>张弓折扇风雨历，畅叙平生快意!</span></div></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="散文随笔" class="dropdown-title"><!----> <span class="title" style="display:;">散文随笔</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/00.散文随笔/00.沧桑百年史，爱国西交情.html" class="nav-link">沧桑百年史，爱国西交情</a></li><li class="dropdown-item"><!----> <a href="/00.散文随笔/01.静谧之眼.html" class="nav-link">静谧之眼</a></li><li class="dropdown-item"><!----> <a href="/00.散文随笔/02.承党恩泽，物阜民丰.html" class="nav-link">承党恩泽，物阜民丰</a></li><li class="dropdown-item"><!----> <a href="/00.散文随笔/03.历边海防学院记.html" class="nav-link">历边海防学院记</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java基础" class="dropdown-title"><!----> <span class="title" style="display:;">Java基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/01.Java基础/00.Java基础总结.html" class="nav-link">Java基础总结</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/01.Java开发介绍.html" class="nav-link">Java开发介绍</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/02.Java基础编程.html" class="nav-link">Java基础编程</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/03.方法与数组.html" class="nav-link">方法与数组</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/04.面向对象.html" class="nav-link">面向对象</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/05.异常处理.html" class="nav-link">异常处理</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/06.常用类库API.html" class="nav-link">常用类库API</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/07.文件IO操作.html" class="nav-link">文件IO操作</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/08.集合.html" class="nav-link">集合</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/09.多线程与并发.html" class="nav-link">多线程与并发</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/10.反射与内省.html" class="nav-link">反射与内省</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/11.泛型.html" class="nav-link">泛型</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/12.正则表达式.html" class="nav-link">正则表达式</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/13.枚举.html" class="nav-link">枚举</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/14.注解.html" class="nav-link">注解</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/15.GUI事件处理.html" class="nav-link">GUI事件处理</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/16.网络编程.html" class="nav-link">网络编程</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/17.JVM.html" class="nav-link">JVM</a></li><li class="dropdown-item"><!----> <a href="/01.Java基础/18.JUC.html" class="nav-link">JUC</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="JavaWeb" class="dropdown-title"><!----> <span class="title" style="display:;">JavaWeb</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/02.JavaWeb/00.JavaWeb总结.html" class="nav-link">JavaWeb总结</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/01.Servlet.html" class="nav-link">Servlet</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/02.Web项目架构与数据库使用.html" class="nav-link">Web项目架构与数据库使用</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/03.Jsp与Listener.html" class="nav-link">Jsp与Listener</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/04.EL表达式与JSTL标签库.html" class="nav-link">EL表达式与JSTL标签库</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/05.文件的上传与下载.html" class="nav-link">文件的上传与下载</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/06.Web项目延伸完善.html" class="nav-link">Web项目延伸完善</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/07.cookie与session.html" class="nav-link">cookie与session</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/08.Filter与ThreadLocal.html" class="nav-link">Filter与ThreadLocal</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/09.i18n国际化.html" class="nav-link">i18n国际化</a></li><li class="dropdown-item"><!----> <a href="/02.JavaWeb/10.Web项目延伸完善(2).html" class="nav-link">Web项目延伸完善(2)</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Spring生态" class="dropdown-title"><!----> <span class="title" style="display:;">Spring生态</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/03.Spring生态/00.Spring.html" class="nav-link">Spring</a></li><li class="dropdown-item"><!----> <a href="/03.Spring生态/01.SpringMVC.html" class="nav-link">SpringMVC</a></li><li class="dropdown-item"><!----> <a href="/03.Spring生态/02.SpringBoot.html" class="nav-link">SpringBoot</a></li><li class="dropdown-item"><!----> <a href="/03.Spring生态/03.SpringCloud.html" class="nav-link">SpringCloud</a></li><li class="dropdown-item"><!----> <a href="/03.Spring生态/04.SpringSecurity.html" class="nav-link">SpringSecurity</a></li><li class="dropdown-item"><!----> <a href="/03.Spring生态/05.SpringSecurity与JWT.html" class="nav-link">SpringSecurity与JWT</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><!----> <span class="title" style="display:;">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/04.前端/00.Html.html" class="nav-link">Html</a></li><li class="dropdown-item"><!----> <a href="/04.前端/01.Css.html" class="nav-link">Css</a></li><li class="dropdown-item"><!----> <a href="/04.前端/02.JavaScript.html" class="nav-link">JavaScript</a></li><li class="dropdown-item"><!----> <a href="/04.前端/03.jQuery.html" class="nav-link">jQuery</a></li><li class="dropdown-item"><!----> <a href="/04.前端/04.Vue1.md.html" class="nav-link">Vue1</a></li><li class="dropdown-item"><!----> <a href="/04.前端/04.Vue2.html" class="nav-link">Vue2</a></li><li class="dropdown-item"><!----> <a href="/04.前端/06.Vue2项目笔记.html" class="nav-link">Vue2项目笔记</a></li><li class="dropdown-item"><!----> <a href="/04.前端/07.Vue3项目笔记.html" class="nav-link">Vue3项目笔记</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据库" class="dropdown-title"><!----> <span class="title" style="display:;">数据库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/05.数据库/00.MySQL.html" class="nav-link">MySQL</a></li><li class="dropdown-item"><!----> <a href="/05.数据库/01.Redis.html" class="nav-link">Git</a></li><li class="dropdown-item"><!----> <a href="/05.数据库/02.MyBatis.html" class="nav-link">MyBatis</a></li><li class="dropdown-item"><!----> <a href="/05.数据库/03.MyBatisPlus.html" class="nav-link">MyBatisPlus</a></li><li class="dropdown-item"><!----> <a href="/05.数据库/04.tkMapper.html" class="nav-link">tkMapper</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工具" class="dropdown-title"><!----> <span class="title" style="display:;">工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/06.工具/00.Linux.html" class="nav-link">Linux</a></li><li class="dropdown-item"><!----> <a href="/06.工具/01.Git.html" class="nav-link">Git</a></li><li class="dropdown-item"><!----> <a href="/06.工具/02.Maven.html" class="nav-link">Maven</a></li><li class="dropdown-item"><!----> <a href="/06.工具/03.配置文件.html" class="nav-link">配置文件</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="组件" class="dropdown-title"><!----> <span class="title" style="display:;">组件</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/07.组件/00.Json与XML.html" class="nav-link">Json与XML</a></li><li class="dropdown-item"><!----> <a href="/07.组件/01.Ajax.html" class="nav-link">Ajax</a></li><li class="dropdown-item"><!----> <a href="/07.组件/02.Log.html" class="nav-link">Log</a></li><li class="dropdown-item"><!----> <a href="/07.组件/03.Swagger.html" class="nav-link">Swagger</a></li><li class="dropdown-item"><!----> <a href="/07.组件/04.RabbitMQ.html" class="nav-link">RabbitMQ</a></li><li class="dropdown-item"><!----> <a href="/07.组件/05.ElasticSearch.html" class="nav-link">ElasticSearch</a></li><li class="dropdown-item"><!----> <a href="/07.组件/06.Gateway.html" class="nav-link">Gateway</a></li><li class="dropdown-item"><!----> <a href="/07.组件/07.分布式锁.html" class="nav-link">分布式锁</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="项目" class="dropdown-title"><!----> <span class="title" style="display:;">项目</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/08.项目/00.云E办/00.云E办后端笔记.html" class="nav-link">云E办后端笔记</a></li><li class="dropdown-item"><!----> <a href="/08.项目/00.云E办/01.云E办前端笔记.html" class="nav-link">云E办前端笔记</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="算法" class="dropdown-title"><!----> <span class="title" style="display:;">算法</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/09.算法/00.算法入门.html" class="nav-link">算法入门</a></li><li class="dropdown-item"><!----> <a href="/09.算法/01.算法基础.html" class="nav-link">算法基础</a></li><li class="dropdown-item"><!----> <a href="/09.算法/02.排序算法.html" class="nav-link">排序算法</a></li><li class="dropdown-item"><!----> <a href="/09.算法/03.二分查找总结.html" class="nav-link">二分查找总结</a></li><li class="dropdown-item"><!----> <a href="/09.算法/04.全排列与子集.html" class="nav-link">全排列与子集</a></li><li class="dropdown-item"><!----> <a href="/09.算法/05.链表翻转.html" class="nav-link">链表翻转</a></li><li class="dropdown-item"><!----> <a href="/09.算法/06.Scanner在ACM模式下应用.html" class="nav-link">Scanner在ACM模式下应用</a></li><li class="dropdown-item"><!----> <a href="/09.算法/07.Utils工具类.html" class="nav-link">Utils工具类</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link">归档</a></li></ul></div></div> <a href="https://github.com/ZHANGChang47/BlogVuePress" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/pages/a105cd/" class="sidebar-link">JavaWeb总结</a></li><li><a href="/pages/0256e7/" class="sidebar-link">Servlet</a></li><li><a href="/pages/3a64a7/" class="sidebar-link">Web项目架构与数据库使用</a></li><li><a href="/pages/500803/" class="sidebar-link">Jsp与Listener</a></li><li><a href="/pages/3c627b/" aria-current="page" class="active sidebar-link">EL表达式与JSTL标签库</a></li><li><a href="/pages/cb4b56/" class="sidebar-link">文件的上传与下载</a></li><li><a href="/pages/34f4ad/" class="sidebar-link">Web项目延伸完善</a></li><li><a href="/pages/7844fa/" class="sidebar-link">cookie与session</a></li><li><a href="/pages/c820f1/" class="sidebar-link">Filter与ThreadLocal</a></li><li><a href="/pages/3ea999/" class="sidebar-link">i18n国际化</a></li><li><a href="/pages/f3f5b3/" class="sidebar-link">Web项目延伸完善(2)</a></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-1baff76c><div class="articleInfo" data-v-1baff76c><ul class="breadcrumbs" data-v-1baff76c><li data-v-1baff76c><a href="/" title="首页" class="iconfont icon-home router-link-active" data-v-1baff76c></a></li> <li data-v-1baff76c><a href="/categories/?category=JavaWeb" title="分类" data-v-1baff76c>JavaWeb</a></li></ul> <div class="info" data-v-1baff76c><div title="作者" class="author iconfont icon-touxiang" data-v-1baff76c><a href="javascript:;" data-v-1baff76c>张畅</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-1baff76c><a href="javascript:;" data-v-1baff76c>2023-02-03</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABKFJREFUSA3tVl1oFVcQnrMbrak3QUgkya1akpJYcrUtIqW1JvFBE9LiQ5v6JmJpolbMg32rVrhgoYK0QiMY6i9Y6EMaW5D+xFJaTYItIuK2Kr3+BJNwkxBj05sQY3b3nM6cs2dv9t7NT/vQJw/sndk5M/PNzJkzewGerP+pAmy+ON8lLzUJgA8ZYxYIYZmGYRnctDaWvJJAmTtfP1pvXsBCCPP8QFcCaRkZYACgDZFO4stNIcBCajEOlmmC9XpJ9bAGCaPaPmzPl32dvLSVu3BWCTQs0XQQ6g0DYgwLIoAZbBCdW/i+781o1VVlm/410mw4h06Y7bIPHNyWDyL4FHkX03Q8SrzNhZTZriieckWt7cL6MM85YcLpsi/7O9/iXFT6MswI0DmmpkSaJ0qLxFIm3+i1THHB3zmBH3PYx9CcykcLOeQVVa7QtdxTgQgEleX2AjHYfwA+2ddV77ruGoJUbhGDI09YSNXyMpUt5ylOzxgbUmtOp7NmbNt8v3arjTBfYELmLUV+M+nSawNNAUqpT3ClJWg5I3BLT+cGW/DXNGCa6tx1aakCGEigArTn4TDIPdrXXYKCZNrHLMCOEPvHBlLQ99s9eHB7EB6NTki73CVPQ2F5MSx/uRQixfmq7rK0wYD8w8E905bnPDfwoWs/rfv93NWN/ZfvwsLIU7A09gxECyISeGJkHAau98L97tuw7NXnoPyNF8FcYGLGKsOs0mN3OEyec9esGW/ZEl945dTP34wlR2FZVQWU1q0Cw8Tr7p+hgLLNL0FPxx/Q35mA8aEUrH6nCgwEl0tn7wUiZYJnNRh6DK4UH/k0lfyrsBKdPVv/AriGIQcEDQZ65LBAGe2Rzui9Ybjz7XUppz1/uKBbyVPGkN3ZAeC6hr0x7Nr38N5+EqkoOm17xpoqR9ohQF55ERSvr4Dkr3chNfC3DMzGJlNBElW8w9nsGQvhNGIzDkXzCg8cLK951xHsFBlTJspJNi3ZFIMF2AeDV3q8DNOB+YHi6QTrChDIWDBRi5U5f+ZMfJLu3ccrqxtdxk4SKH336LFxSmkqefwU5T8fhdSdQf9IVKD6aNiwI/hnmcAZ91isYMJIaCUCx9W098+LgruikeTqzqqxKPUwqJyCPJiyemVVZBOijDGjD38Os0jOiSPL1z3SPjXNANbiNPXAdzTfukjjuknNBbyz3nwgTd3AVFqUJ5hpHlq9MveLnWwttUfoygBmvVjuikxND3znrhsELnZk7k+OjIGxeNEkomyLVta0xxn+HZhjBc4YZ/AFjHjz9u3xRZl2BN4aq9nFwWh16IrQ1aHHEd3j1+4/dB9OtH4e29A2H1DyHQRmOSfQZ1Fy7MHBTGB6J/Djq6p3OxyO2cB+4Car7v/o3GXgfAkj23+x9ID1Teoamo/SXcbvSf2PX7Vc8DdCmE1vN9di+32P9/5YR3vLnhCVGUWBjEkr3yh4H8v9CzmsbdhzOKzsJKM90iFdaTMjRPhGVsakRvOaRidljo6H6G7j+ctrJpsP+4COhDIl0La2+FS4+5mlocBaXY5QnGZysIBYoeSsl5qQzrSj/cgNrfuEzlWBfwA+EjrZyWUvpAAAAABJRU5ErkJggg==">EL表达式与JSTL标签库<!----></h1> <!----> <div class="theme-vdoing-content content__default"><h1 id="el表达式与jstl标签库"><a href="#el表达式与jstl标签库" class="header-anchor">#</a> EL表达式与JSTL标签库</h1> <hr> <h2 id="_1、el表达式简介"><a href="#_1、el表达式简介" class="header-anchor">#</a> 1、EL表达式简介</h2> <ol><li><p>EL表达式全称：Expression Language，即表达式语言</p></li> <li><p>EL表达式作用：代替JSP页面中表达式脚本进行数据的输出</p></li> <li><p>EL表达式比JSP的表达式脚本简洁很多</p></li> <li><p>EL表达式的格式是：<code>${表达式}</code> ，注：EL表达式写在jsp页面中，表达式一般是域对象的key</p></li> <li><p>EL 表达式在输出null 值的时候，输出的是空串。jsp 表达式脚本输出null 值的时候，输出的是null字符串</p></li></ol> <div class="language-html line-numbers-mode"><pre class="language-html"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+&lt;%
+	request.setAttribute(&quot;key&quot;, &quot;值&quot;);
+%&gt;
+表达式脚本输出key的值是：&lt;%=request.getAttribute(&quot;key1&quot;) == null ? &quot;&quot; : request.getAttribute(&quot;key1&quot;)%&gt;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/&gt;</span></span>
+EL表达式输出key的值是：${key1}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h2 id="_2、el表达式搜索域数据的顺序"><a href="#_2、el表达式搜索域数据的顺序" class="header-anchor">#</a> 2、EL表达式搜索域数据的顺序</h2> <blockquote><p>EL表达式主要是输出域对象中的数据，当四个域对象都有同一个key的值时，EL表达式会按照四个域对象的范围从小到大进行搜索，找到就输出，与四个域对象声明的先后顺序无关</p></blockquote> <div class="language-html line-numbers-mode"><pre class="language-html"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    &lt;%
+        //往四个域中都保存了相同的key的数据
+        pageContext.setAttribute(&quot;key&quot;, &quot;pageContext&quot;);
+        request.setAttribute(&quot;key&quot;, &quot;request&quot;);
+        session.setAttribute(&quot;key&quot;, &quot;session&quot;);
+        application.setAttribute(&quot;key&quot;, &quot;application&quot;);
+    %&gt;
+    ${key}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><h2 id="_3、el表达式输出java类的属性"><a href="#_3、el表达式输出java类的属性" class="header-anchor">#</a> 3、EL表达式输出Java类的属性</h2> <div class="language-html line-numbers-mode"><pre class="language-html"><code>&lt;%@ page import=&quot;com.atguigu.pojo.Person&quot; %&gt;
+&lt;%@ page import=&quot;java.util.List&quot; %&gt;
+&lt;%@ page import=&quot;java.util.ArrayList&quot; %&gt;
+&lt;%@ page import=&quot;java.util.Map&quot; %&gt;
+&lt;%@ page import=&quot;java.util.HashMap&quot; %&gt;
+&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    &lt;%
+        Person person = new Person();
+        person.setName(&quot;cess真的帅&quot;);
+        person.setPhones(new String[]{&quot;18611111111&quot;,&quot;18622222222&quot;,&quot;18699998888&quot;});
+        List<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>String</span><span class="token punctuation">&gt;</span></span> cities = new ArrayList&lt;&gt;();
+        cities.add(&quot;北京&quot;);
+        cities.add(&quot;上海&quot;);
+        cities.add(&quot;成都&quot;);
+        person.setCities(cities);
+        Map<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>String,</span> <span class="token attr-name">Object</span><span class="token punctuation">&gt;</span></span> map = new HashMap&lt;&gt;();
+        map.put(&quot;key1&quot;, &quot;value1&quot;);
+        map.put(&quot;key2&quot;, &quot;value2&quot;);
+        map.put(&quot;key3&quot;, &quot;value3&quot;);
+        person.setMap(map);
+        pageContext.setAttribute(&quot;p&quot;, person);
+    %&gt;
+    输出Person：${p}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/&gt;</span></span>
+    输出Person的name属性：${p.name} <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/&gt;</span></span>
+    输出Person的phones数组属性值：${p.phones} <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/&gt;</span></span>
+    输出Person的phones数组属性值：${p.phones[0]} <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/&gt;</span></span>
+    输出Person的cities集合中的元素值：${p.cities} <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span>
+    输出Person的List集合中个别元素值：${p.cities[2]} <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span>
+    输出Person的Map集合: ${p.map} <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span>
+    输出Person的Map集合中某个key的值: ${p.map.key3} <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span>
+    &lt;%-- 通过getXxx()方法取值，并不需要Javabean中有这个属性 --%&gt;
+    输出Person的age属性：${p.age} <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br></div></div><p><img alt="img" data-src="https://cdn.nlark.com/yuque/0/2021/png/1379492/1623727440250-d2998281-f9fc-41af-9f36-a8319889a6cd.png" loading="lazy" class="lazy"></p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+<span class="token comment">//    i.需求——输出Person类中普通属性，数组属性。list集合属性和map集合属性。</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> phones<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> cities<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> map<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">18</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> phones<span class="token punctuation">,</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> cities<span class="token punctuation">,</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> map<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>phones <span class="token operator">=</span> phones<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>cities <span class="token operator">=</span> cities<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>map <span class="token operator">=</span> map<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h2 id="_4、el表达式的运算"><a href="#_4、el表达式的运算" class="header-anchor">#</a> 4、EL表达式的运算</h2> <h3 id="_4-1、关系运算"><a href="#_4-1、关系运算" class="header-anchor">#</a> 4.1、关系运算</h3> <table><thead><tr><th>关系运算符</th> <th>说明</th> <th>范例</th> <th>结果</th></tr></thead> <tbody><tr><td>== 或 eq</td> <td>等于</td> <td>${5==5} 或 ${5 eq 5}</td> <td>true</td></tr> <tr><td>!= 或 ne</td> <td>不等于</td> <td>${5!=5} 或 ${5 ne 5}</td> <td>false</td></tr> <tr><td>&lt; 或 lt</td> <td>小于</td> <td>${3&lt;5} 或 ${3 lt 5}</td> <td>true</td></tr> <tr><td>&gt; 或 gt</td> <td>大于</td> <td>${2&gt;10} 或 ${2 gt 10}</td> <td>false</td></tr> <tr><td>&lt;= 或 le</td> <td>小于等于</td> <td>${5&lt;=12} 或 ${5 le 12}</td> <td>true</td></tr> <tr><td>&gt;= 或 ge</td> <td>大于等于</td> <td>${3&gt;=5} 或 ${3 ge 5}</td> <td>false</td></tr></tbody></table> <h3 id="_4-2、逻辑运算"><a href="#_4-2、逻辑运算" class="header-anchor">#</a> 4.2、逻辑运算</h3> <table><thead><tr><th>逻辑运算符</th> <th>说明</th> <th>范例</th> <th>结果</th></tr></thead> <tbody><tr><td>&amp;&amp; 或 and</td> <td>与运算</td> <td>${12==12 &amp;&amp; 12&lt;11} 或 ${12 == 12 and 12 &lt;11}</td> <td>false</td></tr> <tr><td>|| 或 or</td> <td>或运算</td> <td>${12 == 12 || 12 &lt;11} 或 ${12==12 or 12 &lt;11}</td> <td>true</td></tr> <tr><td>! 或 not</td> <td>取反运算</td> <td>${ !true } 或 ${not true}</td> <td>false</td></tr></tbody></table> <h3 id="_4-3、算数运算"><a href="#_4-3、算数运算" class="header-anchor">#</a> 4.3、算数运算</h3> <table><thead><tr><th>算数运算符</th> <th>说明</th> <th>范例</th> <th>结果</th></tr></thead> <tbody><tr><td>+</td> <td>加法</td> <td>${12+18}</td> <td>30</td></tr> <tr><td>-</td> <td>减法</td> <td>${18-8}</td> <td>10</td></tr> <tr><td>*</td> <td>乘法</td> <td>${12*12}</td> <td>144</td></tr> <tr><td>/ 或 dev</td> <td>除法</td> <td>${144/12} 或 ${144 dev 12}</td> <td>12.0（自动兼容浮点模式）</td></tr> <tr><td>% 或 mod</td> <td>取模</td> <td>${144%10} 或 ${144 mod 10}</td> <td>4</td></tr></tbody></table> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;运算符&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    ${ 12 == 12 } 或 ${ 12 eq 12 } &lt;br&gt;
+    ${ 12 != 12 } 或 ${ 12 ne 12 } &lt;br&gt;
+    ${ 12 &lt; 12 } 或 ${ 12 lt 12 } &lt;br&gt;
+    ${ 12 &gt; 12 } 或 ${ 12 gt 12 } &lt;br&gt;
+    ${ 12 &lt;= 12 } 或 ${ 12 le 12 } &lt;br&gt;
+    ${ 12 &gt;= 12 } 或 ${ 12 ge 12 } &lt;br&gt;
+    &lt;hr&gt;
+    ${ 12 == 12 &amp;&amp; 12 &gt; 11 } 或 ${ 12 == 12 and 12 &gt; 11 } &lt;br&gt;
+    ${ 12 == 12 || 12 &gt; 11 } 或 ${ 12 == 12 or 12 &gt; 11 } &lt;br&gt;
+    ${ ! true } 或 ${ not true } &lt;br&gt;
+    &lt;hr&gt;
+    ${ 12 + 12 } &lt;br&gt;
+    ${ 12 - 12 } &lt;br&gt;
+    ${ 12 * 12 } &lt;br&gt;
+    &lt;%-- 除法会转为浮点型 --%&gt;
+    ${ 18 / 12 } 或 ${ 18 div 12 } &lt;br&gt;
+    ${ 18 % 12 } 或 ${ 18 mod 12 } &lt;br&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br></div></div><h3 id="_4-4、empty运算"><a href="#_4-4、empty运算" class="header-anchor">#</a> 4.4、empty运算</h3> <p>empty 运算可以判断一个数据是否为空，如果为空，则输出 true,不为空输出 false。</p> <p>以下几种情况为空：</p> <ul><li><p>值为 null 值的时候，为空</p></li> <li><p>值为空串的时候，为空</p></li> <li><p>值是 Object 类型数组，长度为零</p></li> <li><p>list 集合，元素个数为零</p></li> <li><p>map 集合，元素个数为零</p></li></ul> <h3 id="_4-5、三元运算"><a href="#_4-5、三元运算" class="header-anchor">#</a> 4.5、三元运算</h3> <p><strong>表达式 1？表达式 2：表达式 3</strong></p> <p>表达式1为真返回表达式2的值，表达式1为假返回表达式3的值</p> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page import=&quot;java.util.List&quot; %&gt;
+&lt;%@ page import=&quot;java.util.ArrayList&quot; %&gt;
+&lt;%@ page import=&quot;java.util.HashMap&quot; %&gt;
+&lt;%@ page import=&quot;java.util.Map&quot; %&gt;
+&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;empty&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%
+        // 1、值为null值的时候，为空
+        request.setAttribute(&quot;emptyNull&quot;, null);
+        // 2、值为空串的时候，为空
+        request.setAttribute(&quot;emptyStr&quot;, &quot;&quot;);
+        // 3、值是Object类型数组，长度为零的时候
+        request.setAttribute(&quot;emptyArr&quot;, new Object[]{});
+        // 4、list集合，元素个数为零
+        List&lt;String&gt; list = new ArrayList&lt;&gt;();
+        request.setAttribute(&quot;emptyList&quot;, list);
+        // 5、map集合，元素个数为零
+        Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();
+        request.setAttribute(&quot;emptyMap&quot;, map);
+    %&gt;
+    ${empty emptyNull} &lt;br/&gt;
+    ${empty emptyStr} &lt;br/&gt;
+    ${empty emptyArr} &lt;br/&gt;
+    ${empty emptyList} &lt;br/&gt;
+    ${empty emptyMap} &lt;br/&gt;
+    &lt;br/&gt;
+    ${(12 == 12) ? &quot;天气很好&quot; : &quot;天气不好&quot;}
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br></div></div><h3 id="_4-6、-点运算和-中括号运算"><a href="#_4-6、-点运算和-中括号运算" class="header-anchor">#</a> 4.6、“.”点运算和“[ ]”中括号运算</h3> <ul><li>.点运算，可以输出 Bean 对象中某个属性的值</li> <li>[]中括号运算，可以输出有序集合中某个元素的值</li></ul> <p>并且[]中括号运算，还可以输出 map 集合中 key 里含有特殊字符的 key 的值</p> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page import=&quot;java.util.HashMap&quot; %&gt;
+&lt;%@ page import=&quot;java.util.Map&quot; %&gt;
+&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%
+      Map&lt;String,Object&gt; map = new HashMap&lt;&gt;();
+      map.put(&quot;a.a.a&quot;, &quot;aaaValue&quot;);
+      map.put(&quot;b+b+b&quot;, &quot;bbbValue&quot;);
+      map.put(&quot;c-c-c&quot;, &quot;cccValue&quot;);
+      request.setAttribute(&quot;map&quot;, map);
+    %&gt;
+    ${map['a.a.a']} &lt;br/&gt;
+    ${map[&quot;b+b+b&quot;]} &lt;br/&gt;
+    ${map['c-c-c']} &lt;br/&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><h2 id="_5、el表达式的11个隐含对象"><a href="#_5、el表达式的11个隐含对象" class="header-anchor">#</a> 5、EL表达式的11个隐含对象</h2> <p>EL 个达式中 11 个隐含对象，是 EL 表达式中自己定义的，可以直接使用。</p> <p><img alt="image-20211113202218210" data-src="https://i.loli.net/2021/11/13/dPikslqBMaJRhzr.png" loading="lazy" class="lazy"></p> <p><strong>initParam</strong> <strong>Map&lt;String,String&gt;</strong> <strong>它可以获取在web.xml中配置的&lt;context.param&gt;上下文参数</strong></p> <h3 id="_5-1、el-获取四个特定域中的属性"><a href="#_5-1、el-获取四个特定域中的属性" class="header-anchor">#</a> 5.1、EL 获取四个特定域中的属性</h3> <p><img alt="image.png" data-src="https://cdn.nlark.com/yuque/0/2021/png/1379492/1623728004264-d2e52332-c231-4274-91e6-68c969a6d377.png" loading="lazy" class="lazy"></p> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;scope&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%
+        pageContext.setAttribute(&quot;key1&quot;, &quot;pageContext1&quot;);
+        pageContext.setAttribute(&quot;key2&quot;, &quot;pageContext2&quot;);
+        request.setAttribute(&quot;key2&quot;, &quot;request&quot;);
+        session.setAttribute(&quot;key2&quot;, &quot;session&quot;);
+        application.setAttribute(&quot;key2&quot;, &quot;application&quot;);
+    %&gt;
+    ${pageScope.key1} &lt;br/&gt;
+    ${pageScope.key2} &lt;br/&gt;
+    ${requestScope.key2} &lt;br/&gt;
+    ${sessionScope.key2} &lt;br/&gt;
+    ${applicationScope.key2} &lt;br/&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><h3 id="_5-2、pagecontext对象的使用"><a href="#_5-2、pagecontext对象的使用" class="header-anchor">#</a> 5.2、pageContext对象的使用</h3> <p>作用：</p> <ol><li>协议：</li> <li>服务器 ip：</li> <li>服务器端口：</li> <li>获取工程路径：</li> <li>获取请求方法：</li> <li>获取客户端 ip 地址：</li> <li>获取会话的 id 编号：</li></ol> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;pageContext&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    ${pageContext} &lt;%--org.apache.jasper.runtime.PageContextImpl@33598e0--%&gt;
+    ${pageContext.servletConfig}
+    &lt;%--
+        request.getScheme() 它可以获取请求的协议
+        request.getServerName() 获取请求的服务器ip或域名
+        request.getServerPort() 获取请求的服务器端口号
+        getContextPath() 获取当前工程路径
+        request.getMethod() 获取请求的方式（GET或POST）
+        request.getRemoteHost()  获取客户端的ip 地址
+        session.getId() 获取会话的唯一标识
+    --%&gt;
+    &lt;%=request.getScheme() %&gt; &lt;br/&gt;
+    1.协议： ${ pageContext.request.scheme } &lt;br/&gt;
+    2.服务器ip：${ pageContext.request.serverName } &lt;br/&gt;
+    3.服务器端口：${ pageContext.request.serverPort } &lt;br/&gt;
+    4.获取工程路径：${ pageContext.request.contextPath } &lt;br/&gt;
+    5.获取请求方法：${ pageContext.request.method } &lt;br/&gt;
+    6.获取客户端ip地址：${ pageContext.request.remoteHost } &lt;br/&gt;
+    7.获取会话的id编号：${ pageContext.session.id } &lt;br/&gt;&lt;br/&gt;
+    &lt;%-- 开发中常将几大对象放到pageContext中，如下--%&gt;
+    &lt;%
+        pageContext.setAttribute(&quot;request&quot;, request);
+    %&gt;
+    1.协议： ${ request.scheme } &lt;br&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br></div></div><h3 id="_5-3、el-表达式其他隐含对象的使用"><a href="#_5-3、el-表达式其他隐含对象的使用" class="header-anchor">#</a> 5.3、EL 表达式其他隐含对象的使用</h3> <p>param 					Map&lt;String,String&gt; 				它可以获取请求参数的值</p> <p>paramValues 	  Map&lt;String,String[]&gt; 			 它也可以获取请求参数的值，获取多个值的时候使用。</p> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>输出请求参数 username 的值：${ param.username } &lt;br&gt;
+输出请求参数 password 的值：${ param.password } &lt;br&gt;
+输出请求参数 username 的值：${ paramValues.username[0] } &lt;br&gt;
+输出请求参数 hobby 的值：${ paramValues.hobby[0] } &lt;br&gt;
+输出请求参数 hobby 的值：${ paramValues.hobby[1] } &lt;br&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>请求地址： http://localhost:8080/09_EL_JSTL/other_el_obj.jsp?username=wzg168&amp;password=666666&amp;hobby=java&amp;hobby=cpp</p> <p>header 					Map 				它可以获取请求头的信息</p> <p>headerValues 	  Map 				它可以获取请求头的信息，它可以获取多个值的情况</p> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>输出请求头【User-Agent】的值：${ header['User-Agent'] } &lt;br&gt;
+输出请求头【Connection】的值：${ header.Connection } &lt;br&gt;
+输出请求头【User-Agent】的值：${ headerValues['User-Agent'][0] } &lt;br&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>cookie 					 Map 				它可以获取当前请求的 Cookie 信息</p> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>获取 Cookie 的名称：${ cookie.JSESSIONID.name } &lt;br&gt;
+获取 Cookie 的值：${ cookie.JSESSIONID.value } &lt;br&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>initParam				Map 				它可以获取在 web.xml 中配置的上下文参数</p> <p>web.xml 中的配置：</p> <div class="language-xml line-numbers-mode"><pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>context-param</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">&gt;</span></span>username<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">&gt;</span></span>root<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>context-param</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>context-param</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">&gt;</span></span>url<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">&gt;</span></span>jdbc:mysql:///test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>context-param</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><div class="language-jsp line-numbers-mode"><pre class="language-text"><code>输出&amp;lt;Context-param&amp;gt;username 的值：${ initParam.username } &lt;br&gt;
+输出&amp;lt;Context-param&amp;gt;url 的值：${ initParam.url } &lt;br&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h2 id="_6、jstl标签库简介"><a href="#_6、jstl标签库简介" class="header-anchor">#</a> 6、JSTL标签库简介</h2> <ol><li><p>JSTL标签库全称是JSP Standard Tag Library，是一个不断完善的开放源代码的JSP标签库</p></li> <li><p>EL表达式主要是为了替换JSP中的表达式脚本，JSTL标签库是为了替换代码脚本</p></li> <li><p>JSTL由五个不同功能的标签库组成</p></li></ol> <p>JSTL 由五个不同功能的标签库组成：</p> <table><thead><tr><th>功能范围</th> <th>URL</th> <th>前缀</th></tr></thead> <tbody><tr><td>核心标签库--重点</td> <td>http://java.sun.com/jsp/jstl/core</td> <td>c</td></tr> <tr><td>格式化</td> <td>http://java.sun.com/jsp/jstl/fmt</td> <td>fmt</td></tr> <tr><td>函数</td> <td>http://java.sun.com/jsp/jstl/functions</td> <td>fn</td></tr> <tr><td>数据库(不使用)</td> <td>http://java.sun.com/jsp/jstl/sql</td> <td>sql</td></tr> <tr><td>XML(不使用)</td> <td>http://java.sun.com/jsp/jstl/xml</td> <td>x</td></tr></tbody></table> <h2 id="_7、jstl标签库的使用步骤"><a href="#_7、jstl标签库的使用步骤" class="header-anchor">#</a> 7、JSTL标签库的使用步骤</h2> <ol><li><p>先导入JSTL标签库的jar包</p> <p>taglibs-standard-impl-1.2.1.jar</p> <p>taglibs-standard-spec-1.2.1.jar</p></li> <li><p>在jsp页面中使用taglib指令引入标签库(可自动导包)</p></li></ol> <p>​			CORE 标签库	 &lt;%@ taglib prefix=“c” uri=“http://java.sun.com/jsp/jstl/core” %&gt;</p> <p>​			XML 标签库		&lt;%@ taglib prefix=“x” uri=“http://java.sun.com/jsp/jstl/xml” %&gt;</p> <p>​			FMT 标签库		&lt;%@ taglib prefix=“fmt” uri=“http://java.sun.com/jsp/jstl/fmt” %&gt;</p> <p>​			SQL 标签库		&lt;%@ taglib prefix=“sql” uri=“http://java.sun.com/jsp/jstl/sql” %&gt;</p> <p>​			FUNCTIONS 标签库&lt;%@ taglib prefix=“fn” uri=“http://java.sun.com/jsp/jstl/functions” %&gt;</p> <h2 id="_8、core核心库的使用"><a href="#_8、core核心库的使用" class="header-anchor">#</a> 8、core核心库的使用</h2> <h3 id="_8-1、-c-set-标签"><a href="#_8-1、-c-set-标签" class="header-anchor">#</a> 8.1、&lt;c:set/&gt;标签</h3> <p>作用：可以往域中保存数据</p> <ul><li>scope属性设置保存到哪个域</li></ul> <p>​			page表示pageContext域(默认值)</p> <p>​			request表示Request域</p> <p>​			session表示Session域</p> <p>​			application表示ServletContext域</p> <ul><li>var属性设置key是多少</li> <li>value属性设置value是多少</li></ul> <h3 id="_8-2、-c-if-标签"><a href="#_8-2、-c-if-标签" class="header-anchor">#</a> 8.2、&lt;c:if/&gt;标签</h3> <p>作用：做if判断
+test属性设置判断的条件，属性值使用EL表达式
+注意：如果test属性值为真则执行if开始标签和结束标签中的语句，为假则不执行</p> <h3 id="_8-3、-c-choose-、-c-when-、-c-otherwise-标签"><a href="#_8-3、-c-choose-、-c-when-、-c-otherwise-标签" class="header-anchor">#</a> 8.3、&lt;c:choose&gt;、&lt;c:when&gt;、&lt;c:otherwise&gt;标签</h3> <p>作用：多路判断，类似switch-case结构</p> <ul><li>choose标签表示开始多路判断</li> <li>when标签表示每一种判断情况</li></ul> <p>test属性设置判断的条件，属性值使用EL表达式</p> <p>注意：若test属性值为真，则执行when起始和结束标签中的语句</p> <ul><li>otherwise标签表示其余情况，若满足，则执行起始和结束标签中的语句</li></ul> <p>注意</p> <ol><li><p>使用三种标签时标签里不能使用html注释，要使用jsp注释</p></li> <li><p>when标签的父标签一定是choose标签</p></li> <li><p>when标签是从上向下依次判断的，一旦有满足的就不会再判断剩余when标签</p></li></ol> <h3 id="_8-4、案例"><a href="#_8-4、案例" class="header-anchor">#</a> 8.4、案例：</h3> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;
+&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;jstl-core&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%--
+        i.&lt;c:set /&gt;
+            作用：set标签可以往域中保存数据
+            域对象.setAttribute(key,value);
+            scope 属性设置保存到哪个域
+                page表示PageContext域（默认值）
+                request表示Request域
+                session表示Session域
+                application表示ServletContext域
+            var属性设置key是多少
+            value属性设置值
+    --%&gt;
+    保存之前：${ sessionScope.abc } &lt;br&gt;
+    &lt;c:set scope=&quot;session&quot; var=&quot;abc&quot; value=&quot;abcValue&quot;/&gt;
+    保存之后：${ sessionScope.abc } &lt;br&gt;
+    &lt;%--
+        ii.&lt;c:if /&gt;
+            if标签用来做if判断。
+            test属性表示判断的条件（使用EL表达式输出）
+    --%&gt;
+    &lt;c:if test=&quot;${12 == 12}&quot; &gt;
+        &lt;h3&gt;12等于12&lt;/h3&gt;
+    &lt;/c:if&gt;
+    &lt;c:if test=&quot;${12 != 12}&quot; &gt;
+        &lt;h3&gt;12不等于12&lt;/h3&gt;
+    &lt;/c:if&gt;
+    &lt;%--
+        iii.&lt;c:choose&gt; &lt;c:when&gt; &lt;c:otherwise&gt;标签
+        作用：多路判断。跟switch ... case .... default非常接近
+        choose标签开始选择判断
+        when标签表示每一种判断情况
+            test属性表示当前这种判断情况的值
+        otherwise标签表示剩下的情况
+        &lt;c:choose&gt; &lt;c:when&gt; &lt;c:otherwise&gt;标签使用时需要注意的点：
+            1、标签里不能使用html注释，要使用jsp注释 &lt;!-- html注释 --&gt;❌
+            2、when标签的父标签一定要是choose标签
+    --%&gt;
+    &lt;%
+        request.setAttribute(&quot;height&quot;, 168);
+    %&gt;
+    &lt;c:choose&gt;
+        &lt;c:when test=&quot;${requestScope.height &gt; 190}&quot;&gt;
+            &lt;h3&gt;小巨人&lt;/h3&gt;
+        &lt;/c:when&gt;
+        &lt;c:when test=&quot;${requestScope.height &gt; 180}&quot;&gt;
+            &lt;h3&gt;很高&lt;/h3&gt;
+        &lt;/c:when&gt;
+        &lt;c:when test=&quot;${requestScope.height &gt; 170}&quot;&gt;
+            &lt;h3&gt;还可以&lt;/h3&gt;
+        &lt;/c:when&gt;
+        &lt;c:otherwise&gt;
+            &lt;c:choose&gt;
+                &lt;c:when test=&quot;${requestScope.height &gt; 160}&quot;&gt;
+                    &lt;h3&gt;大于160&lt;/h3&gt;
+                &lt;/c:when&gt;
+                &lt;c:when test=&quot;${requestScope.height &gt; 150}&quot;&gt;
+                    &lt;h3&gt;大于150&lt;/h3&gt;
+                &lt;/c:when&gt;
+                &lt;c:when test=&quot;${requestScope.height &gt; 140}&quot;&gt;
+                    &lt;h3&gt;大于140&lt;/h3&gt;
+                &lt;/c:when&gt;
+                &lt;c:otherwise&gt;
+                    其他小于140
+                &lt;/c:otherwise&gt;
+            &lt;/c:choose&gt;
+        &lt;/c:otherwise&gt;
+    &lt;/c:choose&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br></div></div><h3 id="_8-5、-c-foreach-标签"><a href="#_8-5、-c-foreach-标签" class="header-anchor">#</a> 8.5、&lt;c:forEach/&gt;标签</h3> <p>作用：遍历输出(与foreach循环一样，自动的遍历到下一个数据</p> <p>c:forEach varStatus属性继承自LoopTagStatus接口，接口方法为：</p> <p><img alt="img" data-src="https://cdn.nlark.com/yuque/0/2021/png/1379492/1623597662096-df241d55-2335-45c2-8c46-5871d2608530.png" loading="lazy" class="lazy"></p> <div class="language-jsp line-numbers-mode"><pre class="language-text"><code>&lt;%@ page import=&quot;java.util.HashMap&quot; %&gt;
+&lt;%@ page import=&quot;java.util.Map&quot; %&gt;
+&lt;%@ page import=&quot;java.util.ArrayList&quot; %&gt;
+&lt;%@ page import=&quot;com.atguigu.pojo.Student&quot; %&gt;
+&lt;%@ page import=&quot;java.util.List&quot; %&gt;
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;
+&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+        table {
+            border: 1px solid red;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid red;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;%--
+    1.遍历1到10，输出
+        for (int i = 1; i &lt; 10; i++)
+        var 属性表示循环的变量(也是当前正在遍历到的数据)
+        begin属性设置开始的索引
+        end 属性设置结束的索引
+--%&gt;
+&lt;table border=&quot;1px&quot; cellspacing=&quot;0&quot;&gt;
+    &lt;c:forEach var=&quot;i&quot; begin=&quot;1&quot; end=&quot;10&quot;&gt;
+        &lt;tr&gt;
+            &lt;td&gt;第${i}行&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/c:forEach&gt;
+&lt;/table&gt;
+&lt;hr/&gt;
+&lt;%--
+    2.遍历Object数组
+        for (Object item: arr)
+        items 表示遍历的数据源（遍历的集合）
+        var 表示当前遍历到的数据
+--%&gt;
+&lt;%
+    request.setAttribute(&quot;arr&quot;, new String[]{&quot;18610541354&quot;, &quot;18688886666&quot;, &quot;18699998888&quot;});
+%&gt;
+&lt;c:forEach var=&quot;i&quot; items=&quot;${requestScope.arr}&quot;&gt;
+    ${i}
+&lt;/c:forEach&gt;
+&lt;hr/&gt;
+&lt;%
+    Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();
+    map.put(&quot;key1&quot;, &quot;value1&quot;);
+    map.put(&quot;key2&quot;, &quot;value2&quot;);
+    map.put(&quot;key3&quot;, &quot;value3&quot;);
+//        for ( Map.Entry&lt;String,Object&gt; entry : map.entrySet()) {
+//        }
+    request.setAttribute(&quot;map&quot;, map);
+%&gt;
+&lt;c:forEach var=&quot;entry&quot; items=&quot;${requestScope.map}&quot;&gt;
+    &lt;h3&gt;${entry.key} = ${entry.value}&lt;/h3&gt;
+&lt;/c:forEach&gt;
+&lt;hr/&gt;
+&lt;%--4.遍历List集合---list中存放 Student类，有属性：编号，用户名，密码，年龄，电话信息--%&gt;
+&lt;%
+    List&lt;Student&gt; studentList = new ArrayList&lt;&gt;();
+    for (int i = 1; i &lt;= 10; i++) {
+        studentList.add(new Student(i, &quot;username&quot; + i, &quot;pass&quot; + i, 18 + i, &quot;phone&quot; + i));
+    }
+    request.setAttribute(&quot;stus&quot;, studentList);
+%&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;编号&lt;/th&gt;
+        &lt;th&gt;用户名&lt;/th&gt;
+        &lt;th&gt;密码&lt;/th&gt;
+        &lt;th&gt;年龄&lt;/th&gt;
+        &lt;th&gt;电话信息&lt;/th&gt;
+        &lt;th&gt;操作&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;%--
+        items 表示遍历的集合
+        var 表示遍历到的数据
+        begin表示遍历的开始索引值
+        end 表示结束的索引值
+        step 属性表示遍历的步长值
+        varStatus 属性表示当前遍历到的数据的状态
+        for（int i = 1; i &lt; 10; i+=2）
+    --%&gt;
+    &lt;c:forEach var=&quot;stu&quot; items=&quot;${requestScope.stus}&quot; 
+               begin=&quot;2&quot; end=&quot;7&quot; step=&quot;2&quot; varStatus=&quot;status&quot;&gt;
+        &lt;tr&gt;
+            &lt;td&gt;${stu.id}&lt;/td&gt;
+            &lt;td&gt;${stu.username}&lt;/td&gt;
+            &lt;td&gt;${stu.password}&lt;/td&gt;
+            &lt;td&gt;${stu.age}&lt;/td&gt;
+            &lt;td&gt;${stu.phone}&lt;/td&gt;
+            &lt;td&gt;${status.count}&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/c:forEach&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br></div></div></div></div> <!----> <div class="page-edit"><div class="edit-link"><a href="https://github.com/ZHANGChang47/BlogVuePress/edit/main/docs/02.JavaWeb/04.EL表达式与JSTL标签库.md" target="_blank" rel="noopener noreferrer">帮助我改善此页面</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2023年2月4日</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/pages/500803/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">Jsp与Listener</div></a> <a href="/pages/cb4b56/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">文件的上传与下载</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/pages/500803/" class="prev">Jsp与Listener</a></span> <span class="next"><a href="/pages/cb4b56/">文件的上传与下载</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/pages/9b7514/"><div>
+            沧桑百年史，爱国西交情
+            <!----></div></a> <span class="date">02-04</span></dt></dl><dl><dd>02</dd> <dt><a href="/pages/d7b60a/"><div>
+            承党恩泽，物阜民丰
+            <!----></div></a> <span class="date">02-04</span></dt></dl><dl><dd>03</dd> <dt><a href="/pages/a0057c/"><div>
+            静谧之眼
+            <!----></div></a> <span class="date">02-04</span></dt></dl> <dl><dd></dd> <dt><a href="/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><div class="icons"><a href="mailto:2648492063@qq.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/ZHANGChang47" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="https://typora001-zc.oss-cn-chengdu.aliyuncs.com/typoraImg/Snipaste_2023-02-03_22-33-33.webp" title="微信" target="_blank" class="iconfont icon-weixin"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2022-2023
+    <span>张畅 |<a href="https://beian.miit.gov.cn" target="_blank">陕ICP备2022001001号</a><br>	<img src="http://www.beian.gov.cn/img/new/gongan.png" border="0" /></a>	 		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41018302000331" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px;">冀公网安备 13112802000237号</p></a></span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <!----></div><div class="global-ui"><APlayer audio="" fixed="true" mini="true" theme="#b7daff" loop="loop" order="list" preload="auto" volume="0.7" mutex="true" lrc-type="0" list-max-height="250" storage-name="vuepress-plugin-meting" id="aplayer-fixed"></APlayer><div></div><div></div><div></div><div id="tcomment"></div><!----></div></div>
+    <script src="/assets/js/app.bb5e25c9.js" defer></script><script src="/assets/js/2.108e92a1.js" defer></script><script src="/assets/js/43.d9e8ef5e.js" defer></script><script src="/assets/js/5.73b07204.js" defer></script><script src="/assets/js/13.9b1b1c77.js" defer></script><script src="/assets/js/14.e2f4930c.js" defer></script><script src="/assets/js/9.5b9b4ae3.js" defer></script><script src="/assets/js/10.68c0c324.js" defer></script>
+  </body>
+</html>
