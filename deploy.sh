@@ -4,6 +4,12 @@
 set -e
 
 # build
+# VuePress 1.x 依赖 webpack 4，Node 17+ 默认 OpenSSL 3 会让构建报
+# ERR_OSSL_EVP_UNSUPPORTED，需开启 legacy provider；Node 16 及以下不识别该参数。
+NODE_MAJOR=$(node -p "process.versions.node.split('.')[0]")
+if [ "$NODE_MAJOR" -ge 17 ]; then
+  export NODE_OPTIONS="${NODE_OPTIONS:+$NODE_OPTIONS }--openssl-legacy-provider"
+fi
 npm run docs:build
 
 # navigate into the build output directory
