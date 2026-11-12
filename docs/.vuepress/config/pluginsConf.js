@@ -58,13 +58,23 @@ module.exports = [
     {
       // 这个 API 是不可用的，只是作为示例而已 https://music.163.com/playlist?id=2555412439&userid=1490434176
       // metingApi: 'https://music.163.com/',
-      meting: {
-        // 不配置该项的话不会出现全局播放器
-        server: "tencent", // 音乐平台，可选值： "netease" | "tencent" | "kuwo" | "kugou" | "baidu" | "xiami"，netease 是网易云
-        type: "playlist", // 资源类型（播放列表、单曲、专辑等），可选值： "song" | "album" | "artist" | "playlist"
-        mid: "8521978721", // 资源 ID
-        // auto: 'https://music.163.com/playlist?id=2555412439',  // 资源 url，填写后可通过资源 url 自动解析资源平台、类型、ID，上述三个选项将被覆盖（本参数仅支持 netease、tencent、xiami 三平台）
-      },
+      // 2026-11-12 停用「全局播放器」：
+      // 插件的 globalUIComponents 判断依据是 options.meting !== undefined，
+      // 只要配了 meting，就会把 MetingGlobal 注册成全局 UI 组件、每页渲染一个 APlayer。
+      // APlayer 内置的是另一份旧版 Vue，其组件实例没有 $scopedSlots；
+      // 而本站是 Vue 2.7.16，updateChildComponent 读取 vm.$scopedSlots.$stable 时会抛
+      // "Cannot read properties of undefined (reading '$stable')"，
+      // 该异常发生在 patch 阶段，会中断整棵组件树的更新，
+      // 导致所有 Vue 事件监听器都没能绑定 —— 首页分页点了没反应、主题自带的
+      // 窄屏按钮也点了没反应。删掉下面这段 meting 资源配置即可不再有全局播放器，
+      // 插件本身保留，文章里仍可单独使用 <Meting> 组件。
+      // meting: {
+      //   // 不配置该项的话不会出现全局播放器
+      //   server: "tencent", // 音乐平台，可选值： "netease" | "tencent" | "kuwo" | "kugou" | "baidu" | "xiami"，netease 是网易云
+      //   type: "playlist", // 资源类型（播放列表、单曲、专辑等），可选值： "song" | "album" | "artist" | "playlist"
+      //   mid: "8521978721", // 资源 ID
+      //   // auto: 'https://music.163.com/playlist?id=2555412439',  // 资源 url，填写后可通过资源 url 自动解析资源平台、类型、ID，上述三个选项将被覆盖（本参数仅支持 netease、tencent、xiami 三平台）
+      // },
       aplayer: {
         fixed: true, // 是否开启吸底模式，即自动隐藏在屏幕边框
         mini: true, // 是否开启迷你模式

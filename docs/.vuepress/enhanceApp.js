@@ -216,6 +216,23 @@
    ============================================================ */
 const WB_NAV_BREAKPOINT = 1360;
 
+/**
+ * 当前页面有没有可用的主题侧栏。
+ * 判据用主题给无侧栏页面加的 no-sidebar 标记：
+ * - 首页是 no-sidebar，侧栏没有任何内容，主题自带的按钮点开只有一层空蒙版；
+ * - 文章页没有该标记，主题按钮开合侧栏是有用的，不该抢。
+ * 不能只看 aside.sidebar 是否存在：窄屏下它只是被 translateX 移出屏幕，
+ * display 仍然是 block，据此判断会把首页之外的手机端也误判成「有侧栏」。
+ */
+function wbHasThemeSidebar() {
+  if (document.querySelector('.no-sidebar')) return false;
+  const sidebar = document.querySelector('aside.sidebar');
+  if (!sidebar) return false;
+  const style = window.getComputedStyle(sidebar);
+  if (style.display === 'none' || style.visibility === 'hidden') return false;
+  return true;
+}
+
 function wbCloseDrawer() {
   document.body.classList.remove('wb-drawer-open');
 }
@@ -292,9 +309,11 @@ function wbBindToggle() {
   btn.dataset.wbBound = '1';
   btn.title = '导航菜单';
   btn.setAttribute('aria-label', '打开导航菜单');
-  // 捕获阶段拦截：首页没有侧栏，主题自带的 toggle 只会显示一层空蒙版
+  // 捕获阶段拦截：页面没有侧栏时，主题自带的 toggle 只会显示一层空蒙版。
+  // 有侧栏的页面不拦截，把点击留给主题去开合侧栏。
   btn.addEventListener('click', (e) => {
     if (window.innerWidth > WB_NAV_BREAKPOINT) return;
+    if (wbHasThemeSidebar()) return;
     e.stopImmediatePropagation();
     e.preventDefault();
     document.body.classList.toggle('wb-drawer-open');

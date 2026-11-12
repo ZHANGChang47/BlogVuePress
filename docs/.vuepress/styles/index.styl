@@ -125,43 +125,93 @@ mark {
   transition: width .25s ease, border-color .25s ease, background-color .25s ease;
 }
 
-/* ---------- 4. 导航栏：宽屏 flex 重排，搜索框固定在最右 ---------- */
-@media (min-width: 1361px) {
+/* ============================================================
+   导航栏（2026-11-12 重做）
+   实测依据，不是拍脑袋：
+   1) 主题在 Navbar.vue 里给 .links 加了内联 max-width = 视口宽 − 站点名宽，
+      意图是把菜单盒子卡在站点名右侧。但菜单内容比盒子宽时会向左溢出，
+      直接压在站点名文字上（1440 宽实测「随笔」叠在「百里登风的博客」上）。
+   2) 主题的 .navbar .links{position:absolute} 与 .search-box input{width:10rem}
+      来自组件自身的 <style> 块，运行时注入，顺序在本文件之后；
+      同级特异性下「后出现者胜」，普通规则会被盖掉 —— 所以关键属性一律 !important。
+   3) 导航 13 个一级项自然宽约 1095px，加站点名、搜索与间距后整条约需 1530px，
+      1440 视口根本放不下。收紧字号与内边距、并把搜索收成图标（聚焦再展开），
+      整条降到约 1280px，1366 及以上可完整放下，不需要裁剪（裁剪会连带切掉下拉菜单）。
+   ============================================================ */
+$wbNavDesktopMin = 1361px
+$wbNavMobileMax = 1360px
+
+/* ---------- 4a. 宽屏：flex 重排，搜索固定最右 ---------- */
+@media (min-width: $wbNavDesktopMin) {
   .navbar {
-    display: flex;
-    align-items: center;
+    display: flex !important;
+    align-items: center !important;
   }
   .navbar .home-link {
-    flex: 0 0 auto;
-    margin-right: 24px;
+    flex: 0 0 auto !important;
+    margin-right: 16px !important;
+    white-space: nowrap !important;
+  }
+  .navbar .site-name {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
   }
   .navbar .links {
-    position: static;
-    right: auto;
-    top: auto;
-    flex: 1 1 auto;
-    min-width: 0;
+    position: static !important;
+    right: auto !important;
+    top: auto !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
     max-width: none !important;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-left: 0;
-    font-size: .86rem;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    padding-left: 0 !important;
   }
   .navbar .links > .nav-links {
-    order: 1;
-    flex: 0 1 auto;
-    min-width: 0;
+    order: 1 !important;
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    font-size: .8rem !important;
   }
   .navbar .links > .search-box {
-    order: 2;
-    flex: 0 0 auto;
-    margin-left: 16px;
+    order: 2 !important;
+    flex: 0 0 auto !important;
+    margin-left: 12px !important;
+    margin-right: 0 !important;
+    position: relative !important;
+  }
+  /* 搜索收成图标；聚焦时向左展开覆盖在菜单之上，不挤压菜单导致溢出压字 */
+  .navbar .links > .search-box input {
+    width: 0 !important;
+    padding: 0 .5rem 0 2rem !important;
+    border-color: transparent !important;
+    cursor: pointer !important;
+    background-color: transparent !important;
+  }
+  .navbar .links > .search-box input:focus {
+    width: 10rem !important;
+    cursor: text !important;
+    border-color: var(--borderColor, #ccc) !important;
+    position: absolute !important;
+    right: 0 !important;
+    top: 0 !important;
+    z-index: 30 !important;
+    background-color: var(--mainBg) !important;
   }
   .navbar .nav-links .nav-item > a,
-  .navbar .nav-links .dropdown-title > a {
-    padding-left: .42rem;
-    padding-right: .42rem;
+  .navbar .nav-links .dropdown-title {
+    padding-left: .26rem !important;
+    padding-right: .26rem !important;
+  }
+  /* 主题默认 .nav-item{margin-left:1.5rem}，13 个一级菜单之间光间距就占 288px，
+     这是 1366 这类笔记本宽度放不下完整菜单的主因。收到 .65rem 后省出约 163px，
+     1366 及以上可完整显示全部一级菜单与搜索图标，无需裁剪。 */
+  .navbar .links > .nav-links .nav-item {
+    margin-left: .65rem !important;
+  }
+  .navbar .links > .nav-links .nav-item:first-child {
+    margin-left: 0 !important;
   }
   /* 当前导航项用滑动下划线，替掉生硬的 border-bottom */
   .navbar .nav-links .nav-item > a:not(.external) {
@@ -171,8 +221,8 @@ mark {
   .navbar .nav-links .nav-item > a:not(.external)::after {
     content: '';
     position: absolute;
-    left: .42rem;
-    right: .42rem;
+    left: .26rem;
+    right: .26rem;
     bottom: -2px;
     height: 2px;
     background: var(--wbAccent);
@@ -190,10 +240,10 @@ mark {
   }
 }
 
-/* ---------- 5. 窄屏：顶部导航收进抽屉，左上按钮真正可用 ---------- */
-@media (max-width: 1360px) {
+/* ---------- 4b. 窄屏：顶部菜单收进抽屉，左上按钮真正可用 ---------- */
+@media (max-width: $wbNavMobileMax) {
   .navbar {
-    padding-left: 4rem;
+    padding-left: 4rem !important;
   }
   .navbar .site-name {
     display: inline-block !important;
@@ -204,37 +254,40 @@ mark {
     white-space: nowrap;
   }
   .navbar .links {
-    position: absolute;
-    right: 1.5rem;
-    top: .7rem;
-    padding-left: 0;
+    position: absolute !important;
+    right: 1.5rem !important;
+    top: .7rem !important;
+    padding-left: 0 !important;
   }
   .navbar .links > .nav-links {
     display: none !important;
   }
   .navbar .links > .search-box {
-    margin-left: 0;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
+  /* 左上角按钮：主题只在 ≤719px 显示，这里放宽到整个窄屏区间。
+     点击行为由 enhanceApp.js 决定：有侧栏的页面交给主题，无侧栏的首页打开导航抽屉。 */
   .sidebar-button {
     display: block !important;
     position: fixed !important;
     top: .7rem !important;
     left: 1rem !important;
-    width: 1.25rem;
-    height: 1.25rem;
-    margin: 0;
-    padding: .6rem;
-    line-height: normal;
-    text-align: center;
-    border-radius: 8px;
-    color: var(--textColor);
-    background: transparent;
-    z-index: 60;
+    width: 2rem !important;
+    height: 2rem !important;
+    margin: 0 !important;
+    padding: .4rem !important;
+    line-height: normal !important;
+    text-align: center !important;
+    border-radius: 8px !important;
+    color: var(--textColor) !important;
+    background: transparent !important;
+    z-index: 60 !important;
   }
   .sidebar-button .icon {
-    display: block;
-    width: 1.25rem;
-    height: 1.25rem;
+    display: block !important;
+    width: 1.2rem !important;
+    height: 1.2rem !important;
   }
   .sidebar-button:hover {
     background: var(--wbAccentSoft) !important;
