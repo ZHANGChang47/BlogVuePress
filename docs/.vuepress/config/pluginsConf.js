@@ -23,6 +23,7 @@ module.exports = [
     outFile: 'sitemap.xml',
     changefreq: 'weekly',
     priority: 0.5,
+    exclude: ['/404.html'],
     // @vuepress/last-updated 输出中文日期（如「2026年11月12日」），
     // Node 原生 Date 无法解析，需容错，否则插件抛 RangeError 中断构建。
     dateFormatter: (lastUpdated) => {
