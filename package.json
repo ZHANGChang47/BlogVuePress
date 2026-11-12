@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "baiduPush": "node utils/baiduPush.js https://frxcat.fun && bash baiduPush.sh",
+    "baiduPush": "node utils/baiduPush.js https://zhangchang47.github.io/BlogVuePress && bash baiduPush.sh",
     "deploy": "bash deploy.sh"
   },
   "keywords": [],
@@ -64,6 +64,9 @@
     "vuepress-plugin-social-share": "^1.1.0",
     "vuepress-theme-vdoing": "^1.10.4",
     "watchpack": "^2.3.1"
+  },
+  "overrides": {
+    "lodash.template": "4.5.0"
   },
   "directories": {
     "doc": "docs"

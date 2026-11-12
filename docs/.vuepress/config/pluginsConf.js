@@ -1,10 +1,11 @@
 
+const SITE_URL = 'https://zhangchang47.github.io/BlogVuePress/';
+
 const autometa_options = {
   site: {
-    name   : 'frxcat',
-    twitter: 'frxcat',
+    name: '百里登风的博客',
   },
-  canonical_base: 'https://frxcat.fun/',
+  canonical_base: SITE_URL,
 };
 module.exports = [
 //   [ //记录上次阅读位置
@@ -14,6 +15,27 @@ module.exports = [
 //     }
 // ],
   [{ 'seo': { /* options */ }}],
+  // 生成 sitemap.xml，供搜索引擎抓取与站长平台提交
+  ['vuepress-plugin-sitemap', {
+    // 插件会自行把 config.js 的 base(/BlogVuePress/) 拼进每条 URL，
+    // 因此这里只能填域名根，否则路径会重复。
+    hostname: 'https://zhangchang47.github.io',
+    outFile: 'sitemap.xml',
+    changefreq: 'weekly',
+    priority: 0.5,
+    // @vuepress/last-updated 输出中文日期（如「2026年11月12日」），
+    // Node 原生 Date 无法解析，需容错，否则插件抛 RangeError 中断构建。
+    dateFormatter: (lastUpdated) => {
+      const d = new Date(lastUpdated);
+      if (!isNaN(d.getTime())) return d.toISOString();
+      const m = String(lastUpdated).match(/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/);
+      if (m) {
+        const parsed = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]));
+        if (!isNaN(parsed.getTime())) return parsed.toISOString();
+      }
+      return new Date().toISOString();
+    },
+  }],
   // [
   //   '@vuepress/google-analytics',
   //   {
@@ -81,8 +103,10 @@ module.exports = [
   // ],
   [
     {
-        name: 'custom-plugins',//代码块皮肤,页面信息，评论
-        globalUIComponents: ["BlockToggle","PageInfo","Aplayer","Twikoo"],// 2.x 版本 globalUIComponents 改名为 clientAppRootComponentFiles
+        name: 'custom-plugins',//代码块皮肤、页面信息、音乐播放器
+        // 原 Twikoo 评论区后端指向原模板作者的服务器，会把读者评论发到第三方，
+        // 配置自己的 envId 后再把 "Twikoo" 加回此数组。
+        globalUIComponents: ["BlockToggle","PageInfo","Aplayer"],
     }
 ],
   //  全局提示

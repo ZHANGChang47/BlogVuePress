@@ -1,7 +1,7 @@
 const pluginsConf = require('./config/pluginsConf.js');
 const { readFileList, readTotalFileWords, readEachFileWords } = require('./webSiteInfo/readFile');
 module.exports = {
-  base: '/', //设置站点根路径
+  base: '/BlogVuePress/', // GitHub Pages 项目页路径；若将来绑定独立域名需改回 '/'
   title: '百里登风的博客',
   description: '张弓折扇风雨历，畅叙平生快意！',
   dest: 'docs/.vuepress/dist',
@@ -25,7 +25,7 @@ module.exports = {
     ['script', { charset: 'utf-8', href: './js/main.js' }],
     ['meta', { name: 'referrer', content: 'no-referrer-when-downgrade' }],
     ['link', { rel: 'stylesheet', href: 'https://at.alicdn.com/t/font_3077305_pt8umhrn4k9.css' }],
-    ['link', { rel: 'stylesheet', href: '//at.alicdn.com/t/font_3114978_qe0b39no76.css' }],
+    ['link', { rel: 'stylesheet', href: 'https://at.alicdn.com/t/font_3114978_qe0b39no76.css' }],
     ['meta', { name: 'baidu-site-verification', content: 'code-5aMKYEt9fV' }],
   ],
   markdown: {
