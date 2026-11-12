@@ -348,26 +348,91 @@ body.wb-drawer-open .wb-nav-drawer {
   display: block !important;
   font-size: .95rem;
 }
+/* 抽屉里的菜单必须竖排。
+   主题有 `.nav-links .nav-item{display:inline-block;margin-left:1.5rem}`，
+   与本组选择器同特异性、但主题组件的 <style> 运行时注入在用户样式之后，
+   同级下后写者胜 —— 不加 !important 的话抽屉会退化成横向内联排布，
+   一行塞不下就换行、超出 315px 的部分被 overflow 裁掉。 */
 .wb-nav-drawer .nav-item,
 .wb-nav-drawer .dropdown-wrapper {
-  display: block;
-  float: none;
-  height: auto;
-  line-height: 1.5;
+  display: block !important;
+  float: none !important;
+  width: 100% !important;
+  height: auto !important;
+  line-height: 1.5 !important;
+  margin-left: 0 !important;
+  position: static !important;
 }
-.wb-nav-drawer .nav-item > a,
-.wb-nav-drawer .dropdown-title,
-.wb-nav-drawer .dropdown-title a {
-  display: block;
-  padding: 10px 20px;
-  color: var(--textColor);
+/* 「查看源码」在主题里是裸 <a class="repo-link">，同样要归零外边距占满整行 */
+.wb-nav-drawer .repo-link {
+  display: block !important;
+  margin-left: 0 !important;
+  padding: 10px 20px !important;
+  color: var(--textColor) !important;
   border-bottom: 1px solid var(--borderColor);
-  line-height: 1.5;
+}
+.wb-nav-drawer .repo-link:hover {
+  color: var(--wbAccent) !important;
+  background: var(--wbAccentSoft);
+}
+/* vdoing 的下拉标题是 <button class="dropdown-title">：
+   主题有同特异性的 .dropdown-wrapper .dropdown-title（后注入）会压掉这里的
+   padding，浏览器又给 button 默认居中文本和边框 —— 全部加 !important 顶回去。 */
+.wb-nav-drawer .nav-item > a,
+.wb-nav-drawer .dropdown-title {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 10px 20px !important;
+  margin: 0 !important;
+  color: var(--textColor) !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--borderColor) !important;
+  text-align: left !important;
+  font-size: inherit !important;
+  cursor: pointer !important;
+  line-height: 1.5 !important;
+}
+/* 「索引」这类同时带 link 的下拉，标题按钮里内嵌了一个 <a class="link-title">。
+   它必须保持内联跟箭头同行 —— 若被块级化会从按钮里挤出第二行「索引」。
+   这里显式清掉内边距和边框，颜色随按钮走。 */
+.wb-nav-drawer .dropdown-title a {
+  display: inline !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  color: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  text-decoration: none !important;
+}
+/* 按钮「link-title + title」双标题并存时，文本版是主题留作备用的隐藏元素；
+   但主题有 .dropdown-wrapper .dropdown-title .title{display:inline-block!important}
+   会把内联 display:none 顶回来，造成「索引 索引」重复。
+   特异性必须压过主题这条（0,4,0 → 0,5,0），否则注入顺序也救不了。 */
+.wb-nav-drawer .nav-links .dropdown-title .link-title ~ .title {
+  display: none !important;
+}
+.wb-nav-drawer .dropdown-title {
+  position: relative !important;
 }
 .wb-nav-drawer .nav-item > a:hover,
 .wb-nav-drawer .dropdown-title:hover {
-  color: var(--wbAccent);
-  background: var(--wbAccentSoft);
+  color: var(--wbAccent) !important;
+  background: var(--wbAccentSoft) !important;
+}
+/* 下拉箭头贴到行右端，不挤在文字后面 */
+.wb-nav-drawer .dropdown-title .arrow {
+  position: absolute !important;
+  right: 20px !important;
+  top: 50% !important;
+  margin-left: 0 !important;
+  transform: translateY(-50%) !important;
+}
+.wb-nav-drawer .dropdown-wrapper.wb-open .dropdown-title .arrow {
+  transform: translateY(-50%) rotate(180deg) !important;
 }
 .wb-nav-drawer .dropdown-wrapper:not(.wb-open) .nav-dropdown {
   display: none !important;
