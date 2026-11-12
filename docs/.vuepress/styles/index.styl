@@ -10,5 +10,352 @@
     background: #dbf0e5;
 }
 
+/* ============================================================
+   站点样式重整 2026-11-12
+   1. 收敛设计令牌：浅/深/阅读三套共用一套强调色与边框
+   2. 导航栏重排：宽屏 flex 布局，窄屏收进抽屉（配合 enhanceApp.js）
+   3. 卡片轻量化：去掉浮起阴影，改为细描边 + 统一圆角
+   4. 克制动效：进入淡入、交错出现、悬停反馈，尊重 reduced-motion
+   主色沿用原有绿系，未擅自更换配色。
+   ============================================================ */
 
+/* ---------- 1. 设计令牌 ---------- */
+.theme-mode-light {
+  --bodyBg: #f8f9f8;
+  --mainBg: #ffffff;
+  --borderColor: rgba(0, 0, 0, .10);
+  --wbAccent: #3eaf7c;
+  --wbAccentSoft: rgba(62, 175, 124, .10);
+  --wbCardShadow: 0 6px 20px rgba(0, 0, 0, .05);
+}
+.theme-mode-dark {
+  --bodyBg: #1d1d25;
+  --mainBg: #252530;
+  --borderColor: rgba(255, 255, 255, .12);
+  --wbAccent: #5ec2a0;
+  --wbAccentSoft: rgba(94, 194, 160, .12);
+  --wbCardShadow: 0 6px 20px rgba(0, 0, 0, .22);
+}
+.theme-mode-read {
+  --wbAccent: #8a6d3b;
+  --wbAccentSoft: rgba(138, 109, 59, .10);
+  --wbCardShadow: 0 6px 20px rgba(0, 0, 0, .06);
+}
 
+/* ---------- 2. 卡片：去浮起阴影，改细描边 ---------- */
+.card-box {
+  border: 1px solid var(--borderColor);
+  border-radius: 12px;
+  background: var(--mainBg);
+  box-shadow: none !important;
+  transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+.card-box:hover {
+  border-color: var(--wbAccent);
+  transform: translateY(-2px);
+  box-shadow: var(--wbCardShadow) !important;
+}
+
+/* 圆角收敛：原先 0.2 / 0.4 / 2rem / 5px 四种混用 */
+.custom-block.tip,
+.custom-block.warning,
+.custom-block.danger,
+.custom-block.note,
+.custom-block.details,
+blockquote {
+  border-radius: 8px;
+}
+mark {
+  border-radius: 4px;
+}
+
+/* 移除深色模式里按钮的紫色荧光，换成统一强调色 */
+.buttons .button:hover {
+  background: var(--wbAccentSoft) !important;
+  color: var(--wbAccent) !important;
+  box-shadow: none !important;
+}
+
+/* 正文里的宽图不再溢出内容栏 */
+.theme-vdoing-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- 3. 动效 ---------- */
+@keyframes wbFadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes wbFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.theme-container,
+.theme-vdoing-content {
+  animation: wbFadeUp .45s ease-out both;
+}
+
+/* 列表交错出现，只动 opacity，避免与卡片 hover 的 transform 冲突 */
+.post-list .post,
+.archives-page .theme-vdoing-wrapper li,
+.categories-wrapper .categories a,
+.tags-wrapper a {
+  animation: wbFadeIn .4s ease-out both;
+}
+.post-list .post:nth-child(1) { animation-delay: .04s; }
+.post-list .post:nth-child(2) { animation-delay: .08s; }
+.post-list .post:nth-child(3) { animation-delay: .12s; }
+.post-list .post:nth-child(4) { animation-delay: .16s; }
+.post-list .post:nth-child(5) { animation-delay: .20s; }
+.post-list .post:nth-child(n+6) { animation-delay: .24s; }
+
+.buttons .button,
+.sidebar-button,
+.pagination span {
+  transition: transform .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.buttons .button:hover,
+.pagination span:hover {
+  transform: translateY(-2px);
+}
+
+.search-box input {
+  transition: width .25s ease, border-color .25s ease, background-color .25s ease;
+}
+
+/* ---------- 4. 导航栏：宽屏 flex 重排，搜索框固定在最右 ---------- */
+@media (min-width: 1361px) {
+  .navbar {
+    display: flex;
+    align-items: center;
+  }
+  .navbar .home-link {
+    flex: 0 0 auto;
+    margin-right: 24px;
+  }
+  .navbar .links {
+    position: static;
+    right: auto;
+    top: auto;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-left: 0;
+    font-size: .86rem;
+  }
+  .navbar .links > .nav-links {
+    order: 1;
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+  .navbar .links > .search-box {
+    order: 2;
+    flex: 0 0 auto;
+    margin-left: 16px;
+  }
+  .navbar .nav-links .nav-item > a,
+  .navbar .nav-links .dropdown-title > a {
+    padding-left: .42rem;
+    padding-right: .42rem;
+  }
+  /* 当前导航项用滑动下划线，替掉生硬的 border-bottom */
+  .navbar .nav-links .nav-item > a:not(.external) {
+    position: relative;
+    border-bottom: none !important;
+  }
+  .navbar .nav-links .nav-item > a:not(.external)::after {
+    content: '';
+    position: absolute;
+    left: .42rem;
+    right: .42rem;
+    bottom: -2px;
+    height: 2px;
+    background: var(--wbAccent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform .25s ease;
+  }
+  .navbar .nav-links .nav-item > a.router-link-active::after,
+  .navbar .nav-links .nav-item > a:not(.external):hover::after {
+    transform: scaleX(1);
+  }
+  .wb-nav-drawer,
+  .wb-nav-drawer-mask {
+    display: none !important;
+  }
+}
+
+/* ---------- 5. 窄屏：顶部导航收进抽屉，左上按钮真正可用 ---------- */
+@media (max-width: 1360px) {
+  .navbar {
+    padding-left: 4rem;
+  }
+  .navbar .site-name {
+    display: inline-block !important;
+    width: auto !important;
+    max-width: calc(100vw - 12rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .navbar .links {
+    position: absolute;
+    right: 1.5rem;
+    top: .7rem;
+    padding-left: 0;
+  }
+  .navbar .links > .nav-links {
+    display: none !important;
+  }
+  .navbar .links > .search-box {
+    margin-left: 0;
+  }
+  .sidebar-button {
+    display: block !important;
+    position: fixed !important;
+    top: .7rem !important;
+    left: 1rem !important;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin: 0;
+    padding: .6rem;
+    line-height: normal;
+    text-align: center;
+    border-radius: 8px;
+    color: var(--textColor);
+    background: transparent;
+    z-index: 60;
+  }
+  .sidebar-button .icon {
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  .sidebar-button:hover {
+    background: var(--wbAccentSoft) !important;
+    color: var(--wbAccent) !important;
+    box-shadow: none !important;
+  }
+  /* 主题自带的蒙版交给抽屉统一接管，避免出现「点了只有一层灰」 */
+  .sidebar-mask {
+    display: none !important;
+  }
+}
+
+/* 抽屉容器 */
+.wb-nav-drawer-mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .38);
+  z-index: 90;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+body.wb-drawer-open .wb-nav-drawer-mask {
+  opacity: 1;
+  visibility: visible;
+}
+.wb-nav-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 84vw;
+  background: var(--mainBg);
+  color: var(--textColor);
+  border-right: 1px solid var(--borderColor);
+  z-index: 100;
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform .28s ease;
+  padding: 16px 0 32px;
+  box-sizing: border-box;
+}
+body.wb-drawer-open .wb-nav-drawer {
+  transform: translateX(0);
+}
+.wb-nav-drawer-head {
+  padding: 8px 20px 16px;
+  font-size: 15px;
+  font-weight: 500;
+  border-bottom: 1px solid var(--borderColor);
+  margin-bottom: 8px;
+}
+.wb-nav-drawer .nav-links {
+  display: block !important;
+  font-size: .95rem;
+}
+.wb-nav-drawer .nav-item,
+.wb-nav-drawer .dropdown-wrapper {
+  display: block;
+  float: none;
+  height: auto;
+  line-height: 1.5;
+}
+.wb-nav-drawer .nav-item > a,
+.wb-nav-drawer .dropdown-title,
+.wb-nav-drawer .dropdown-title a {
+  display: block;
+  padding: 10px 20px;
+  color: var(--textColor);
+  border-bottom: 1px solid var(--borderColor);
+  line-height: 1.5;
+}
+.wb-nav-drawer .nav-item > a:hover,
+.wb-nav-drawer .dropdown-title:hover {
+  color: var(--wbAccent);
+  background: var(--wbAccentSoft);
+}
+.wb-nav-drawer .dropdown-wrapper:not(.wb-open) .nav-dropdown {
+  display: none !important;
+}
+.wb-nav-drawer .dropdown-wrapper.wb-open .nav-dropdown {
+  display: block !important;
+  position: static;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+  padding: 0 0 8px 12px;
+}
+.wb-nav-drawer .nav-dropdown .dropdown-item {
+  line-height: 1.5;
+}
+.wb-nav-drawer .wb-drawer-toc {
+  padding: 8px 20px 0;
+}
+.wb-nav-drawer .wb-drawer-toc-title {
+  font-size: 13px;
+  color: var(--wbAccent);
+  padding: 16px 0 8px;
+  border-bottom: 1px solid var(--borderColor);
+}
+.wb-nav-drawer .sidebar-links {
+  padding-left: 12px;
+}
+.wb-nav-drawer .sidebar-links a {
+  display: block;
+  padding: 6px 0;
+  color: var(--textColor);
+}
+
+/* ---------- 6. 无障碍：尊重系统减少动效偏好 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

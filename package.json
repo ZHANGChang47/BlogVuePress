@@ -8,7 +8,8 @@
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "baiduPush": "node utils/baiduPush.js https://zhangchang47.github.io/BlogVuePress && bash baiduPush.sh",
-    "deploy": "bash deploy.sh"
+    "deploy": "bash deploy.sh",
+    "deploy:api": "python utils/deploy_api.py"
   },
   "keywords": [],
   "author": "",

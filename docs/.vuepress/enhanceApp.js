@@ -208,3 +208,112 @@
 //   }
 // }
 // };
+
+/* ============================================================
+   站点交互增强 2026-11-12
+   窄屏（<=1360px）把顶部导航收进抽屉，让左上角按钮真正可用。
+   只克隆 DOM，不移动 Vue 管理的节点，避免与组件更新冲突。
+   ============================================================ */
+const WB_NAV_BREAKPOINT = 1360;
+
+function wbCloseDrawer() {
+  document.body.classList.remove('wb-drawer-open');
+}
+
+function wbRefreshToc() {
+  const box = document.querySelector('.wb-drawer-toc');
+  if (!box) return;
+  const toc = document.querySelector('aside.sidebar .sidebar-links');
+  box.innerHTML = '';
+  if (!toc) {
+    box.style.display = 'none';
+    return;
+  }
+  box.style.display = '';
+  const title = document.createElement('div');
+  title.className = 'wb-drawer-toc-title';
+  title.textContent = '文章目录';
+  box.appendChild(title);
+  box.appendChild(toc.cloneNode(true));
+}
+
+function wbBuildDrawer() {
+  if (document.querySelector('.wb-nav-drawer')) return;
+  const navSource = document.querySelector('.navbar .links .nav-links');
+  if (!navSource) return;
+
+  const mask = document.createElement('div');
+  mask.className = 'wb-nav-drawer-mask';
+
+  const drawer = document.createElement('aside');
+  drawer.className = 'wb-nav-drawer';
+  drawer.setAttribute('aria-label', '站点导航');
+
+  const head = document.createElement('div');
+  head.className = 'wb-nav-drawer-head';
+  head.textContent = (document.querySelector('.site-name') || {}).textContent || '导航';
+  drawer.appendChild(head);
+
+  const nav = document.createElement('nav');
+  nav.appendChild(navSource.cloneNode(true));
+  drawer.appendChild(nav);
+
+  const tocBox = document.createElement('div');
+  tocBox.className = 'wb-drawer-toc';
+  drawer.appendChild(tocBox);
+
+  document.body.appendChild(mask);
+  document.body.appendChild(drawer);
+  wbRefreshToc();
+
+  mask.addEventListener('click', wbCloseDrawer);
+  drawer.addEventListener('click', (e) => {
+    const link = e.target && e.target.closest ? e.target.closest('a') : null;
+    if (link && link.getAttribute('href')) wbCloseDrawer();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') wbCloseDrawer();
+  });
+
+  drawer.querySelectorAll('.dropdown-wrapper').forEach((wrap) => {
+    const title = wrap.querySelector('.dropdown-title');
+    if (!title) return;
+    title.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      wrap.classList.toggle('wb-open');
+    });
+  });
+}
+
+function wbBindToggle() {
+  const btn = document.querySelector('.sidebar-button');
+  if (!btn || btn.dataset.wbBound === '1') return;
+  btn.dataset.wbBound = '1';
+  btn.title = '导航菜单';
+  btn.setAttribute('aria-label', '打开导航菜单');
+  // 捕获阶段拦截：首页没有侧栏，主题自带的 toggle 只会显示一层空蒙版
+  btn.addEventListener('click', (e) => {
+    if (window.innerWidth > WB_NAV_BREAKPOINT) return;
+    e.stopImmediatePropagation();
+    e.preventDefault();
+    document.body.classList.toggle('wb-drawer-open');
+  }, true);
+}
+
+function wbSetup() {
+  wbBuildDrawer();
+  wbBindToggle();
+  wbRefreshToc();
+  if (window.innerWidth > WB_NAV_BREAKPOINT) wbCloseDrawer();
+}
+
+export default ({ router, isServer }) => {
+  if (isServer || typeof window === 'undefined') return;
+  window.addEventListener('load', () => setTimeout(wbSetup, 0));
+  setTimeout(wbSetup, 600);
+  router.afterEach(() => setTimeout(wbSetup, 80));
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > WB_NAV_BREAKPOINT) wbCloseDrawer();
+  }, { passive: true });
+};
