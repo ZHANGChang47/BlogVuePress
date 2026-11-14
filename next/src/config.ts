@@ -5,16 +5,15 @@
  * 数据存放在本站仓库的 Discussions 里，不额外引入数据库，也不做行为追踪。
  *
  * enabled 说明：
- *   false —— 文章页显示「前往讨论区」入口（Discussions 已开启，访客可直接在
- *            GitHub 上留言和点 👍），不会把 Giscus 的授权错误暴露给访客。
+ *   false —— 文章页显示「前往讨论区」入口（访客在 GitHub 上留言和点 👍）。
  *   true  —— 页面内嵌 Giscus 评论区，点赞与评论直接在文章下方完成。
  *
- * 切到 true 的前置条件：仓库所有者需在 https://github.com/apps/giscus
- * 安装 giscus App 并授权给 ZHANGChang47/BlogVuePress（OAuth 网页操作，
- * 无法用 token 自动化）。装好后改这一行、重新构建发布即可。
+ * 前置条件：仓库所有者已在 https://github.com/apps/giscus 安装 giscus App
+ * 并授权给 ZHANGChang47/BlogVuePress（OAuth 网页操作，token 无法自动化）；
+ * 仓库 Discussions 已开启，分类与 ID 见下方配置。
  */
 export const giscus = {
-  enabled: false,
+  enabled: true,
   repo: 'ZHANGChang47/BlogVuePress',
   repoId: 'R_kgDOI3n7Yw',
   category: 'Announcements',

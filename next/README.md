@@ -183,17 +183,16 @@ next/
 |---|---|
 | `repo` / `repoId` | `ZHANGChang47/BlogVuePress` / `R_kgDOI3n7Yw` |
 | `category` / `categoryId` | `Announcements` / `DIC_kwDOI3n7Y84DLH62` |
-| `enabled` | 目前 `false` |
+| `enabled` | 目前 `true`（App 已授权） |
 
-`enabled=false` 时互动区显示「前往讨论区」按钮。仓库 Discussions 已开启，访客可以前往讨论区参与交流，只是多一次跳转（此时分类下还没有按文章自动创建的讨论串）；这样不会把 Giscus 的授权错误暴露给访客。
+评论区按 `pathname` 映射到各篇笔记；`[code].astro` 里的脚本用 `postMessage` 把深浅色主题同步给 Giscus iframe。若访客加载不出 giscus.app，仍可从仓库 Discussions 直接参与。
 
-**切到 `true` 只需三步**：
+**两个不能改的接线细节**（改错会静默劣化，页面不报错）：
 
-1. 仓库所有者在 <https://github.com/apps/giscus> 安装 giscus App 并授权给 `ZHANGChang47/BlogVuePress`（OAuth 网页操作，token 无法代做，只需一次）。
-2. 把 `src/config.ts` 的 `enabled` 改成 `true`，跑 `npm run build`。
-3. 按「发布上线」把 `next/dist` 发到 `gh-pages`。
+- 容器必须带 `class="giscus"`（`id="giscusHost"` 另有用途）。giscus 的 `client.js` 只按 `.giscus` 找容器；找不到就自己新建一个 div 插到 `<script>` 后面，评论区会跑到互动卡片**外面**。
+- 不要加 `data-loading="lazy"`。文章很长（互动区常在文档 9000px 以下），懒加载的 iframe 在长页面里可能一直不触发 `load`，`client.js` 就不会去掉 `opacity:0` 与 loading 骨架，访客只看到一块空白。用默认加载。
 
-启用后评论区按 `pathname` 映射到各篇笔记，`data-loading="lazy"` 不拖慢首屏；`[code].astro` 里的脚本用 `postMessage` 把深浅色主题同步给 Giscus iframe。若访客加载不出 giscus.app，仍可从仓库 Discussions 直接参与。
+**如需临时降级**：把 `enabled` 改成 `false`，互动区会变成「前往讨论区」按钮，不暴露任何授权错误。恢复的前提仍是仓库所有者已在 <https://github.com/apps/giscus> 安装并授权 giscus App（OAuth 网页操作，token 无法代做）。改完跑 `npm run build`，再按「发布上线」发到 `gh-pages`。
 
 ---
 

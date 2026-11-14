@@ -69,7 +69,7 @@ const next = i < inSection.length - 1 ? inSection[i + 1] : null;
           点赞与评论由 GitHub Discussions 承载，需要 GitHub 账号；评论会显示你的 GitHub 账号，内容公开保存在本站仓库的讨论区里。本站不额外收集邮箱，也不做行为追踪。
         </p>
         {giscus.enabled
-          ? <div class="giscus-host" id="giscusHost"></div>
+          ? <div class="giscus giscus-host" id="giscusHost"></div>
           : <div class="engage-fallback">
               <p>点下面的按钮，打开本站的 GitHub 讨论区；有 GitHub 账号就能参与交流、留言或点赞。</p>
               <a class="engage-btn" href={giscus.discussionsUrl} target="_blank" rel="noopener noreferrer">前往讨论区 →</a>
@@ -104,7 +104,6 @@ const next = i < inSection.length - 1 ? inSection[i + 1] : null;
         data-input-position="top"
         data-theme="light"
         data-lang="zh-CN"
-        data-loading="lazy"
         crossorigin="anonymous"
         async></script>
       <script is:inline>
