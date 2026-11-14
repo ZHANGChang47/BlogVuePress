@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+const posts = await getCollection('posts');
+const groups = [...new Set(posts.map((p) => p.data.section))]
+  .sort((a, b) => a.localeCompare(b, 'zh'))
+  .map((sec) => ({
+    name: sec,
+    list: posts.filter((p) => p.data.section === sec)
+      .sort((a, b) => a.data.sortKey.localeCompare(b.data.sortKey, 'zh')),
+  }));
+groups.forEach((g) => g.list.sort((a, b) => a.data.sortKey.localeCompare(b.data.sortKey, 'zh')));
+---
+<BaseLayout title="分类">
+  <div class="page-head">
+    <div class="eyebrow">Index / Categories</div>
+    <h1>分类</h1>
+    <p>沿用原站「目录即分类」的结构，{groups.length} 个分区、共 {posts.length} 篇。每篇的永久短码 <code>/pages/&lt;code&gt;/</code> 未做任何改动。</p>
+  </div>
+
+  <div class="stack" style="margin-top:48px">
+    {groups.map((g) => (
+      <section id={encodeURIComponent(g.name)} style="scroll-margin-top:88px">
+        <div class="sec-head">
+          <div><div class="eyebrow">{String(g.list.length).padStart(2, '0')} 篇</div><h2>{g.name}</h2></div>
+          <p>按原目录顺序排列，文末可顺着前后篇连续读完整个分区。</p>
+        </div>
+        <div class="post-list">
+          {g.list.map((p, i) => (
+            <a class="post-row" href={`${base}pages/${p.data.code}/`}>
+              <span class="num">{String(i + 1).padStart(2, '0')}</span>
+              <span class="tt">{p.data.title}<span>{p.data.words.toLocaleString('zh-CN')} 字 · {p.data.date.slice(0, 10)}</span></span>
+              <span class="tags">{p.data.tags.slice(0, 2).map((t) => <span class="t-tag">#{t}</span>)}</span>
+              <span class="meta">/pages/{p.data.code}/</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</BaseLayout>

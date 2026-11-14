@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+const slugOf = (t) => encodeURIComponent(t).replace(/%/g, '');
+const posts = await getCollection('posts');
+const counts = new Map();
+posts.forEach((p) => p.data.tags.forEach((t) => counts.set(t, (counts.get(t) || 0) + 1)));
+const tags = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'zh'));
+const untagged = tags.find((t) => t[0] === '未标注');
+---
+<BaseLayout title="标签">
+  <div class="page-head">
+    <div class="eyebrow">Index / Tags</div>
+    <h1>标签</h1>
+    <p>按技术点重新组织的第二套检索维度，共 {tags.length} 个标签。点标签进入独立页面；正文关键词请按 <code>/</code> 用全文搜索。</p>
+    <div class="note">
+      <b>标签是怎么来的：</b>原站 76 篇里有 75 篇 tags 为空，重写时按可复核的关键词规则（标题 + 分区 + 正文前 4000 字，已剔除代码块与链接地址）重新生成，最多 4 个／篇。这是<b>索引用的技术归类，不是作者原标注</b>；{untagged ? `${untagged[1]} 篇没有命中规则，如实标为「未标注」` : '全部文章均有归类'}，需要精修可直接改对应 Markdown 的 frontmatter。
+    </div>
+  </div>
+
+  <div class="tag-cloud">
+    {tags.map(([t, n]) => (
+      <a class="chip" href={`${base}tags/${slugOf(t)}/`}>#{t} <b>{n}</b></a>
+    ))}
+  </div>
+
+  <div class="stack" style="margin-top:96px">
+    <section>
+      <div class="sec-head"><div><div class="eyebrow">Rule Book</div><h2>归类规则</h2></div></div>
+      <div class="grid-2">
+        <div class="panel">
+          <h3>匹配范围</h3>
+          <p>标题、分区名、正文前 4000 字。先剥掉代码块、行内代码、Markdown 链接目标与裸 URL，避免 <code>https</code> 之类的字符串误命中关键词。</p>
+        </div>
+        <div class="panel">
+          <h3>候选标签</h3>
+          <p>JVM / 并发 / 集合 / SpringBoot / Spring / MyBatis / Redis / 数据库 / Vue / JavaScript / 前端 / 算法 / 网络 / 工程化 / 随笔 / 项目，按固定顺序取前 4 个命中项。</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

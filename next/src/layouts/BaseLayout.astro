@@ -1,0 +1,133 @@
+---
+import '../styles/global.css';
+import toolsIndex from '../data/tools.index.json';
+
+const SITE_TITLE = '百里登风的博客';
+const SITE_DESC = '张弓折扇风雨历，畅叙平生快意！';
+const SITE = 'https://zhangchang47.github.io';
+
+const {
+  title = '',
+  description = SITE_DESC,
+  permalink = '',
+  article = false,
+} = Astro.props;
+
+const pageTitle = title && title !== SITE_TITLE ? `${title} | ${SITE_TITLE}` : `${SITE_TITLE} · 流光`;
+const base = import.meta.env.BASE_URL;      // '/BlogVuePress/'
+const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE).href;
+const path = Astro.url.pathname;
+const prod = import.meta.env.PROD;
+
+const nav = [
+  { label: '首页', href: base },
+  { label: '分类', href: `${base}categories/` },
+  { label: '标签', href: `${base}tags/` },
+  { label: '归档', href: `${base}archives/` },
+  { label: '工具', href: `${base}tools/`, count: toolsIndex.available },
+  { label: '关于', href: `${base}about/` },
+];
+function current(href) {
+  return href === base ? path === base || path === base.slice(0, -1) : path.startsWith(href);
+}
+---
+<!DOCTYPE html>
+<html lang="zh-CN" data-base={base} data-prod={prod ? '1' : '0'}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{pageTitle}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content="百里登风" />
+  <meta name="baidu-site-verification" content="code-5aMKYEt9fV" />
+  <meta name="theme-color" content="#F5F6FC" />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:type" content={article ? 'article' : 'website'} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta name="twitter:card" content="summary" />
+  {permalink && <meta name="legacy-permalink" content={permalink} />}
+  <link rel="alternate" type="application/rss+xml" title={`${SITE_TITLE} RSS`} href={`${base}rss.xml`} />
+  <link rel="manifest" href={`${base}manifest.webmanifest`} />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%236D4AE0'/%3E%3Cpath d='M9 22 L16 9 L23 22' stroke='white' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+
+  {/* 最先执行：读记忆 / 跟随系统，避免刷新时闪一下白底 */}
+  <script is:inline>
+    (function(){
+      try{
+        var s=localStorage.getItem('wb-blog-theme');
+        if(s!=='dark'&&s!=='light') s=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+        document.documentElement.setAttribute('data-theme',s);
+      }catch(e){document.documentElement.setAttribute('data-theme','light');}
+    })();
+  </script>
+
+  {prod && (
+    <script is:inline>
+      var _hmt=_hmt||[];(function(){var hm=document.createElement("script");
+      hm.src="https://hm.baidu.com/hm.js?e1aa9d15d62220ec692a843c08c79000";
+      var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();
+    </script>
+  )}
+</head>
+<body>
+  <a href="#main" style="position:absolute;left:-9999px">跳到正文</a>
+
+  <header class="site-nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href={base}>百里登风<small>BLOGVUEPRESS</small></a>
+      <nav class="navlinks" aria-label="主导航">
+        {nav.map(n => (
+          <a href={n.href} aria-current={current(n.href) ? 'page' : undefined}
+             class={n.count !== undefined ? 'has-new' : ''}
+             data-count={n.count !== undefined ? n.count : undefined}>{n.label}</a>
+        ))}
+      </nav>
+      <div class="nav-actions">
+        <button type="button" class="search-trigger" id="searchTrigger" aria-label="全文搜索">
+          <span>⌕</span> 搜索正文 <kbd>/</kbd>
+        </button>
+        <button type="button" class="theme-btn" id="themeBtn" aria-pressed="false" aria-label="切换深浅主题">
+          <span id="themeIco">☀</span><span id="themeLabel">浅色</span><span class="track"><i></i></span>
+        </button>
+        <button type="button" class="drawer-btn" id="drawerBtn" aria-label="展开菜单">☰</button>
+      </div>
+    </div>
+  </header>
+  <nav class="drawer" id="drawer" aria-label="移动端导航">
+    {nav.map(n => <a href={n.href}>{n.label}{n.count !== undefined ? ` (${n.count})` : ''}</a>)}
+  </nav>
+
+  <main id="main" class="wrap"><slot /></main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="row">
+        <span>© 2026 百里登风 · 张弓折扇风雨历，畅叙平生快意！</span>
+        <a href={`${base}rss.xml`}>RSS</a>
+        <a href={`${base}tools/`}>工具接口</a>
+        <a href="https://github.com/ZHANGChang47/BlogVuePress" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <span>基于 Astro 静态构建 · 76 篇笔记的永久短码 /pages/&lt;code&gt;/ 未变更</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 全文搜索 -->
+  <div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="全文搜索">
+    <div class="search-box">
+      <input id="searchInput" type="search" placeholder="搜正文关键词，例如 ThreadLocal、@Transactional…" autocomplete="off" />
+      <div class="search-hint">标题 + 正文全文 · Esc 关闭 · 回车打开第一条</div>
+      <div class="search-results" id="searchResults"><div class="search-empty">正在载入索引…</div></div>
+    </div>
+  </div>
+
+  <!-- 图片灯箱 -->
+  <div class="lightbox" id="lightbox"><img alt="放大预览" /></div>
+  <div class="progress"><i id="progBar"></i></div>
+
+  <script is:inline src={`${base}js/site.js`} defer></script>
+</body>
+</html>

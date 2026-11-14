@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout title="页面不存在">
+  <div class="page-head" style="text-align:center;padding-top:96px">
+    <div class="eyebrow">404 / Not Found</div>
+    <h1>这一页翻不到了</h1>
+    <p>链接可能已经失效，或者短码写错了。可以试试全文搜索，或者从分类页重新找起。</p>
+    <div class="cta" style="display:flex;justify-content:center;gap:8px;margin-top:28px;flex-wrap:wrap">
+      <button type="button" class="btn btn--pri" onclick="document.getElementById('searchTrigger').click()">搜索正文</button>
+      <a class="btn" href={`${base}categories/`}>浏览分类</a>
+      <a class="btn" href={base}>回到首页</a>
+    </div>
+  </div>
+</BaseLayout>

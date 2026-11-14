@@ -1,0 +1,17 @@
+{
+  "tools": [
+    {
+      "id": "wind-yield",
+      "title": "风电收益率速算",
+      "desc": "接口演示用的示例工具，展示 iframe 挂载与主题同步。输出为占位示意值，不用于真实测算。",
+      "icon": "⚡",
+      "tags": ["示例", "新能源"],
+      "mode": "embed",
+      "entry": "/BlogVuePress/tools/wind-yield/",
+      "status": "demo",
+      "version": "0.1.0-demo",
+      "updated": "2026-11-14",
+      "order": 1
+    }
+  ]
+}

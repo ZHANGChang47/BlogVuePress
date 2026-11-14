@@ -1,0 +1,133 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import toolsIndex from '../data/tools.index.json';
+
+const base = import.meta.env.BASE_URL;
+const posts = await getCollection('posts');
+const total = posts.length;
+const words = posts.reduce((s, p) => s + (p.data.words || 0), 0);
+const sections = [...new Set(posts.map((p) => p.data.section))].sort((a, b) => a.localeCompare(b, 'zh'));
+const tags = [...new Set(posts.flatMap((p) => p.data.tags || []))];
+
+const sectionCards = sections.map((sec) => {
+  const list = posts.filter((p) => p.data.section === sec);
+  return {
+    name: sec,
+    count: list.length,
+    words: list.reduce((s, p) => s + (p.data.words || 0), 0),
+    sample: list[0],
+  };
+}).sort((a, b) => b.count - a.count).slice(0, 6);
+
+const featured = [...posts].sort((a, b) => (b.data.words || 0) - (a.data.words || 0)).slice(0, 6);
+const tools = toolsIndex.tools;
+---
+<BaseLayout>
+  <div class="stack">
+
+    <section class="hero">
+      <span class="badge"><i></i> {total} 篇笔记 · 归档于 2023</span>
+      <h1>
+        <span class="line">张弓折扇风雨历，</span>
+        <span class="line">畅叙平生快意！</span>
+      </h1>
+      <p class="sub">从 Java 到算法，从项目到随笔；也放一些自己写的小工具。跟着光走，翻到哪一篇都由你决定。</p>
+      <div class="cta">
+        <a class="btn btn--pri" href={`${base}categories/`}>进入博客</a>
+        <a class="btn" href={`${base}tools/`}>我的工具 →</a>
+      </div>
+      <div class="caps">
+        {sections.slice(0, 7).map((s) => (
+          <a class="chip" href={`${base}categories/#${encodeURIComponent(s)}`}>{s}</a>
+        ))}
+      </div>
+    </section>
+
+    <section class="stats" aria-label="站点数据">
+      <div class="stat"><b data-count={total}>{total}</b><span>篇笔记</span></div>
+      <div class="stat"><b data-count={sections.length}>{sections.length}</b><span>个分区</span></div>
+      <div class="stat"><b>{(words / 10000).toFixed(1)}</b><span>万字正文</span></div>
+      <div class="stat"><b data-count={tags.length}>{tags.length}</b><span>个标签</span></div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">Browse / Sections</div>
+          <h2>按分区浏览</h2>
+        </div>
+        <p>目录即分类。点开一张卡，直接进入该分区第一篇文章；完整清单在分类页。</p>
+        <a class="more" href={`${base}categories/`}>全部 {sections.length} 个分区 →</a>
+      </div>
+      <div class="glass-grid">
+        {sectionCards.map((s, i) => (
+          <a class="gcard reveal" href={`${base}pages/${s.sample.data.code}/`}>
+            <span class="idx">{String(i + 1).padStart(2, '0')} / SECTION</span>
+            <h3>{s.name}</h3>
+            <p class="desc">从《{s.sample.data.title}》开始，共 {s.count} 篇。</p>
+            <div class="meta">{s.count} 篇 · {(s.words / 10000).toFixed(1)} 万字</div>
+            <span class="arrow">↗</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">Long Reads</div>
+          <h2>篇幅最长的几篇</h2>
+        </div>
+        <p>按正文字数排序，适合整段时间慢慢读。</p>
+        <a class="more" href={`${base}archives/`}>查看全部 →</a>
+      </div>
+      <div class="grid-2">
+        {featured.map((p, i) => (
+          <a class="post-row reveal" href={`${base}pages/${p.data.code}/`}>
+            <span class="num">#{String(i + 1).padStart(2, '0')}</span>
+            <span class="tt">{p.data.title}<span>{p.data.section} · {(p.data.words / 1000).toFixed(1)}k 字</span></span>
+            <span class="meta">/pages/{p.data.code}/</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section id="tools">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">Extensible / Tools</div>
+          <h2>我的工具</h2>
+        </div>
+        <p>独立路由、独立数据、独立产物。往 <code>tools.json</code> 加一条记录，卡片、导航计数与索引页一起长出来，不用碰 76 篇文章。</p>
+        <a class="more" href={`${base}tools/`}>接口说明 →</a>
+      </div>
+      <div class="tool-grid">
+        {tools.map((t) => (
+          <a class="tool-card" href={t.mode === 'link' ? t.entry : `${base}tools/#runtime`}>
+            <div class="t-top"><span class="t-ico">{t.icon}</span><span class="t-name">{t.title}</span>
+              <span class="t-mode">{t.mode}</span></div>
+            <p class="t-desc">{t.desc}</p>
+            <div class="t-foot"><span class="t-tag">{t.tags[0]}</span><span class="t-tag">v{t.version}</span>
+              <span class="t-status"><i></i>{t.status}</span></div>
+          </a>
+        ))}
+        <div class="tool-slot">
+          <div><b>+ 待挂载</b><span>往 tools.json 加一条<br />这里自动长出卡片</span></div>
+        </div>
+      </div>
+
+      <div class="runtime">
+        <div class="rt-left">
+          <div class="rt-title"><b>工具运行时预览</b> · iframe / postMessage
+            <span class="live"><i></i> LIVE</span></div>
+          <iframe data-tool-frame title="工具运行时示例" src={`${base}tools/wind-yield/`}
+            sandbox="allow-scripts allow-forms" loading="lazy"></iframe>
+        </div>
+        <div class="rt-right log" id="log"><h4>Event Bus</h4></div>
+      </div>
+    </section>
+
+    <p class="hint">移动鼠标：极光光晕跟随 · 卡片 3D 倾斜 · 右上角一键切换深浅主题 · 按 / 搜正文</p>
+  </div>
+</BaseLayout>

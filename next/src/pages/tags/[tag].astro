@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// getStaticPaths 会被 Astro 单独抽成 chunk，引用的函数必须定义在函数体内部
+export async function getStaticPaths() {
+  const slugOf = (t) => encodeURIComponent(t).replace(/%/g, '');
+  const posts = await getCollection('posts');
+  const tags = [...new Set(posts.flatMap((p) => p.data.tags))];
+  return tags.map((tag) => ({ params: { tag: slugOf(tag) }, props: { tag } }));
+}
+
+const { tag } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const posts = (await getCollection('posts'))
+  .filter((p) => p.data.tags.includes(tag))
+  .sort((a, b) => a.data.sortKey.localeCompare(b.data.sortKey, 'zh'));
+---
+<BaseLayout title={`标签：${tag}`}>
+  <div class="page-head">
+    <div class="eyebrow">Index / Tags</div>
+    <h1>#{tag}</h1>
+    <p>{posts.length} 篇文章命中这个标签。<a href={`${base}tags/`} style="color:var(--violet)">← 返回全部标签</a></p>
+  </div>
+  <div class="post-list">
+    {posts.map((p, i) => (
+      <a class="post-row" href={`${base}pages/${p.data.code}/`}>
+        <span class="num">{String(i + 1).padStart(2, '0')}</span>
+        <span class="tt">{p.data.title}<span>{p.data.section} · {p.data.words.toLocaleString('zh-CN')} 字</span></span>
+        <span class="tags">{p.data.tags.filter((t) => t !== tag).slice(0, 2).map((t) => <span class="t-tag">#{t}</span>)}</span>
+        <span class="meta">/pages/{p.data.code}/</span>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

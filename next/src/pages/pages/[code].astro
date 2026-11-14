@@ -1,0 +1,71 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// 只把短码放进 props。若把 76 篇正文塞进 props，会为每个页面复制一份 2.3MB 数据。
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((p) => ({ params: { code: p.data.code } }));
+}
+
+const { code } = Astro.params;
+const base = import.meta.env.BASE_URL;
+const posts = await getCollection('posts');
+const post = posts.find((p) => p.data.code === code);
+if (!post) throw new Error(`找不到短码 ${code}`);
+
+const { Content, headings } = await render(post);
+const d = post.data;
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+const minutes = Math.max(1, Math.ceil(d.words / 400));
+
+// 用迁移时保留的原始目录路径还原同分区连载顺序
+const inSection = posts.filter((p) => p.data.section === d.section)
+  .sort((a, b) => a.data.sortKey.localeCompare(b.data.sortKey, 'zh'));
+const i = inSection.findIndex((p) => p.data.code === code);
+const prev = i > 0 ? inSection[i - 1] : null;
+const next = i < inSection.length - 1 ? inSection[i + 1] : null;
+---
+<BaseLayout title={d.title} description={d.excerpt} permalink={d.permalink} article={true}>
+  <div class="page-head" style="padding-bottom:0">
+    <a class="chip" href={`${base}categories/`}>← {d.section} · 共 {inSection.length} 篇</a>
+  </div>
+
+  <div class="post-layout">
+    <article>
+      <header class="post-head">
+        <div class="eyebrow">/pages/{d.code}/</div>
+        <h1>{d.title}</h1>
+        <div class="post-meta">
+          <span>{d.section}</span>
+          <span>{d.words.toLocaleString('zh-CN')} 字</span>
+          <span>约 {minutes} 分钟</span>
+          <span>{d.date.slice(0, 10)}</span>
+          {d.tags.map((t) => <a href={`${base}tags/`}>#{t}</a>)}
+        </div>
+      </header>
+
+      <div class="prose"><Content /></div>
+
+      <nav class="pager" aria-label="同分区前后篇">
+        {prev
+          ? <a href={`${base}pages/${prev.data.code}/`}><small>← 上一篇</small><b>{prev.data.title}</b></a>
+          : <a href={`${base}categories/`}><small>← 回到分类</small><b>这是本分区第一篇</b></a>}
+        {next
+          ? <a class="next" href={`${base}pages/${next.data.code}/`}><small>下一篇 →</small><b>{next.data.title}</b></a>
+          : <a class="next" href={`${base}categories/`}><small>回到分类 →</small><b>这是本分区最后一篇</b></a>}
+      </nav>
+    </article>
+
+    <aside class="toc" aria-label="本页目录">
+      <h4>On this page</h4>
+      <ul>
+        {toc.map((h) => <li class={h.depth === 3 ? 'd3' : ''}><a href={`#${h.slug}`}>{h.text}</a></li>)}
+      </ul>
+      {toc.length === 0 && <p style="font-size:11px;color:var(--muted)">这篇没有分节标题。</p>}
+      <p style="margin-top:24px;font-size:10px;line-height:1.9;color:var(--faint)">
+        正文关键词可按 <b>/</b> 全文检索。<br />日期为原站导入标记，非写作时间。
+      </p>
+    </aside>
+  </div>
+</BaseLayout>
