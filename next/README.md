@@ -26,7 +26,7 @@ npm run preview        # 预览构建产物
 ### 发一篇新文章
 
 1. 在 `src/content/posts/` 新建 `<短码>.md`。短码是 **6 位小写十六进制**（如 `3f7ac2`），不能与已有文章重名（当前 77 篇）；文件名、`code`、`permalink` 三者必须一致。
-2. 写 frontmatter。必填 `title / date / code / permalink / section`；其余字段 schema 有默认值，但建议补齐 `tags`（决定标签页）、`sortKey`（决定文章页前后篇顺序）、`excerpt`（决定列表与 RSS 摘要）：
+2. 写 frontmatter。必填 `title / date / code / permalink / section`；其余字段 schema 有默认值，但建议补齐 `tags`（决定标签页）、`sortKey`（决定文章页前后篇顺序）、`excerpt`（决定列表与 RSS 摘要）。**新写或修订过的文章要填 `updated`，否则不会进首页「近期更新」**：
 
    ```yaml
    ---
@@ -40,6 +40,7 @@ npm run preview        # 预览构建产物
    tags: ["Astro", "静态站"]
    words: 1200
    excerpt: "一句话摘要"
+   updated: "2026-11-14 09:30:00"
    ---
    ```
 
@@ -53,6 +54,7 @@ npm run preview        # 预览构建产物
 - `words` 填正文可见汉字数（本篇 94）；迁移的 76 篇沿用旧口径（汉字 + 链接词元），带外链图的文章会偏高，两种口径不要直接比较。
 - 图片沿用原外链地址，发布前逐张确认可访问；本站没有图床，别把本地绝对路径写进 md。
 - 正文里与 `title` 重复的一级标题要删掉，页面模板已渲染 h1；其余正文保持原样。
+- `updated` 只给真正新写或修订过的文章填，格式与 `date` 一致。原站迁入的 76 篇没有这个字段——它们的 `date` 是归档标记，若按 `date` 排「近期更新」，会把 2023 年的旧笔记冒充成新内容。以后改动某篇旧文，补一个 `updated` 就能让它重新出现在首页板块（最多显示 4 篇，按时间降序）。
 
 ### 改其它地方
 
@@ -65,12 +67,13 @@ npm run preview        # 预览构建产物
 | 导航项 / 站点名 / SEO | `src/layouts/BaseLayout.astro` | `npm run build` |
 | 关于页 | `src/pages/about.astro` | `npm run build` |
 
-### 发布上线（当前还没打通）
+### 发布上线（已打通）
 
-1. 本地 `npm run build` + `npm run preview` 确认无误。
-2. `git commit`（当前分支 `redesign/astro-v2`）。
-3. 确认推送范围后推 GitHub。本机代理会掐断普通 `git push`，走仓库根 `utils/deploy_api.py` 的 Git Data API 通道。
-4. 部署 Pages 前，把部署脚本的产物目录从 `docs/.vuepress/dist` 切到 `next/dist`（`utils/deploy_api.py` 第 16–17 行的 `DIST`）。**这一步尚未执行**：改了就等于把线上站换成新版，必须等你明确确认后再动。
+1. 本地 `npm run build` + `npm run preview` 确认无误，提交到当前分支。
+2. 推代码：先试普通 `git push`（本机代理**有时**会掐断 `github.com` 的 smart-HTTP，失败再走 Git Data API）。
+3. **代码分支 ≠ 线上页面**。GitHub Pages 的发布源是 `gh-pages` 分支根目录的静态产物，没有自动构建，推代码不会更新线上。要发布，在仓库根执行 `python utils/deploy_api.py`（或 `npm run deploy:api`），把 `next/dist` 全量推到 `gh-pages`。
+4. 部署脚本的 `DIST` 已指向 `next/dist`，commit message 为动态时间戳；旧版发布提交保留，需要回滚时把 `gh-pages` 的 ref 指回去即可。
+5. 发布后确认 Pages 构建状态为 `built`，再逐页验收线上（本地预览通过不代表线上通过，尤其外链图片的 Referer 不同）。
 
 ---
 
@@ -191,8 +194,6 @@ next/
 
 ## 部署
 
-产物是 `next/dist/`，需部署到 GitHub Pages 项目页根（`https://zhangchang47.github.io/BlogVuePress/`）。沿用仓库根目录 `utils/deploy_api.py` 的 **GitHub Git Data API** 通道（本机代理会掐断 `github.com` 的 git smart-HTTP 推送）。
+产物是 `next/dist/`，部署到 GitHub Pages 项目页根（`https://zhangchang47.github.io/BlogVuePress/`）。仓库根 `utils/deploy_api.py` 走 **GitHub Git Data API** 把产物推到 `gh-pages` 分支；本机代理有时掐断 `github.com` 的 git smart-HTTP 推送，推代码时先试普通 `git push`，失败再改用 API。
 
-**注意：`utils/deploy_api.py` 的 `DIST` 目前仍指向旧站 `docs/.vuepress/dist`**，直接执行会把旧站产物再推一遍。切换新版前需把该常量改成 `next/dist`，详见「日常更新内容 → 发布上线」。
-
-**当前流程要求：本地预览确认无误后，再推送 GitHub。**
+**`DIST` 已于 2026-11-14 切到 `next/dist`**，旧站产物 `docs/.vuepress/dist` 不再是发布源。注意 Pages 发布源是 `gh-pages` 分支，与代码分支相互独立，**推代码不会更新线上页面**，必须单独执行部署脚本。完整流程见「日常更新内容 → 发布上线」。

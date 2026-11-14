@@ -17,6 +17,9 @@ const posts = defineCollection({
     tags: z.array(z.string()).default([]),
     words: z.number().default(0),
     excerpt: z.string().default(''),
+    // 只给真正新写或修订过的文章填。旧站迁入的 76 篇 date 是归档标记，
+    // 不能据此混进「近期更新」。格式与 date 一致：YYYY-MM-DD HH:mm:ss
+    updated: z.string().optional(),
   }),
 });
 

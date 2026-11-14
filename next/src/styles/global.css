@@ -228,6 +228,37 @@ html.motion-ok .reveal.in{opacity:1;translate:0 0}
 .archive-year{margin-top:48px}
 .archive-year h3{font:600 14px/1 var(--mono);color:var(--muted);letter-spacing:.08em;margin:0 0 16px;
   padding-bottom:12px;border-bottom:1px solid var(--line)}
+/* ---------------- 首页 · 近期更新 ---------------- */
+.updates{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:16px;align-items:start}
+.update-list{display:grid;gap:8px;min-width:0}
+.update-card{display:flex;align-items:center;gap:20px;min-width:0;padding:20px 22px;
+  border-radius:var(--radius);border:1px solid var(--card-brd);background:var(--card);
+  backdrop-filter:blur(16px);box-shadow:var(--shadow);
+  transition:transform .25s,border-color .25s,background .4s}
+.update-card:hover{transform:translateX(4px);border-color:var(--violet-soft)}
+.u-date{display:flex;flex-direction:column;align-items:center;gap:4px;flex:none;min-width:56px;
+  border-right:1px solid var(--line);padding-right:18px}
+.u-date b{font:700 22px/1 var(--mono);letter-spacing:-.04em;color:var(--violet)}
+.u-date i{font:10px/1.4 var(--mono);font-style:normal;color:var(--faint);white-space:nowrap}
+.u-body{flex:1;min-width:0}
+.u-body b{display:block;font-size:14px;font-weight:660;line-height:1.5}
+.u-excerpt{display:block;font-size:11px;line-height:1.8;color:var(--muted);margin-top:6px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.u-side{flex:none;text-align:right;font:10px/1.8 var(--mono);color:var(--faint)}
+.u-side span{display:block;color:var(--mint)}
+.update-note{padding:22px}
+.update-note h3{font-size:13px;margin:0 0 10px}
+/* 长说明文字在深色主题下用 --muted 会太淡，改用随主题反转的 ink + 透明度 */
+.update-note p{font-size:12px;line-height:1.9;color:var(--ink);opacity:.72;margin:0}
+.update-note .more{display:inline-block;margin-top:14px;font:10px/1 var(--mono);color:var(--mint);margin-left:0}
+.update-note .more:hover{color:var(--violet)}
+@media(max-width:768px){
+  .updates{grid-template-columns:minmax(0,1fr)}
+  .update-card{gap:12px;padding:16px}
+  .u-date{min-width:48px;padding-right:12px}
+  .u-date b{font-size:18px}
+  .u-side{display:none}
+}
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .panel{border:1px solid var(--card-brd);border-radius:var(--radius);padding:24px;
   background:var(--card);backdrop-filter:blur(16px);box-shadow:var(--shadow)}
