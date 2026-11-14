@@ -336,9 +336,12 @@ html[data-theme="dark"] .katex{color:#F5F3FF}
 
 /* ---------------- 页脚 / 进度 ---------------- */
 .site-footer{margin-top:96px;border-top:1px solid var(--line);padding:32px 0 40px;
-  font:10px/1.9 var(--mono);color:var(--faint)}
+  font:11px/1.9 var(--mono);color:var(--muted)}
 .site-footer .row{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
 .site-footer a:hover{color:var(--violet)}
+.site-footer .beian{font:12px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  color:var(--ink);letter-spacing:.02em;text-decoration:none;border-bottom:1px dotted var(--line)}
+.site-footer .beian:hover{color:var(--violet);border-bottom-color:var(--violet)}
 .progress{position:fixed;left:0;bottom:0;height:2px;width:100%;background:var(--track);z-index:70}
 .progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--violet),var(--mint))}
 .hint{text-align:center;font:10px/1.7 var(--mono);color:var(--faint);margin-top:32px}

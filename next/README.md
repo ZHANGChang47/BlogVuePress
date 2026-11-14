@@ -91,7 +91,8 @@ next/
 ├─ public/
 │  ├─ js/site.js             主题 / 搜索 / 代码增强 / 动效 / TOC / 灯箱
 │  ├─ js/tool-bridge.js      工具侧引入的 ~40 行通信桥
-│  ├─ tools/<id>/index.html  embed 工具产物（当前仅 bridge-demo 自检台）
+│  ├─ tools/<id>/index.html  embed 工具产物（当前无 embed 工具）
+├─ dev-assets/bridge-demo/   接口自检台，仅本地开发用，不随站点发布
 │  ├─ sw.js / manifest.webmanifest / icon.svg / robots.txt
 │  └─ media/                 迁移图片 + keyecho/ 界面截图
 └─ scripts/
@@ -154,7 +155,7 @@ next/
 
 事件：`tool:ready`（工具→主站，上报高度）、`blog:theme`（主站→工具，下发主题与色值）、`tool:resize`（工具→主站）。iframe 一律 `sandbox="allow-scripts allow-forms"`，不给 `allow-same-origin`，不共享 localStorage 与登录态。
 
-**当前挂载 1 个工具**：KeyEcho 键鸣（`page` 模式，站内详情页），内容取自《KeyEcho 产品介绍说明》01–10 章，11–12 章未收录。`public/tools/bridge-demo/` 只是接口自检台，用来验证 iframe 挂载与换肤，不是产品。
+**当前挂载 1 个工具**：KeyEcho 键鸣（`page` 模式，站内详情页），内容依据《KeyEcho 产品介绍说明》整理。接口自检台已移到 `dev-assets/bridge-demo/`，只在本地验证 iframe 挂载与换肤时用，不随站点发布。
 
 ---
 

@@ -22,6 +22,8 @@ const sectionCards = sections.map((sec) => {
 
 const featured = [...posts].sort((a, b) => (b.data.words || 0) - (a.data.words || 0)).slice(0, 6);
 const tools = toolsIndex.tools;
+const modeLabel = { link: '外部链接', embed: '嵌入页面', native: '站内组件', page: '站内详情' };
+const statusLabel = { online: '已上线', beta: '公测中', wip: '开发中', demo: '演示版' };
 ---
 <BaseLayout>
   <div class="stack">
@@ -84,7 +86,7 @@ const tools = toolsIndex.tools;
           <a class="post-row reveal" href={`${base}pages/${p.data.code}/`}>
             <span class="num">#{String(i + 1).padStart(2, '0')}</span>
             <span class="tt">{p.data.title}<span>{p.data.section} · {(p.data.words / 1000).toFixed(1)}k 字</span></span>
-            <span class="meta">/pages/{p.data.code}/</span>
+            <span class="meta">阅读全文 →</span>
           </a>
         ))}
       </div>
@@ -93,35 +95,25 @@ const tools = toolsIndex.tools;
     <section id="tools">
       <div class="sec-head">
         <div>
-          <div class="eyebrow">Extensible / Tools</div>
+          <div class="eyebrow">Made by me / Tools</div>
           <h2>我的工具</h2>
         </div>
-        <p>独立路由、独立数据、独立产物。往 <code>tools.json</code> 加一条记录，卡片、导航计数与索引页一起长出来，不用碰 76 篇文章。</p>
-        <a class="more" href={`${base}tools/`}>接口说明 →</a>
+        <p>这里放自己写的一些小工具，点开卡片就能看到详细介绍和界面截图。</p>
+        <a class="more" href={`${base}tools/`}>查看全部 →</a>
       </div>
       <div class="tool-grid">
         {tools.map((t) => (
           <a class="tool-card" href={t.entry}>
             <div class="t-top"><span class="t-ico">{t.icon}</span><span class="t-name">{t.title}</span>
-              <span class="t-mode">{t.mode}</span></div>
+              <span class="t-mode">{modeLabel[t.mode] || t.mode}</span></div>
             <p class="t-desc">{t.desc}</p>
             <div class="t-foot"><span class="t-tag">{t.tags[0]}</span><span class="t-tag">v{t.version}</span>
-              <span class="t-status"><i></i>{t.status}</span></div>
+              <span class="t-status"><i></i>{statusLabel[t.status] || t.status}</span></div>
           </a>
         ))}
       </div>
-
-      <div class="runtime">
-        <div class="rt-left">
-          <div class="rt-title"><b>工具运行时预览</b> · iframe / postMessage
-            <span class="live"><i></i> LIVE</span></div>
-          <iframe data-tool-frame title="工具接口自检台" src={`${base}tools/bridge-demo/`}
-            sandbox="allow-scripts allow-forms" loading="lazy"></iframe>
-        </div>
-        <div class="rt-right log" id="log"><h4>Event Bus</h4></div>
-      </div>
     </section>
 
-    <p class="hint">移动鼠标：极光光晕跟随 · 卡片 3D 倾斜 · 右上角一键切换深浅主题 · 按 / 搜正文</p>
+    <p class="hint">移动鼠标：极光光晕跟随 · 卡片 3D 倾斜 · 右上角一键切换深浅主题 · 点搜索按钮可搜正文</p>
   </div>
 </BaseLayout>

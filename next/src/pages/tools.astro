@@ -2,113 +2,31 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import toolsIndex from '../data/tools.index.json';
 
-const base = import.meta.env.BASE_URL;
-const c = toolsIndex.contract;
+const modeLabel = { link: '外部链接', embed: '嵌入页面', native: '站内组件', page: '站内详情' };
+const statusLabel = { online: '已上线', beta: '公测中', wip: '开发中', demo: '演示版' };
 ---
 <BaseLayout title="我的工具">
   <div class="page-head">
-    <div class="eyebrow">Extensible / Tools</div>
+    <div class="eyebrow">Made by me / Tools</div>
     <h1>我的工具</h1>
-    <p>这一页既是工具入口，也是挂载接口的可运行说明。工具与文章物理隔离：<code>/tools/&lt;id&gt;/</code> 独立路由、独立产物，76 篇文章和全部 <code>/pages/&lt;code&gt;/</code> 短码零改动。</p>
-    <div class="note">
-      <b>目前挂载 1 个工具：KeyEcho 键鸣。</b>它用站内详情页呈现（<code>mode: page</code>），点卡片进入，内容取自《KeyEcho 产品介绍说明》的 01–10 章（11–12 章未收录）。下方运行时预览是接口自检台，不是产品本身。以后挂新工具，往 <code>src/data/tools.json</code> 追加一条即可。
-    </div>
+    <p>平时写的小工具收在这里。点开卡片，就能看到详细介绍和界面截图。</p>
   </div>
 
-  <section id="runtime" style="margin-top:48px;scroll-margin-top:88px">
-    <div class="sec-head"><div><div class="eyebrow">Registry / {toolsIndex.count} 条</div><h2>已挂载</h2></div>
-      <p>数据来自 tools.json，构建前由 sync-tools.mjs 校验并生成索引。</p></div>
+  <section style="margin-top:48px">
+    <div class="sec-head">
+      <div><div class="eyebrow">Tools / {toolsIndex.count} 个</div><h2>全部工具</h2></div>
+      <p>有新作品会继续加进来。</p>
+    </div>
     <div class="tool-grid">
       {toolsIndex.tools.map((t) => (
         <a class="tool-card" href={t.entry}>
           <div class="t-top"><span class="t-ico">{t.icon}</span><span class="t-name">{t.title}</span>
-            <span class="t-mode">{t.mode}</span></div>
+            <span class="t-mode">{modeLabel[t.mode] || t.mode}</span></div>
           <p class="t-desc">{t.desc}</p>
           <div class="t-foot"><span class="t-tag">{t.tags[0]}</span><span class="t-tag">v{t.version}</span>
-            <span class="t-status"><i></i>{t.status}</span></div>
+            <span class="t-status"><i></i>{statusLabel[t.status] || t.status}</span></div>
         </a>
       ))}
     </div>
-
-    <div class="runtime">
-      <div class="rt-left">
-        <div class="rt-title"><b>运行时预览</b> · iframe / postMessage <span class="live"><i></i> LIVE</span></div>
-        <iframe data-tool-frame title="工具接口自检台" src={`${base}tools/bridge-demo/`}
-          sandbox="allow-scripts allow-forms"></iframe>
-      </div>
-      <div class="rt-right log" id="log"><h4>Event Bus</h4></div>
-    </div>
-    <p class="hint">切换右上角主题，观察工具页配色同步；Event Bus 会打印每条消息。</p>
   </section>
-
-  <div class="stack" style="margin-top:96px">
-    <section>
-      <div class="sec-head"><div><div class="eyebrow">Contract / Data</div><h2>数据契约</h2></div>
-        <p>唯一数据源：<code>src/data/tools.json</code>。字段齐全即通过构建校验。</p></div>
-      <div class="grid-2">
-        <div class="panel">
-          <h3>字段</h3>
-          <table>
-            <tbody>
-              <tr><td><code>id</code></td><td>唯一 slug，决定路由与产物目录</td></tr>
-              <tr><td><code>title / desc / icon</code></td><td>卡片展示内容</td></tr>
-              <tr><td><code>tags / order</code></td><td>索引页筛选与排序</td></tr>
-              <tr><td><code>mode</code></td><td>{c.modes.join(' / ')}</td></tr>
-              <tr><td><code>entry</code></td><td>外链、public 下的 embed 产物，或站内详情页路由</td></tr>
-              <tr><td><code>status</code></td><td>online / beta / wip / demo，wip 不计入导航</td></tr>
-              <tr><td><code>version / updated</code></td><td>卡片页脚，避免读者拿到旧版</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="panel">
-          <h3>四种挂载</h3>
-          <ul>
-            <li><b>link</b> — 工具独立部署，卡片直接跳转，零耦合</li>
-            <li><b>embed</b> — 静态产物放 <code>public/tools/&lt;id&gt;/</code>，iframe 嵌入并走 bridge</li>
-            <li><b>native</b> — 轻量工具注册成组件，复用主站主题变量</li>
-            <li><b>page</b> — 站内详情页 <code>src/pages/tools/&lt;id&gt;.astro</code>，继承导航与主题（KeyEcho 用这个）</li>
-          </ul>
-          <h3 style="margin-top:20px">事件</h3>
-          <ul>
-            <li><code>tool:ready</code> 工具 → 主站，上报 id 与高度</li>
-            <li><code>blog:theme</code> 主站 → 工具，下发主题与实际色值</li>
-            <li><code>tool:resize</code> 工具 → 主站，内容变化后重设高度</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="sec-head"><div><div class="eyebrow">Contract / Layout</div><h2>目录与安全边界</h2></div></div>
-      <div class="grid-2">
-        <div class="panel">
-          <h3>目录</h3>
-          <pre><code>BlogVuePress/next/
-├─ src/data/tools.json        ← 唯一数据源
-├─ src/data/tools.index.json  ← 构建时生成
-├─ public/js/tool-bridge.js   ← 工具侧引入
-├─ public/tools/&lt;id&gt;/index.html  ← embed 产物
-├─ src/pages/tools/&lt;id&gt;.astro   ← page 详情页
-├─ scripts/sync-tools.mjs     ← 校验 + 生成索引
-└─ src/content/posts/*.md     ← 76 篇，零改动</code></pre>
-        </div>
-        <div class="panel">
-          <h3>安全边界</h3>
-          <ul>
-            <li>iframe 用 <code>sandbox="allow-scripts allow-forms"</code>，不给 <code>allow-same-origin</code></li>
-            <li>双方校验 <code>postMessage</code> 来源；不共享 localStorage、不传登录态</li>
-            <li>embed 产物不进 service worker 预缓存，体积不可控</li>
-            <li>全文搜索索引只收文章正文，工具内部字符串不混进笔记结果</li>
-            <li>工具崩了不影响主站；主题色通过消息下发，工具侧不写死颜色</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  </div>
 </BaseLayout>
-
-<style>
-  table{width:100%;border-collapse:collapse;font-size:11px;line-height:1.8}
-  td{border-bottom:1px solid var(--line);padding:8px 6px;vertical-align:top;color:var(--muted)}
-  td:first-child{width:38%;color:var(--ink)}
-</style>

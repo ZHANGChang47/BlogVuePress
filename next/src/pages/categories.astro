@@ -17,7 +17,7 @@ groups.forEach((g) => g.list.sort((a, b) => a.data.sortKey.localeCompare(b.data.
   <div class="page-head">
     <div class="eyebrow">Index / Categories</div>
     <h1>分类</h1>
-    <p>沿用原站「目录即分类」的结构，{groups.length} 个分区、共 {posts.length} 篇。每篇的永久短码 <code>/pages/&lt;code&gt;/</code> 未做任何改动。</p>
+    <p>沿用原站「目录即分类」的结构，{groups.length} 个分区、共 {posts.length} 篇，文章永久链接未做任何改动。</p>
   </div>
 
   <div class="stack" style="margin-top:48px">
@@ -33,7 +33,7 @@ groups.forEach((g) => g.list.sort((a, b) => a.data.sortKey.localeCompare(b.data.
               <span class="num">{String(i + 1).padStart(2, '0')}</span>
               <span class="tt">{p.data.title}<span>{p.data.words.toLocaleString('zh-CN')} 字 · {p.data.date.slice(0, 10)}</span></span>
               <span class="tags">{p.data.tags.slice(0, 2).map((t) => <span class="t-tag">#{t}</span>)}</span>
-              <span class="meta">/pages/{p.data.code}/</span>
+              <span class="meta">阅读全文 →</span>
             </a>
           ))}
         </div>

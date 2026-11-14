@@ -28,7 +28,7 @@ const posts = (await getCollection('posts'))
         <span class="num">{String(i + 1).padStart(2, '0')}</span>
         <span class="tt">{p.data.title}<span>{p.data.section} · {p.data.words.toLocaleString('zh-CN')} 字</span></span>
         <span class="tags">{p.data.tags.filter((t) => t !== tag).slice(0, 2).map((t) => <span class="t-tag">#{t}</span>)}</span>
-        <span class="meta">/pages/{p.data.code}/</span>
+        <span class="meta">阅读全文 →</span>
       </a>
     ))}
   </div>
