@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import toolsIndex from '../data/tools.index.json';
+
+const modeLabel = { link: '外部链接', embed: '嵌入页面', native: '站内组件', page: '站内详情' };
+const statusLabel = { online: '已上线', beta: '公测中', wip: '开发中', demo: '演示版' };
+---
+<BaseLayout title="我的工具">
+  <div class="page-head">
+    <div class="eyebrow">Made by me / Tools</div>
+    <h1>我的工具</h1>
+    <p>平时写的小工具收在这里。点开卡片，就能看到详细介绍和界面截图。</p>
+  </div>
+
+  <section style="margin-top:48px">
+    <div class="sec-head">
+      <div><div class="eyebrow">Tools / {toolsIndex.count} 个</div><h2>全部工具</h2></div>
+      <p>有新作品会继续加进来。</p>
+    </div>
+    <div class="tool-grid">
+      {toolsIndex.tools.map((t) => (
+        <a class="tool-card" href={t.entry}>
+          <div class="t-top"><span class="t-ico">{t.icon}</span><span class="t-name">{t.title}</span>
+            <span class="t-mode">{modeLabel[t.mode] || t.mode}</span></div>
+          <p class="t-desc">{t.desc}</p>
+          <div class="t-foot"><span class="t-tag">{t.tags[0]}</span><span class="t-tag">v{t.version}</span>
+            <span class="t-status"><i></i>{statusLabel[t.status] || t.status}</span></div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

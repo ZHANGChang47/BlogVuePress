@@ -4,6 +4,7 @@ Used when the git smart-HTTP push channel through the local proxy is unreliable.
 api.github.com stays reachable, so we create blobs/trees/commit and move the ref.
 """
 import base64
+import datetime
 import json
 import os
 import subprocess
@@ -12,9 +13,10 @@ import tempfile
 GH = r"C:\Users\26484\AppData\Local\GitHubCLI\bin\gh.exe"
 REPO = "ZHANGChang47/BlogVuePress"
 BRANCH = "gh-pages"
-# dist 目录相对本脚本位置（utils/ -> 仓库根 -> docs/.vuepress/dist）
+# dist 目录相对本脚本位置（utils/ -> 仓库根 -> next/dist，Astro 新版产物）
+# 旧站产物 docs/.vuepress/dist 已不再是发布源；要回滚旧版直接把 gh-pages 指回旧提交。
 DIST = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                      "..", "docs", ".vuepress", "dist"))
+                                      "..", "next", "dist"))
 BATCH_BYTES = 256_000
 INLINE_MAX_BYTES = 200_000
 
@@ -110,8 +112,9 @@ def main():
     parent = api("GET", "repos/%s/git/ref/heads/%s" % (REPO, BRANCH), None, ".object.sha")
     print("parent=%s" % parent, flush=True)
 
+    stamp = datetime.datetime.now().astimezone().strftime("%Y-%m-%d %H:%M %z")
     commit = api("POST", "repos/%s/git/commits" % REPO, {
-        "message": "deploy: navbar overlap + narrow-screen drawer fix, light cards, entrance animations",
+        "message": "deploy: Astro 新版博客静态产物 (%s)" % stamp,
         "tree": tree_sha,
         "parents": [parent],
     }, ".sha")

@@ -1,0 +1,56 @@
+{
+  "generatedBy": "scripts/sync-tools.mjs",
+  "contract": {
+    "routes": [
+      "/tools/",
+      "/tools/<id>/"
+    ],
+    "modes": [
+      "link",
+      "embed",
+      "native",
+      "page"
+    ],
+    "events": [
+      "tool:ready",
+      "blog:theme",
+      "tool:resize"
+    ],
+    "tokens": [
+      "--bg",
+      "--bg-solid",
+      "--ink",
+      "--muted",
+      "--violet",
+      "--mint",
+      "--line",
+      "--radius"
+    ]
+  },
+  "count": 1,
+  "available": 1,
+  "byMode": {
+    "link": 0,
+    "embed": 0,
+    "native": 0,
+    "page": 1
+  },
+  "tools": [
+    {
+      "id": "keyecho",
+      "title": "KeyEcho 键鸣",
+      "desc": "系统级打字音效工具：Web Audio 实时合成机械键盘声感，14 种预设 + 14 参数自定义音色编辑器，零采样、不保存按键内容。",
+      "icon": "⌨",
+      "tags": [
+        "Windows",
+        "工具"
+      ],
+      "mode": "page",
+      "entry": "/BlogVuePress/tools/keyecho/",
+      "status": "online",
+      "version": "1.2.2",
+      "updated": "2026-11-13",
+      "order": 1
+    }
+  ]
+}

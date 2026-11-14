@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+const posts = await getCollection('posts');
+const byYear = [...new Set(posts.map((p) => p.data.date.slice(0, 4)))].sort().reverse()
+  .map((y) => ({ year: y, list: posts.filter((p) => p.data.date.startsWith(y)) }));
+const monthCount = new Set(posts.map((p) => p.data.date.slice(0, 7))).size;
+const dayCount = new Set(posts.map((p) => p.data.date.slice(0, 10))).size;
+---
+<BaseLayout title="归档">
+  <div class="page-head">
+    <div class="eyebrow">Index / Archives</div>
+    <h1>归档</h1>
+    <p>共 {posts.length} 篇。归档视图按日期与分区两条线索组织。</p>
+    <div class="note">
+      <b>关于日期，必须先说清楚：</b>从原站迁入的 76 篇里，有 75 篇的日期集中在 2023-02-03 / 02-04 两天（另 1 篇 2019-12-25），这些是<b>导入 / 归档标记，不是真实写作时间</b>；重写时逐字保留了原值，没有编造或回填。后来新写的文章按归档日期记入，时间线因此多出新的年份。目前共 {monthCount} 个月、{dayCount} 个日期点。
+    </div>
+  </div>
+
+  <div class="stats" style="margin-top:48px">
+    <div class="stat"><b>{posts.length}</b><span>篇文章</span></div>
+    <div class="stat"><b>{byYear.length}</b><span>个年份</span></div>
+    <div class="stat"><b>{dayCount}</b><span>个日期点</span></div>
+    <div class="stat"><b>{new Set(posts.map((p) => p.data.section)).size}</b><span>个分区</span></div>
+  </div>
+
+  {byYear.map((g) => (
+    <div class="archive-year">
+      <h3>{g.year} · {g.list.length} 篇</h3>
+      <div class="post-list">
+        {g.list.sort((a, b) => b.data.date.localeCompare(a.data.date)).map((p) => (
+          <a class="post-row" href={`${base}pages/${p.data.code}/`}>
+            <span class="num">{p.data.date.slice(5, 10)}</span>
+            <span class="tt">{p.data.title}<span>{p.data.section} · {p.data.words.toLocaleString('zh-CN')} 字</span></span>
+            <span class="meta">阅读全文 →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  ))}
+
+  <div class="stack" style="margin-top:96px">
+    <section>
+      <div class="sec-head"><div><div class="eyebrow">Alternative</div><h2>按分区读更顺</h2></div>
+        <p>同一分区的文章原本就是连载，文末有前后篇导航。</p>
+        <a class="more" href={`${base}categories/`}>去分类页 →</a></div>
+      <div class="tag-cloud">
+        {[...new Set(posts.map((p) => p.data.section))].sort((a, b) => a.localeCompare(b, 'zh'))
+          .map((s) => <a class="chip" href={`${base}categories/#${encodeURIComponent(s)}`}>{s}</a>)}
+      </div>
+    </section>
+  </div>
+</BaseLayout>
