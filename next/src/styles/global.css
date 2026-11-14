@@ -356,6 +356,8 @@ html[data-theme="dark"] .katex{color:#F5F3FF}
   :root{--container:100%}
   .post-layout{grid-template-columns:minmax(0,1fr);gap:24px}
   .toc{position:static;order:-1}
+  /* 没有分节标题的短文：空目录不该抢在标题前占掉首屏，放回文末 */
+  .toc--empty{order:0}
   .toc ul{display:flex;flex-wrap:wrap;gap:4px;border-left:0}
   .toc li a{border-left:0;border-bottom:2px solid transparent;padding:6px 10px}
   .toc li.d3{display:none}

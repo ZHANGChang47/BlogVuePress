@@ -2,7 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-// 只把短码放进 props。若把 76 篇正文塞进 props，会为每个页面复制一份 2.3MB 数据。
+// 只把短码放进 props。若把全部文章正文塞进 props，会为每个页面复制一份 2.3MB 数据。
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
   return posts.map((p) => ({ params: { code: p.data.code } }));
@@ -57,14 +57,14 @@ const next = i < inSection.length - 1 ? inSection[i + 1] : null;
       </nav>
     </article>
 
-    <aside class="toc" aria-label="本页目录">
+    <aside class:list={['toc', { 'toc--empty': toc.length === 0 }]} aria-label="本页目录">
       <h4>On this page</h4>
       <ul>
         {toc.map((h) => <li class={h.depth === 3 ? 'd3' : ''}><a href={`#${h.slug}`}>{h.text}</a></li>)}
       </ul>
       {toc.length === 0 && <p style="font-size:11px;color:var(--muted)">这篇没有分节标题。</p>}
       <p style="margin-top:24px;font-size:10px;line-height:1.9;color:var(--faint)">
-        正文关键词可用右上角搜索按钮检索。<br />日期为原站导入标记，非写作时间。
+        正文关键词可用右上角搜索按钮检索。<br />早期文章的日期为原站导入标记，非写作时间。
       </p>
     </aside>
   </div>

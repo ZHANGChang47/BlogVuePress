@@ -25,7 +25,7 @@ npm run preview        # 预览构建产物
 
 ### 发一篇新文章
 
-1. 在 `src/content/posts/` 新建 `<短码>.md`。短码是 **6 位小写十六进制**（如 `3f7ac2`），不能与现有 76 个文件重名；文件名、`code`、`permalink` 三者必须一致。
+1. 在 `src/content/posts/` 新建 `<短码>.md`。短码是 **6 位小写十六进制**（如 `3f7ac2`），不能与已有文章重名（当前 77 篇）；文件名、`code`、`permalink` 三者必须一致。
 2. 写 frontmatter。必填 `title / date / code / permalink / section`；其余字段 schema 有默认值，但建议补齐 `tags`（决定标签页）、`sortKey`（决定文章页前后篇顺序）、`excerpt`（决定列表与 RSS 摘要）：
 
    ```yaml
@@ -46,6 +46,13 @@ npm run preview        # 预览构建产物
 3. **短码一旦发布就不要改**：URL 会被搜索引擎收录，sitemap / RSS / 全文索引都按它生成。只改标题或正文，直接改 md 即可。
 4. 本地看效果：`npm run dev`（热更新）或 `npm run build && npm run preview`（看构建产物）。
 5. 提交：`git add src/content/posts/3f7ac2.md && git commit`。
+
+**已按此流程加入的第一篇新文**：`c8f3a1.md`《中秋游漫山花溪谷》，归入「散文随笔」，`sortKey` 排在该分区末尾。后续沿用这几条约定：
+
+- 日期取可核实的归档时间，不推测写作日期；原站 76 篇的日期是导入标记，两者含义不同，归档页已分开说明。
+- `words` 填正文可见汉字数（本篇 94）；迁移的 76 篇沿用旧口径（汉字 + 链接词元），带外链图的文章会偏高，两种口径不要直接比较。
+- 图片沿用原外链地址，发布前逐张确认可访问；本站没有图床，别把本地绝对路径写进 md。
+- 正文里与 `title` 重复的一级标题要删掉，页面模板已渲染 h1；其余正文保持原样。
 
 ### 改其它地方
 
@@ -74,7 +81,7 @@ next/
 ├─ astro.config.mjs          site + base('/BlogVuePress/') + sitemap + Shiki
 ├─ src/
 │  ├─ content.config.ts      posts collection schema
-│  ├─ content/posts/*.md     76 篇，文件名即 6 位短码
+│  ├─ content/posts/*.md     77 篇，文件名即 6 位短码
 │  ├─ data/tools.json        工具注册表（唯一数据源）
 │  ├─ data/tools.index.json  sync-tools 生成，勿手改
 │  ├─ layouts/BaseLayout.astro  SEO / 导航 / 主题 / 搜索 / PWA 挂载点
