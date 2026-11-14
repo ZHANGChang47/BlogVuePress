@@ -437,7 +437,7 @@ public class CodeGenerator {
         String projectPath = System.getProperty("user.dir");
         gc.setOutputDir(projectPath + "/yeb-server/src/main/java");
         //作者
-        gc.setAuthor("ZhangChang");
+        gc.setAuthor("LiMing");
         //打开输出目录
         gc.setOpen(false);
         //xml开启 BaseResultMap
@@ -840,7 +840,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  * 
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Data
@@ -1292,7 +1292,7 @@ import javax.servlet.http.HttpServletRequest;
  *  服务类
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 public interface AdminService extends IService<Admin> {
@@ -1340,7 +1340,7 @@ import java.util.Map;
  *  服务实现类
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Service
@@ -1476,8 +1476,8 @@ public class Swagger2Config {
         return new ApiInfoBuilder()
                 .title("云E办接口文档")
                 .description("云E办接口文档")
-                .contact(new Contact("ZhangChang", "http:localhost:8081/doc.html",
-                        "ZhangChang@java.com"))
+                .contact(new Contact("LiMing", "http:localhost:8081/doc.html",
+                        "liming@example.com"))
                 .version("1.0")
                 .build();
     }
@@ -1609,8 +1609,8 @@ public class Swagger2Config {
         return new ApiInfoBuilder()
                 .title("云E办接口文档")
                 .description("云E办接口文档")
-                .contact(new Contact("ZhangChang", "http:localhost:8081/doc.html",
-                        "ZhangChang@java.com"))
+                .contact(new Contact("LiMing", "http:localhost:8081/doc.html",
+                        "liming@example.com"))
                 .version("1.0")
                 .build();
     }
@@ -2008,7 +2008,7 @@ import lombok.experimental.Accessors;
  * 
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Data
@@ -2084,7 +2084,7 @@ import java.util.List;
  *  前端控制器
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @RestController
@@ -2122,7 +2122,7 @@ import java.util.List;
  *  服务类
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 public interface MenuService extends IService<Menu> {
@@ -2157,7 +2157,7 @@ import java.util.List;
  *  服务实现类
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Service
@@ -2197,7 +2197,7 @@ import java.util.List;
  *  Mapper 接口
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Repository
@@ -2406,7 +2406,7 @@ import java.util.List;
  *  服务实现类
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Service
@@ -2493,7 +2493,7 @@ import lombok.experimental.Accessors;
  * 
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Data
@@ -2567,7 +2567,7 @@ import java.util.List;
  *  服务类
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 public interface MenuService extends IService<Menu> {
@@ -2619,7 +2619,7 @@ import java.util.List;
  *  Mapper 接口
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Repository
@@ -2772,7 +2772,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  * 
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Data
@@ -2897,7 +2897,7 @@ import java.util.List;
  *  Mapper 接口
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Repository
@@ -3271,7 +3271,7 @@ import lombok.experimental.Accessors;
  * 
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Data
@@ -3344,7 +3344,7 @@ import java.util.List;
  *  前端控制器
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @RestController
@@ -3514,7 +3514,7 @@ import java.util.List;
  *  前端控制器
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @RestController
@@ -3593,7 +3593,7 @@ import java.util.List;
  *  前端控制器
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @RestController
@@ -3773,7 +3773,7 @@ import com.chang.yebserver.respPojo.RespBean;
  *  服务类
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 public interface MenuRoleService extends IService<MenuRole> {
@@ -3808,7 +3808,7 @@ import org.springframework.transaction.annotation.Transactional;
  *  服务实现类
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Service
@@ -3856,7 +3856,7 @@ import org.springframework.stereotype.Repository;
  *  Mapper 接口
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Repository
@@ -4214,7 +4214,7 @@ import java.util.List;
  *  前端控制器
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @RestController
@@ -4566,7 +4566,7 @@ import java.util.List;
  *  前端控制器
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @RestController
@@ -4950,7 +4950,7 @@ import lombok.experimental.Accessors;
  * 
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Data
@@ -5107,7 +5107,7 @@ import java.time.LocalDate;
  *  前端控制器
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @RestController
@@ -5145,7 +5145,7 @@ import java.time.LocalDate;
  *  服务类
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 public interface EmployeeService extends IService<Employee> {
@@ -5185,7 +5185,7 @@ import java.time.LocalDate;
  *  服务实现类
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Service
@@ -5232,7 +5232,7 @@ import java.time.LocalDate;
  *  Mapper 接口
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Repository
@@ -5646,7 +5646,7 @@ import lombok.experimental.Accessors;
  * 
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Data
@@ -5988,7 +5988,7 @@ import lombok.experimental.Accessors;
  * 
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @Data
@@ -6150,7 +6150,7 @@ spring:
     # 授权码（在邮箱开通服务时获取）
     password: ETXFFMHHHGPBUKTX
     # 发送者邮箱地址
-    username: z2648492063c@163.com
+    username: demo-sender@example.com
     # 端口（不同邮箱端口号不同）
     port: 25
 
@@ -6420,7 +6420,7 @@ public class MailReceiver {
       "nationId": 1,
       "nativePlace": "英市",
       "politicId": 11,
-      "email": "2648492063@qq.com",
+      "email": "demo@example.com",
       "phone": "15567487644",
       "address": "贵州省洁市清城汕尾街d座 502246",
       "departmentId": 3,
@@ -6448,7 +6448,7 @@ public class MailReceiver {
 
 ![image-20230120232521515](https://typora001-zc.oss-cn-chengdu.aliyuncs.com/typoraImg/image-20230120232521515.png)
 
-> 此外，QQ邮箱也确实收到了来自z2648492063c@163.com的邮件
+> 此外，QQ邮箱也确实收到了来自demo-sender@example.com的邮件
 
 ![image-20230120232103938](https://typora001-zc.oss-cn-chengdu.aliyuncs.com/typoraImg/image-20230120232103938.png)
 
@@ -6855,7 +6855,7 @@ spring:
     # 授权码（在邮箱开通服务时获取）
     password: ETXFFMHHHGPBUKTX
     # 发送者邮箱地址
-    username: z2648492063c@163.com
+    username: demo-sender@example.com
     # 端口（不同邮箱端口号不同）
     port: 25
 
@@ -7060,7 +7060,7 @@ import java.util.List;
  *  前端控制器
  * </p>
  *
- * @author ZhangChang
+ * @author LiMing
  * @since 2023-01-18
  */
 @RestController

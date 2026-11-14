@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { giscus } from '../../config';
 
 // 只把短码放进 props。若把全部文章正文塞进 props，会为每个页面复制一份 2.3MB 数据。
 export async function getStaticPaths() {
@@ -55,6 +56,25 @@ const next = i < inSection.length - 1 ? inSection[i + 1] : null;
           ? <a class="next" href={`${base}pages/${next.data.code}/`}><small>下一篇 →</small><b>{next.data.title}</b></a>
           : <a class="next" href={`${base}categories/`}><small>回到分类 →</small><b>这是本分区最后一篇</b></a>}
       </nav>
+
+      <section class="engage" id="engage" aria-label="互动">
+        <div class="engage-head">
+          <div>
+            <div class="eyebrow">Like / Discuss</div>
+            <h2>喜欢这篇？</h2>
+          </div>
+          <span class="engage-badge">👍 点赞 · 💬 评论</span>
+        </div>
+        <p class="engage-note">
+          点赞与评论由 GitHub Discussions 承载，需要 GitHub 账号；评论会显示你的 GitHub 账号，内容公开保存在本站仓库的讨论区里。本站不额外收集邮箱，也不做行为追踪。
+        </p>
+        {giscus.enabled
+          ? <div class="giscus-host" id="giscusHost"></div>
+          : <div class="engage-fallback">
+              <p>点下面的按钮，到 GitHub 讨论区给这篇笔记点个赞，或留下你的想法。</p>
+              <a class="engage-btn" href={giscus.discussionsUrl} target="_blank" rel="noopener noreferrer">前往讨论区 →</a>
+            </div>}
+      </section>
     </article>
 
     <aside class:list={['toc', { 'toc--empty': toc.length === 0 }]} aria-label="本页目录">
@@ -68,4 +88,51 @@ const next = i < inSection.length - 1 ? inSection[i + 1] : null;
       </p>
     </aside>
   </div>
+
+  {giscus.enabled && (
+    <Fragment>
+      <script is:inline
+        src="https://giscus.app/client.js"
+        data-repo={giscus.repo}
+        data-repo-id={giscus.repoId}
+        data-category={giscus.category}
+        data-category-id={giscus.categoryId}
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async></script>
+      <script is:inline>
+        (function () {
+          var root = document.documentElement;
+          var ORIGIN = 'https://giscus.app';
+          function current() { return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
+          function push() {
+            var f = document.querySelector('iframe.giscus-frame');
+            if (!f || !f.contentWindow) return;
+            try { f.contentWindow.postMessage({ giscus: { setConfig: { theme: current() } } }, ORIGIN); } catch (e) {}
+          }
+          new MutationObserver(function () { setTimeout(push, 80); })
+            .observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+          var host = document.getElementById('giscusHost');
+          if (host) {
+            new MutationObserver(function (recs) {
+              for (var i = 0; i < recs.length; i++) {
+                if (recs[i].addedNodes.length) { setTimeout(push, 400); break; }
+              }
+            }).observe(host, { childList: true, subtree: true });
+          }
+          window.addEventListener('message', function (e) {
+            if (e.origin === ORIGIN && e.data && e.data.giscus) setTimeout(push, 60);
+          });
+          setTimeout(push, 1200);
+        })();
+      </script>
+    </Fragment>
+  )}
 </BaseLayout>

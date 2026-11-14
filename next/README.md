@@ -169,6 +169,34 @@ next/
 
 ---
 
+## 文章互动：点赞与评论
+
+所有文章统一由 `src/pages/pages/[code].astro` 渲染，互动区位于正文与前后篇导航下方，新增文章会自动带上，不用逐篇加。
+
+**方案**：[Giscus](https://giscus.app) + 本仓库的 GitHub Discussions。点赞 = 评论区顶部的 👍 reaction，评论 = Discussions 回复。数据存到 `ZHANGChang47/BlogVuePress` 仓库里，没有独立数据库、没有行为追踪；代价是访客需要 GitHub 账号，国内访问 GitHub 可能不稳。互动区里有一行对访客可见的说明，写明「评论显示 GitHub 账号、内容公开保存」这两件事。
+
+**为什么不自己做计数**：本站是纯静态产物，点赞数需要地方存。用 `localStorage` 只能记住访客自己那一下，别人看不见、换设备就没了，不是真实点赞，所以没做假按钮。打赏本轮不做——收款码通常带实名信息，与隐私要求冲突。
+
+**配置**集中在 `src/config.ts`：
+
+| 字段 | 值 |
+|---|---|
+| `repo` / `repoId` | `ZHANGChang47/BlogVuePress` / `R_kgDOI3n7Yw` |
+| `category` / `categoryId` | `Announcements` / `DIC_kwDOI3n7Y84DLH62` |
+| `enabled` | 目前 `false` |
+
+`enabled=false` 时互动区显示「前往讨论区」按钮。仓库 Discussions 已开启，访客可以直接到 GitHub 点 👍 或留言，只是多一次跳转；这样不会把 Giscus 的授权错误暴露给访客。
+
+**切到 `true` 只需三步**：
+
+1. 仓库所有者在 <https://github.com/apps/giscus> 安装 giscus App 并授权给 `ZHANGChang47/BlogVuePress`（OAuth 网页操作，token 无法代做，只需一次）。
+2. 把 `src/config.ts` 的 `enabled` 改成 `true`，跑 `npm run build`。
+3. 按「发布上线」把 `next/dist` 发到 `gh-pages`。
+
+启用后评论区按 `pathname` 映射到各篇笔记，`data-loading="lazy"` 不拖慢首屏；`[code].astro` 里的脚本用 `postMessage` 把深浅色主题同步给 Giscus iframe。若访客加载不出 giscus.app，仍可从仓库 Discussions 直接参与。
+
+---
+
 ## 数据迁移与验收
 
 `npm run migrate` 会打印并用 `scripts/migration-report.json` 记录：
