@@ -1,0 +1,302 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+const shot = (n: string) => `${base}media/keyecho/${n}`;
+---
+<BaseLayout title="KeyEcho 键鸣" description="系统级打字音效工具：Web Audio 实时合成机械键盘声感，14 种预设音色与 14 参数自定义编辑器。">
+  <div class="page-head">
+    <div class="eyebrow">Tools / KeyEcho · v1.2.2</div>
+    <h1>KeyEcho 键鸣</h1>
+    <p>让每一次敲击，都有机械键盘的回响。系统级全局按键监听 + Web Audio 实时程序合成的打字音效工具：不限当前窗口、零采样文件、不保存按键内容。</p>
+    <a class="back" href={`${base}tools/`}>← 返回我的工具</a>
+  </div>
+
+  <div class="ke-hero">
+    <div class="ke-hero-lead">
+      <span class="kicker">PRODUCT BRIEF · 2026-11</span>
+      <p>把任何键盘敲出机械键盘（或麻将、黄油、雨滴）的沉浸声感。</p>
+    </div>
+    <div class="chips">
+      <span class="chip">Windows 10 / 11</span>
+      <span class="chip">全局监听 · 不限窗口</span>
+      <span class="chip">14 种预设音色</span>
+      <span class="chip">14 参数音色编辑器</span>
+      <span class="chip">零采样 · 程序合成</span>
+      <span class="chip">不保存按键内容</span>
+    </div>
+  </div>
+
+  <div class="ke-body">
+    <section class="ke-ch">
+      <h2><span class="no">01</span>一句话定位</h2>
+      <p class="sub">产品是什么、给谁用</p>
+      <div class="ke-card">
+        <ul>
+          <li><strong>是什么：</strong>打字音效增强工具。监听系统级键盘输入（不限当前窗口），为每次按键实时合成机械键盘质感的声音反馈。</li>
+          <li><strong>给谁用：</strong>笔记本薄膜键盘用户、机械键盘爱好者、想给打字增加仪式感与沉浸感的写作者 / 程序员 / 文字工作者。</li>
+          <li><strong>核心差异：</strong>声音是<strong>实时程序合成</strong>的（非音频采样），内置 14 种从轴体型号到中文键盘圈调音文化的预设，并提供 <strong>14 参数合成编辑器</strong>让用户创作并永久保存自己的专属音色。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="ke-ch">
+      <h2><span class="no">02</span>主界面总览</h2>
+      <p class="sub">玻璃拟态界面 · 音色 / 参数 / 可视化一屏直达</p>
+      <figure>
+        <img class="ke-shot" src={shot('01-main.png')} alt="KeyEcho 主界面" loading="lazy" decoding="async" />
+        <figcaption><b>图 1 · 主界面。</b>左侧为实时按键可视化与快捷开关，右侧为音色预设卡（带波形示意）与声音参数面板；顶部状态栏常驻「监听中」状态与更新入口。</figcaption>
+      </figure>
+    </section>
+
+    <section class="ke-ch">
+      <h2><span class="no">03</span>声音引擎</h2>
+      <p class="sub">零采样文件 · 实时合成 · 复音叠加</p>
+      <div class="ke-grid">
+        <div class="ke-card">
+          <h3>程序合成引擎 <span class="tag">CORE</span></h3>
+          <ul>
+            <li>Web Audio 实时合成，<strong>无任何音频素材文件</strong>——体积小、无版权风险、无素材授权问题</li>
+            <li>48 kHz 输出，按下与回弹各有独立声音层（含可调回弹音）</li>
+            <li>28 路复音上限 + 压缩器防爆音，快速连打不破音、超限自动淡出最旧音源</li>
+            <li>预渲染 AudioBuffer，单键触发延迟极低</li>
+          </ul>
+        </div>
+        <div class="ke-card">
+          <h3>按键差异化 <span class="tag">FEEL</span></h3>
+          <ul>
+            <li>7 类按键独立音色行为：字母数字 / 空格 / 回车 / 退格 / Tab / 修饰键 / 功能键</li>
+            <li>大键（空格、回车）有更低沉厚实的声底，还原真实键盘的层次感</li>
+            <li>力度随机参数让每次敲击有轻微强弱变化，避免机械重复感</li>
+            <li>按键分组可单独静音（如只留字母区、静音修饰键）</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="ke-ch">
+      <h2><span class="no">04</span>音色系统</h2>
+      <p class="sub">4 种轴体 + 10 种调音风格 + 无限自定义</p>
+      <figure>
+        <img class="ke-shot" src={shot('02-tuning.png')} alt="音色预设与声音参数" loading="lazy" decoding="async" />
+        <figcaption><b>图 2 · 音色与参数。</b>音色卡片区按「轴体音色 / 调音风格 / 自定义音色」分组，支持分组跳转；右侧为三大基础参数与按键分组开关。</figcaption>
+      </figure>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>分组</th><th>音色</th><th>听感特征</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="4"><strong>轴体音色</strong><br /><span class="faint">按轴体型号还原</span></td><td>青轴 Clicky</td><td>清脆 · 双段段落感</td></tr>
+            <tr><td>茶轴 Tactile</td><td>均衡 · 轻微段落</td></tr>
+            <tr><td>红轴 Linear</td><td>沉稳 · 线性顺滑</td></tr>
+            <tr><td><strong>静电容 Topre</strong>（默认）</td><td>圆润 · 厚实 thock，接近高端静电容键盘</td></tr>
+            <tr><td rowspan="10"><strong>调音风格</strong><br /><span class="faint">源自中文键盘圈<br />调音文化</span></td><td>麻将音 Mahjong</td><td>中低频饱满 · 厚实带颗粒</td></tr>
+            <tr><td>索克音 Thocky</td><td>低沉 · 闷 · 短尾音</td></tr>
+            <tr><td>奶油音 Creamy</td><td>圆润顺滑 · 中频 · 无杂音</td></tr>
+            <tr><td>黄油音 Buttery</td><td>极致油润 · 软起音 · 低频长尾</td></tr>
+            <tr><td>石子音 Pebble</td><td>高频清脆 · 瓷盘短回响</td></tr>
+            <tr><td>咔哒脆 Clacky</td><td>高频攻击 · 亮而硬</td></tr>
+            <tr><td>踩雪音 Snow Crunch</td><td>细碎沙沙 · 颗粒感</td></tr>
+            <tr><td>雨滴音 Raindrop</td><td>轻柔密集 · 水滴下滑</td></tr>
+            <tr><td>木鱼音 Mokugyo</td><td>中空木质 · 笃声 · 尾音干净</td></tr>
+            <tr><td>静音 Muted</td><td>闷响 · 低音量 · 重度消音</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="ke-ch">
+      <h2><span class="no">05</span>自定义音色编辑器</h2>
+      <p class="sub">创作并永久保存你自己的声音</p>
+      <figure>
+        <img class="ke-shot" src={shot('03-editor.png')} alt="自定义音色编辑器" loading="lazy" decoding="async" />
+        <figcaption><b>图 3 · 自定义音色编辑器。</b>命名 + 基于任一预设改造 + 实时波形预览 + 14 项合成参数滑块，拖动即时试听，满意后一键保存。</figcaption>
+      </figure>
+      <div class="ke-grid">
+        <div class="ke-card">
+          <h3>创作流程</h3>
+          <ul>
+            <li>从任一内置音色起步，或从空白开始</li>
+            <li>14 项参数分「基础 / 进阶」两组：高频亮度、低频重心、低频厚度、撞击脆响、噪声量、饱满度、尾音长度、软起音（基础）；低频尾长、中频腔体、中频量、颗粒感、共振峰、整体音量（进阶）</li>
+            <li>拖动滑块即实时重绘波形并试听，调音所见即所得</li>
+            <li>保存后出现在「自定义音色」分组，与内置音色同等使用</li>
+          </ul>
+        </div>
+        <div class="ke-card">
+          <h3>管理与持久化</h3>
+          <ul>
+            <li>支持多套自定义音色，命名保存（最多 16 字）</li>
+            <li>卡片上直接编辑 / 删除（删除带两步确认防误触）</li>
+            <li>设置与自定义音色本地持久化，重启不丢失</li>
+            <li>存储内容仅为一条合成参数记录，<strong>不含任何按键数据</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="ke-ch">
+      <h2><span class="no">06</span>声音参数与按键控制</h2>
+      <p class="sub">三档微调 + 七组按键独立开关</p>
+      <div class="ke-grid">
+        <div class="ke-card">
+          <h3>基础参数</h3>
+          <ul>
+            <li><strong>主音量</strong>——整体响度</li>
+            <li><strong>回弹音</strong>——按键抬起时的释放音强度，真实键盘都有这一层</li>
+            <li><strong>力度随机</strong>——每次敲击的强弱随机幅度，越高手感越「活」</li>
+          </ul>
+        </div>
+        <div class="ke-card">
+          <h3>按键分组</h3>
+          <ul>
+            <li>字母数字 / 空格 / 回车 / 退格 / Tab / 修饰键 / 功能键 七组独立开关</li>
+            <li>点击即可开启或静音某一组（如写作时静音修饰键）</li>
+            <li>每组有独立的音高、响度、亮度特征，还原真实大键差异</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="ke-ch">
+      <h2><span class="no">07</span>会话统计与运行状态</h2>
+      <p class="sub">打字数据可视化 · 系统状态一目了然</p>
+      <figure>
+        <img class="ke-shot" src={shot('04-session.png')} alt="会话统计与运行状态" loading="lazy" decoding="async" />
+        <figcaption><b>图 4 · 会话统计与运行状态。</b>左侧为本次会话的击键统计与分组条形图（可一键归零），右侧为监听方式、音频引擎、版本等运行信息与开机自启开关。</figcaption>
+      </figure>
+      <div class="ke-grid">
+        <div class="ke-card">
+          <h3>本次会话</h3>
+          <ul>
+            <li>累计击键、键 / 分钟、并发音源数实时统计</li>
+            <li>七个按键分组的使用频率条形图</li>
+            <li>一键归零，随时开始新的统计</li>
+          </ul>
+        </div>
+        <div class="ke-card">
+          <h3>运行状态</h3>
+          <ul>
+            <li>监听方式（系统级全局钩子 / 窗口内降级）、音频引擎、输出设备、当前版本</li>
+            <li>「按键内容：不保存」常驻显示，隐私承诺可见</li>
+            <li>开机自启开关（默认关闭，由用户自主决定）</li>
+            <li>软件更新状态与检查入口</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="ke-ch">
+      <h2><span class="no">08</span>系统集成与日常使用</h2>
+      <p class="sub">装完即用 · 常驻不打扰</p>
+      <div class="ke-grid">
+        <div class="ke-card">
+          <h3>全局控制</h3>
+          <ul>
+            <li>系统级全局键盘监听——游戏、终端、任何窗口内打字都生效</li>
+            <li>全局快捷键 <strong>Ctrl + Alt + M</strong> 一键开关音效</li>
+            <li>系统托盘常驻（图标区分开启 / 暂停两态），菜单内含快捷开关与更新检查</li>
+            <li>单实例运行；关闭按钮为「隐藏到托盘」，不打断后台监听</li>
+          </ul>
+        </div>
+        <div class="ke-card">
+          <h3>安装与更新</h3>
+          <ul>
+            <li>提供 NSIS 安装版与便携版两种分发形态</li>
+            <li>开机自启由用户控制，默认关闭（便携版禁用该项并提示）</li>
+            <li>自动更新：启动 / 每小时自动检查，更新内容可见后一键下载安装，静默升级至原安装目录并重启</li>
+            <li>更新入口常驻吸顶状态栏，滚动页面时始终可见</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="ke-ch">
+      <h2><span class="no">09</span>隐私与安全</h2>
+      <p class="sub">打字内容零收集</p>
+      <div class="callout">
+        <b>隐私承诺：</b>KeyEcho 只读取「按了哪个键」的事件类型以触发声音，<strong>不记录、不保存、不上传任何按键内容</strong>（打字正文绝不会被读取进存储）。除软件更新检查外不发起任何网络请求；无遥测、无账号体系、无素材下载。声音全部本地实时合成。
+      </div>
+    </section>
+
+    <section class="ke-ch">
+      <h2><span class="no">10</span>系统需求</h2>
+      <dl class="spec">
+        <dt>操作系统</dt><dd>Windows 10 / 11（64 位）</dd>
+        <dt>处理器 / 内存</dt><dd>任意 64 位双核 CPU，2 GB 内存</dd>
+        <dt>存储空间</dt><dd>约 300 MB（安装版含 Electron 运行时）</dd>
+        <dt>音频</dt><dd>任意系统默认输出设备</dd>
+        <dt>权限说明</dt><dd>键盘监听为用户级全局钩子，无需管理员权限；首次运行如被安全软件提示放行即可（监听型软件常见提示）</dd>
+        <dt>安装方式</dt><dd>NSIS 安装向导（支持自选目录、开机自启开关）或免安装便携版</dd>
+      </dl>
+    </section>
+  </div>
+
+  <footer class="ke-foot">
+    <p>内容依据《KeyEcho 键鸣 · 产品介绍说明》v1.2.2（2026-11-13）01–10 章重排；<strong>11–12 章未收录</strong>。截图取自 v1.2.2 实际运行界面。</p>
+    <a href={`${base}tools/`}>← 返回我的工具</a>
+  </footer>
+</BaseLayout>
+
+<style>
+  .back{display:inline-block;margin-top:16px;font:11px/1 var(--mono);color:var(--violet)}
+  .ke-hero{margin-top:40px;border:1px solid var(--card-brd);border-radius:var(--radius);
+    padding:32px 36px;background:var(--glass);backdrop-filter:blur(16px);box-shadow:var(--shadow)}
+  .ke-hero .kicker{font:10px/1 var(--mono);letter-spacing:.16em;color:var(--violet);font-weight:700}
+  .ke-hero-lead p{margin:12px 0 0;font-size:18px;line-height:1.7;font-weight:650;color:var(--ink);max-width:56ch}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+  .chip{padding:6px 14px;border-radius:999px;font-size:11px;font-weight:600;
+    background:var(--glass-2);border:1px solid var(--line);color:var(--muted)}
+  .ke-body{margin-top:24px}
+  .ke-ch{margin-top:56px}
+  .ke-ch h2{font-size:22px;margin:0 0 6px;letter-spacing:-.03em;font-weight:740;
+    padding-top:24px;border-top:1px solid var(--line)}
+  .ke-ch h2 .no{color:var(--violet);font:700 15px/1 var(--mono);margin-right:12px;vertical-align:2px}
+  .ke-ch .sub{margin:0 0 22px;font-size:12px;color:var(--faint)}
+  .ke-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .ke-card{border:1px solid var(--card-brd);border-radius:var(--radius);padding:22px 24px;
+    background:var(--card);backdrop-filter:blur(14px);box-shadow:var(--shadow)}
+  .ke-card h3{margin:0 0 12px;font-size:14px;font-weight:700}
+  .ke-card .tag{display:inline-block;margin-left:8px;padding:3px 9px;border-radius:999px;
+    font:9px/1 var(--mono);font-weight:700;letter-spacing:.05em;
+    background:var(--glass-2);color:var(--violet);vertical-align:2px}
+  .ke-card ul{margin:0;padding-left:18px;font-size:12px;line-height:1.95;color:var(--muted)}
+  .ke-card li{margin-bottom:6px}
+  .ke-card strong{color:var(--ink)}
+  figure{margin:0 0 24px}
+  .ke-shot{display:block;width:100%;height:auto;border-radius:14px;
+    border:1px solid var(--line);box-shadow:var(--shadow)}
+  :global(html[data-theme="dark"]) .ke-shot{filter:brightness(.9) saturate(.94)}
+  figcaption{margin-top:10px;font-size:11px;line-height:1.8;color:var(--faint)}
+  figcaption b{color:var(--muted)}
+  .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius)}
+  table{width:100%;border-collapse:collapse;font-size:12px;background:var(--bg-solid)}
+  th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font:700 10px/1.6 var(--mono);letter-spacing:.08em;color:var(--faint);background:var(--glass-2)}
+  td{color:var(--muted)}
+  td strong{color:var(--ink)}
+  tbody tr:last-child td{border-bottom:0}
+  .faint{color:var(--faint);font-size:11px}
+  .callout{margin:0;padding:20px 24px;border-radius:14px;font-size:12px;line-height:1.95;
+    color:var(--muted);background:var(--glass);border:1px solid var(--card-brd);border-left:3px solid var(--violet)}
+  .callout b{color:var(--violet)}
+  .callout strong{color:var(--ink)}
+  .spec{display:grid;grid-template-columns:150px 1fr;gap:10px 24px;font-size:12px;
+    margin:0;padding:22px 24px;border:1px solid var(--card-brd);border-radius:var(--radius);background:var(--card)}
+  .spec dt{color:var(--faint)}
+  .spec dd{margin:0;color:var(--muted);line-height:1.8}
+  .ke-foot{margin-top:72px;padding-top:24px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  .ke-foot p{margin:0;font-size:11px;line-height:1.9;color:var(--faint);max-width:70ch}
+  .ke-foot p strong{color:var(--muted)}
+  .ke-foot a{font:11px/1 var(--mono);color:var(--violet);white-space:nowrap}
+  @media(max-width:768px){
+    .ke-grid{grid-template-columns:1fr}
+    .ke-hero{padding:24px 20px}
+    .ke-hero-lead p{font-size:16px}
+  }
+  @media(max-width:640px){
+    .spec{grid-template-columns:1fr;gap:4px}
+    .ke-ch{margin-top:44px}
+    .ke-ch h2{font-size:19px}
+    table{min-width:520px}
+  }
+</style>

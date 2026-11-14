@@ -13,9 +13,11 @@ const SRC = path.join(ROOT, 'src/data/tools.json');
 const OUT = path.join(ROOT, 'src/data/tools.index.json');
 const REPORT = path.join(HERE, 'tools-report.json');
 const PUBLIC_TOOLS = path.join(ROOT, 'public/tools');
+const PAGES_TOOLS = path.join(ROOT, 'src/pages/tools');
 
 const REQUIRED = ['id', 'title', 'desc', 'icon', 'tags', 'mode', 'entry', 'status', 'version', 'updated'];
-const MODES = ['link', 'embed', 'native'];
+// page = 站内详情页，产物由 src/pages/tools/<id>.astro 生成并继承主站主题
+const MODES = ['link', 'embed', 'native', 'page'];
 const STATUSES = ['online', 'beta', 'wip', 'demo'];
 
 const raw = JSON.parse(fs.readFileSync(SRC, 'utf8'));
@@ -34,6 +36,10 @@ for (const t of tools) {
   if (t.mode === 'embed') {
     const p = path.join(PUBLIC_TOOLS, t.id, 'index.html');
     if (!fs.existsSync(p)) errors.push(`${t.id}: embed 产物不存在 public/tools/${t.id}/index.html`);
+  }
+  if (t.mode === 'page') {
+    const p = path.join(PAGES_TOOLS, `${t.id}.astro`);
+    if (!fs.existsSync(p)) errors.push(`${t.id}: 站内详情页不存在 src/pages/tools/${t.id}.astro`);
   }
 }
 
@@ -58,7 +64,7 @@ const index = {
 fs.writeFileSync(OUT, JSON.stringify(index, null, 2) + '\n', 'utf8');
 fs.writeFileSync(REPORT, JSON.stringify({ count: sorted.length, available, errors, checkedAt: 'build-time' }, null, 2), 'utf8');
 
-console.log(`[sync:tools] ${sorted.length} 个工具 / 可用 ${available} / embed ${index.byMode.embed}`);
+console.log(`[sync:tools] ${sorted.length} 个工具 / 可用 ${available} / embed ${index.byMode.embed} / page ${index.byMode.page}`);
 if (errors.length) {
   errors.forEach((e) => console.error('[sync:tools] ' + e));
   process.exitCode = 1;

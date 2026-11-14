@@ -126,12 +126,12 @@ a.chip:hover{transform:translateY(-4px) scale(1.04);border-color:var(--mint);col
 
 /* ---------------- 首页 Hero ---------------- */
 .hero{padding:80px 0 8px;text-align:center}
-.hero h1{font-size:clamp(38px,5.2vw,62px);line-height:1.22;letter-spacing:-.04em;margin:24px auto 0;
-  font-weight:780;max-width:18ch;
+/* 桌面一行、移动两行；两行字号完全一致（不再给末行 .82em） */
+.hero h1{font-size:clamp(30px,4.6vw,58px);line-height:1.22;letter-spacing:-.04em;margin:24px auto 0;
+  font-weight:780;width:fit-content;max-width:100%;white-space:nowrap;
   background:linear-gradient(100deg,var(--title-a) 6%,var(--title-b) 50%,var(--title-c) 96%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
-.hero h1 .line{display:block}
-.hero h1 .line:last-child{font-size:.82em;letter-spacing:-.02em}
+.hero h1 .line{display:inline}
 .hero .sub{font-size:13px;line-height:1.9;color:var(--muted);margin:20px auto 0;max-width:52ch}
 .hero .cta{display:flex;justify-content:center;gap:8px;margin-top:28px;flex-wrap:wrap}
 .caps{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:32px}
@@ -168,6 +168,8 @@ html.motion-ok .reveal.in{opacity:1;translate:0 0}
 
 /* ---------------- 工具区 ---------------- */
 .tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+/* 只挂一个工具时，一张卡撑成合理的通栏宽度，不缩在 1/3 列里 */
+.tool-grid:has(> .tool-card:only-child){grid-template-columns:minmax(0,1fr);max-width:560px}
 .tool-card{position:relative;border-radius:18px;padding:20px;min-height:148px;display:block;
   background:var(--card);border:1px solid var(--card-brd);backdrop-filter:blur(18px);
   box-shadow:var(--shadow);transition:transform .3s cubic-bezier(.2,1.3,.4,1),border-color .3s,background .4s,box-shadow .3s}
@@ -197,7 +199,7 @@ html.motion-ok .reveal.in{opacity:1;translate:0 0}
 .rt-title .live i{width:5px;height:5px;border-radius:50%;background:currentColor;animation:blink 1.6s infinite}
 @keyframes blink{50%{opacity:.25}}
 .runtime iframe{width:100%;min-height:150px;border:0;display:block;margin-top:12px;border-radius:10px;background:transparent}
-.log{display:flex;flex-direction:column;gap:6px;max-height:150px;overflow:auto;font:10px/1.6 var(--mono);color:var(--muted)}
+.log{display:flex;flex-direction:column;gap:6px;max-height:190px;overflow:auto;font:10px/1.6 var(--mono);color:var(--muted)}
 .log h4{margin:0 0 10px;font:10px/1 var(--mono);letter-spacing:.1em;color:var(--ink);text-transform:uppercase}
 .log div{animation:fadein .3s both}
 .log em{font-style:normal;color:var(--faint)}
@@ -376,7 +378,8 @@ html[data-theme="dark"] .katex{color:#F5F3FF}
   .glass-grid,.tool-grid,.grid-2,.pager{grid-template-columns:1fr}
   .search-trigger kbd{display:none}
   .sec-head .more{margin-left:0}
-  .hero h1{font-size:34px}
+  .hero h1{font-size:clamp(26px,7.2vw,34px);width:auto;white-space:normal}
+  .hero h1 .line{display:block}
   .post-row{flex-wrap:wrap}
   .post-row .meta{display:none}
 }

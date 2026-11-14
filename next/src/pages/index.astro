@@ -28,10 +28,7 @@ const tools = toolsIndex.tools;
 
     <section class="hero">
       <span class="badge"><i></i> {total} 篇笔记 · 归档于 2023</span>
-      <h1>
-        <span class="line">张弓折扇风雨历，</span>
-        <span class="line">畅叙平生快意！</span>
-      </h1>
+      <h1><span class="line">张弓折扇风雨历，</span><span class="line">畅叙平生快意！</span></h1>
       <p class="sub">从 Java 到算法，从项目到随笔；也放一些自己写的小工具。跟着光走，翻到哪一篇都由你决定。</p>
       <div class="cta">
         <a class="btn btn--pri" href={`${base}categories/`}>进入博客</a>
@@ -104,7 +101,7 @@ const tools = toolsIndex.tools;
       </div>
       <div class="tool-grid">
         {tools.map((t) => (
-          <a class="tool-card" href={t.mode === 'link' ? t.entry : `${base}tools/#runtime`}>
+          <a class="tool-card" href={t.entry}>
             <div class="t-top"><span class="t-ico">{t.icon}</span><span class="t-name">{t.title}</span>
               <span class="t-mode">{t.mode}</span></div>
             <p class="t-desc">{t.desc}</p>
@@ -112,16 +109,13 @@ const tools = toolsIndex.tools;
               <span class="t-status"><i></i>{t.status}</span></div>
           </a>
         ))}
-        <div class="tool-slot">
-          <div><b>+ 待挂载</b><span>往 tools.json 加一条<br />这里自动长出卡片</span></div>
-        </div>
       </div>
 
       <div class="runtime">
         <div class="rt-left">
           <div class="rt-title"><b>工具运行时预览</b> · iframe / postMessage
             <span class="live"><i></i> LIVE</span></div>
-          <iframe data-tool-frame title="工具运行时示例" src={`${base}tools/wind-yield/`}
+          <iframe data-tool-frame title="工具接口自检台" src={`${base}tools/bridge-demo/`}
             sandbox="allow-scripts allow-forms" loading="lazy"></iframe>
         </div>
         <div class="rt-right log" id="log"><h4>Event Bus</h4></div>

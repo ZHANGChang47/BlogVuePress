@@ -11,13 +11,59 @@
 ```bash
 cd next
 npm install
-npm run migrate        # 从 ../docs 重新生成 76 篇（会校验 urls.txt 短码）
-npm run dev            # http://localhost:4321/BlogVuePress/
+npm run migrate        # 仅首次迁移用！从 ../docs 生成 76 篇并校验 urls.txt 短码
+npm run dev            # http://localhost:4321/BlogVuePress/ （写文章时边写边看）
 npm run build          # 产物 dist/
 npm run preview        # 预览构建产物
 ```
 
-`npm run dev` / `npm run build` 都会先执行 `scripts/sync-tools.mjs`。
+`npm run dev` / `npm run build` 都会先执行 `scripts/sync-tools.mjs`，**不会**执行 `migrate.mjs`——后者是一次性迁移旧站用的，日常更新别跑。
+
+---
+
+## 日常更新内容
+
+### 发一篇新文章
+
+1. 在 `src/content/posts/` 新建 `<短码>.md`。短码是 **6 位小写十六进制**（如 `3f7ac2`），不能与现有 76 个文件重名；文件名、`code`、`permalink` 三者必须一致。
+2. 写 frontmatter。必填 `title / date / code / permalink / section`；其余字段 schema 有默认值，但建议补齐 `tags`（决定标签页）、`sortKey`（决定文章页前后篇顺序）、`excerpt`（决定列表与 RSS 摘要）：
+
+   ```yaml
+   ---
+   title: "文章标题"
+   date: "2026-11-14 09:30:00"
+   code: "3f7ac2"
+   permalink: "/pages/3f7ac2/"
+   section: "技术文档"
+   sortKey: "99.新栏目/文章标题.md"
+   categories: ["技术文档"]
+   tags: ["Astro", "静态站"]
+   words: 1200
+   excerpt: "一句话摘要"
+   ---
+   ```
+
+3. **短码一旦发布就不要改**：URL 会被搜索引擎收录，sitemap / RSS / 全文索引都按它生成。只改标题或正文，直接改 md 即可。
+4. 本地看效果：`npm run dev`（热更新）或 `npm run build && npm run preview`（看构建产物）。
+5. 提交：`git add src/content/posts/3f7ac2.md && git commit`。
+
+### 改其它地方
+
+| 想改什么 | 改哪个文件 | 之后 |
+|---|---|---|
+| 首页文案 / hero / 统计 | `src/pages/index.astro`、`src/styles/global.css` | `npm run build` |
+| 主题配色、深浅两套色值 | `src/styles/global.css` 的 `:root` 与 `[data-theme="dark"]` | `npm run build` |
+| 工具列表、挂新工具 | `src/data/tools.json`（`page` 模式另建 `src/pages/tools/<id>.astro`） | `npm run build` |
+| KeyEcho 详情页正文 | `src/pages/tools/keyecho.astro` | `npm run build` |
+| 导航项 / 站点名 / SEO | `src/layouts/BaseLayout.astro` | `npm run build` |
+| 关于页 | `src/pages/about.astro` | `npm run build` |
+
+### 发布上线（当前还没打通）
+
+1. 本地 `npm run build` + `npm run preview` 确认无误。
+2. `git commit`（当前分支 `redesign/astro-v2`）。
+3. 确认推送范围后推 GitHub。本机代理会掐断普通 `git push`，走仓库根 `utils/deploy_api.py` 的 Git Data API 通道。
+4. 部署 Pages 前，把部署脚本的产物目录从 `docs/.vuepress/dist` 切到 `next/dist`（`utils/deploy_api.py` 第 16–17 行的 `DIST`）。**这一步尚未执行**：改了就等于把线上站换成新版，必须等你明确确认后再动。
 
 ---
 
@@ -37,6 +83,7 @@ next/
 │  │  ├─ pages/[code].astro  文章页，URL = /pages/<code>/
 │  │  ├─ categories / tags / tags/[tag] / archives
 │  │  ├─ tools.astro         工具入口 + 接口契约
+│  │  ├─ tools/keyecho.astro  KeyEcho 站内详情页（mode: page）
 │  │  ├─ about / 404
 │  │  ├─ rss.xml.js          RSS
 │  │  └─ search-index.json.js 正文全文索引
@@ -44,9 +91,9 @@ next/
 ├─ public/
 │  ├─ js/site.js             主题 / 搜索 / 代码增强 / 动效 / TOC / 灯箱
 │  ├─ js/tool-bridge.js      工具侧引入的 ~40 行通信桥
-│  ├─ tools/<id>/index.html  embed 工具产物
+│  ├─ tools/<id>/index.html  embed 工具产物（当前仅 bridge-demo 自检台）
 │  ├─ sw.js / manifest.webmanifest / icon.svg / robots.txt
-│  └─ media/                 迁移时复制的本地图片
+│  └─ media/                 迁移图片 + keyecho/ 界面截图
 └─ scripts/
    ├─ migrate.mjs            76 篇迁移 + 短码校验 + 迁移报告
    ├─ sync-tools.mjs         工具注册表校验 + 索引生成
@@ -73,7 +120,7 @@ next/
 | 百度统计 / 站点验证 | 沿用原站真实 ID，**仅生产构建加载**，本地预览不污染统计 |
 | 响应式导航 | 断点 1024 / 768 / 640；顶部导航在 ≤768px 隐藏，改由汉堡按钮展开抽屉（原站阈值是 1360px，新版按内容实际溢出点重定） |
 | GitHub 编辑链接 | 未接，可由文章页 `code` 拼出 |
-| `deploy_api.py`（Git Data API） | 保持可用，部署产物换成 `next/dist/` |
+| `deploy_api.py`（Git Data API） | 通道仍可用，但脚本 `DIST` 仍指向旧站 `docs/.vuepress/dist`；切换到 `next/dist` 需改 2 行，尚未执行 |
 
 ---
 
@@ -89,14 +136,25 @@ next/
 
 ## 挂一个新工具
 
-1. 把静态产物放到 `public/tools/<id>/index.html`（`embed` 模式），或准备一个外链（`link` 模式）。
+四种 `mode`：
+
+| mode | 产物位置 | 卡片点击后 | 适用 |
+|---|---|---|---|
+| `link` | 外部站点 | 直接跳转 | 已独立部署的工具 |
+| `embed` | `public/tools/<id>/index.html` | iframe 运行时 | 独立静态产物，走 bridge |
+| `native` | 组件 | 站内 | 轻量工具，复用主站主题 |
+| `page` | `src/pages/tools/<id>.astro` | 站内详情页 | 要继承导航、主题与 SEO 的介绍页 |
+
+步骤：
+
+1. 按上表准备产物（`page` 模式就是新建一个 `.astro` 页面）。
 2. 往 `src/data/tools.json` 的 `tools` 数组追加一条：
    `id / title / desc / icon / tags / mode / entry / status / version / updated / order`。
-3. 跑 `npm run build`。`sync-tools.mjs` 会校验字段、检查 embed 产物是否存在、生成 `tools.index.json`；首页卡片、导航计数、工具索引页自动更新。
+3. 跑 `npm run build`。`sync-tools.mjs` 会校验字段、检查 `embed` 产物或 `page` 页面是否存在、生成 `tools.index.json`；首页卡片、导航计数、工具索引页自动更新。所有模式的卡片都直接跳 `entry`。
 
 事件：`tool:ready`（工具→主站，上报高度）、`blog:theme`（主站→工具，下发主题与色值）、`tool:resize`（工具→主站）。iframe 一律 `sandbox="allow-scripts allow-forms"`，不给 `allow-same-origin`，不共享 localStorage 与登录态。
 
-**目前只有 1 个演示工具**（风电收益率速算），用于验证挂载与换肤。它不输出任何测算数值，不是已上线产品。
+**当前挂载 1 个工具**：KeyEcho 键鸣（`page` 模式，站内详情页），内容取自《KeyEcho 产品介绍说明》01–10 章，11–12 章未收录。`public/tools/bridge-demo/` 只是接口自检台，用来验证 iframe 挂载与换肤，不是产品。
 
 ---
 
@@ -126,5 +184,7 @@ next/
 ## 部署
 
 产物是 `next/dist/`，需部署到 GitHub Pages 项目页根（`https://zhangchang47.github.io/BlogVuePress/`）。沿用仓库根目录 `utils/deploy_api.py` 的 **GitHub Git Data API** 通道（本机代理会掐断 `github.com` 的 git smart-HTTP 推送）。
+
+**注意：`utils/deploy_api.py` 的 `DIST` 目前仍指向旧站 `docs/.vuepress/dist`**，直接执行会把旧站产物再推一遍。切换新版前需把该常量改成 `next/dist`，详见「日常更新内容 → 发布上线」。
 
 **当前流程要求：本地预览确认无误后，再推送 GitHub。**
