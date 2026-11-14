@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zhangchang47.github.io/BlogVuePress/sitemap.xml
+Sitemap: https://zhangchang47.github.io/BlogVuePress/sitemap-index.xml

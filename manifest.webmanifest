@@ -1,0 +1,14 @@
+{
+  "name": "百里登风的博客",
+  "short_name": "百里登风",
+  "description": "张弓折扇风雨历，畅叙平生快意！",
+  "lang": "zh-CN",
+  "start_url": "/BlogVuePress/",
+  "scope": "/BlogVuePress/",
+  "display": "standalone",
+  "background_color": "#F5F6FC",
+  "theme_color": "#6D4AE0",
+  "icons": [
+    { "src": "/BlogVuePress/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

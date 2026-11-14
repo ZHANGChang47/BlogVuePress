@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>百里登风的博客</title>
+    <link>https://zhangchang47.github.io/BlogVuePress/</link>
+    <description>张弓折扇风雨历，畅叙平生快意！</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 14 Nov 2026 13:37:31 GMT</lastBuildDate>
+    <item>
+      <title>中秋游漫山花溪谷</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/c8f3a1/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/c8f3a1/</guid>
+      <pubDate>Sat, 14 Nov 2026 20:42:39 GMT</pubDate>
+      <category>散文随笔</category>
+      <description>丙午中秋，避市井之喧，游花溪之谷。</description>
+    </item>
+    <item>
+      <title>沧桑百年史，爱国西交情</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/9b7514/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/9b7514/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:56:34 GMT</pubDate>
+      <category>散文随笔</category>
+      <description>秦地古城，长安名校，巍巍学府，当属西交。风云两甲子，弦歌三世纪，兴于国家艰难之际，起于西北苦寒之地。英才励志求真知，李艳桃红，古城遍春风；名校载德塑栋梁，人杰地灵，校门多志士。参天之树，必有其根，环山之水，必有其源，若论悠悠百年沧桑史，当讲拳拳爱国奋斗情。 追根溯源，始于清末，初</description>
+    </item>
+    <item>
+      <title>静谧之眼</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/a0057c/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/a0057c/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:56:34 GMT</pubDate>
+      <category>散文随笔</category>
+      <description>远方不动声色的云，和着苍茫的黄土缠绵。南飞的大雁能否将思念带回故园，战火，在这里蔓延。颓圮的残墙边，一双静谧的眼睛，暗中观察，持枪的战士，彻夜未眠。没有了星辰，无奈得张望着黑暗的无际无边，望去满是萧然。长城，最后的防线。 回不去的昨天，用沉默消散，不及兑换的誓言，按捺悲伤罢免。“</description>
+    </item>
+    <item>
+      <title>历边海防学院记</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/b43704/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/b43704/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:56:34 GMT</pubDate>
+      <category>散文随笔</category>
+      <description>丁酉之夏，大暑已至，头顶刚烈骄阳，足登沃土热气，吾侪交大齐聚，谨以国防生名，统点五十一人，领将军之命，乘远行之车，并无览游之意，心感行路之艰。吾辈将至所在，其正名唤为，边海防学院，又可简称，边院而是。为期二十日，集训亦此始。 吾侪既为学员，自当受教官所授，因所学科目之多，非教官一</description>
+    </item>
+    <item>
+      <title>承党恩泽，物阜民丰</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/d7b60a/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/d7b60a/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:56:34 GMT</pubDate>
+      <category>散文随笔</category>
+      <description>河北辖内，衡水以东，有沃土，其名唤阜城，以求物阜民丰意，此为吾之家乡所在。地处平原，实处偏僻，故经济不甚发达。然自盛会以来，承党恩泽，又以成城之志，团结民心，以实际之行动践行大会之精神，以辛勤之实干重塑县城之形象，上至党政要人，下临布衣百姓，皆以奋进之气神，聚万民之志，力成物阜民</description>
+    </item>
+    <item>
+      <title>JVM</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/0e14a8/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/0e14a8/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、JVM引言 1.1、什么是JVM Java Virtual Machine（Java虚拟技术） java程序的运行环境（Java二进制字节码的运行环境） 好处： 一次编写，到处运行 自动内存管理，垃圾回收功能 数组下标越界检查 多态 比较： jvm jre jdk 1.2、学</description>
+    </item>
+    <item>
+      <title>网络编程</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/1f9618/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/1f9618/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、概述 计算机网络是指将地理位置不同的具有独立功能的多台计算机及外部设备，通过通信线路连接起来，在网络操作系统，网络管理软件通信协议的管理和协调下，实现资源共享和信息传递的计算机系统。 网络编程的目的： 无线电台...传播交流信息，数据交换，通信 想要达到这个效果需要什么： 1</description>
+    </item>
+    <item>
+      <title>Java开发介绍</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/23ea98/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/23ea98/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、 计算机基本概念 什么是计算机? 计算机（Computer） 全称： 电子计算机， 俗称电脑。 是一种能够按照程序运行， 自动、 高速处理海量数据的现代化智能电子设备。 由硬件和软件所组成， 没有安装任何软件的计算机称为裸机。 常见的形式有台式计算机、 笔记本计算机、 大型计</description>
+    </item>
+    <item>
+      <title>文件IO操作</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/30428a/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/30428a/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、File类 File类的基本概念 File类：表示文件和目录路径名的抽象表示方法 File类可以实现文件的创建、删除、重命名、得到路径、创建时间等，是唯一与文件本身有关的操作类 1.1、File类的操作方法 2、字节流 2.1、IO流概述 IO流：输入输出流（Input/Ou</description>
+    </item>
+    <item>
+      <title>常用类库API</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/36e053/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/36e053/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、 字符串操作——String类 1、 String可以表示一个字符串。 2、 String类实际是使用字符数组存储的。 String类的两种赋值方式： 1. 一种称为直接赋值：String name = “小白” 2. 通过关键字new调用String的构造方法赋值：Stri</description>
+    </item>
+    <item>
+      <title>JUC</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/370782/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/370782/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>JUC并发编程 1、什么是JUC JUC就是 java.util 下的工具包、包、分类等。 java.util 工具包 业务：普通的线程代码 Thread Runnablem 没有返回值、效率相比Callable低 Callable有返回值 2、进程和线程 2.1、进程与线程 程</description>
+    </item>
+    <item>
+      <title>枚举</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/3d32a9/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/3d32a9/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、枚举概念 枚举就是要让某个类型的变量的取值只能为若干个固定值中的一个， 否则编译器就会报错，枚举可以让编译器在编译时就可以控制源程序赋给的非法值， 使用普通变量的方式在开发阶段无法实现这一目标。 在JDK 1.5之后， 使用关键字enum定义一种新的类型， 称为枚举类型。 2</description>
+    </item>
+    <item>
+      <title>多线程与并发</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/3fcc1f/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/3fcc1f/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、进程与线程 1.1、进程 程序是指令与数据的有序集合 ，其本身没有任何运行的含义，是一个静态的概念。 进程 是 程序在处理机上的一次执行过程 ，是一个动态概念。 进程 是一个 具有一定独立功能的程序 ，一个实体，每一个进程都有自己的 地址空间 。 1.2、进程的状态 进程执行</description>
+    </item>
+    <item>
+      <title>Java基础总结</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/3ffb20/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/3ffb20/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、Java常识 JavaSE：18 20 数据库：4 前端：7 JavaWeb：7 SSM框架：9 Linux：7 SpringBoot：8 SpringCloud：7 Hadoop：8 JavaSE：标准版（桌面程序、控制台开发...） JavaME：嵌入式开发（手机、小家电</description>
+    </item>
+    <item>
+      <title>正则表达式</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/4264b6/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/4264b6/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>14、正则表达式 1、正则表达式概念 正则表达式（Regular Expression） 正则表达式使用单个字符串来描述、匹配一系列符合某个句法规则的字符串。 正则表达式通常被用来检索、替换那些符合某个模式的文本。 java.util.regex包中提供以下两个类对正则表达式的支</description>
+    </item>
+    <item>
+      <title>方法与数组</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/7ec675/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/7ec675/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、 方法的定义 为什么要有方法？ 方法（又叫函数） 就是一段特定功能的代码块。 方法提高程序的复用性和可读性。 比如， 有了方法， 我们可以把要重复使用的一段代码提炼出来， 然后在每个需要执行这段代码的地方去调用即可。 在一个打飞机的游戏中， 飞机需要发射子弹， 那么我们可以把</description>
+    </item>
+    <item>
+      <title>反射与内省</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/835bb1/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/835bb1/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、什么是反射 反射：reflection 类信息 —— 对象 对象 —— 类信息 Java反射机制是在运行状态中，对于任意一个类，都能知道这个类的所有属性和方法；对于任意一个对象，都能调用它的任意一个方法和属性，这种动态获取的信息以及动态调用对象方法地功能称为反射。 2、Cla</description>
+    </item>
+    <item>
+      <title>异常处理</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/836a39/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/836a39/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、异常的概念 异常是阻止当前方法或作用域继续执行的问题， 在程序中导致程序中断运行的一些指令。 2、异常处理 2.1、try与catch关键字 在程序中出现异常， 就必须进行处理， 处理格式如下： 2.2、异常处理过程分析 1. 一旦产生异常， 则系统会自动产生一个异常类的实例</description>
+    </item>
+    <item>
+      <title>Java基础编程</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/9a24a9/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/9a24a9/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、 变量与标识符 数学名词： 变数或变量， 是指没有固定的值， 可以改变的数。 变量以非数字的符号来表达， 一般用拉丁字母。 变量是常数的相反。 变量的用处在于能一般化描述指令的方式。 计算机解释： 变量就是系统为程序分配的一块内存单元， 用来存储各种类型的数据。 根据所存储的</description>
+    </item>
+    <item>
+      <title>GUI事件处理</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/9c7fd4/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/9c7fd4/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、GUI组件介绍 GUI编程（Graphic User Interface， 图形用户接口） GUI的各种元素， 如： 容器、 按钮、 文本框等 2、事件处理 事件(Event)： 用户对组件的一个操作， 称之为一个事件 事件源(Event source) ： 产生事件的对象 </description>
+    </item>
+    <item>
+      <title>集合</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/9da414/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/9da414/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、集合框架概述 1.1、集合框架作用 在实际开发中，我们经常会对一组相同类型的数据进行统一管理操作。到目前为止，我们可以使用数组结构、链表结构、二叉树结构来实现。 数组的最大问题在于数组中的元素个数是固定的，要实现动态数组，必竟还是比较麻烦， 自己实现链表或二叉树结构来管理对象</description>
+    </item>
+    <item>
+      <title>泛型</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/9fc071/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/9fc071/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、 为什么需要泛型 List中可以添加任意类型， 因为参数是Object， 这样一个我们在遍历这个集合时： 以上操作主要存在两个问题： 1.当我们将一个对象放入集合中， 集合不会记住此对象的类型， 当再次从集合中取出此对象时， 改对象的编译类型变成了Object类型， 但其运行</description>
+    </item>
+    <item>
+      <title>面向对象</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/b29dd1/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/b29dd1/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、 面向对象基本概念 一、 什么是面向对象： 1. 面向对象是一种编程思想。 2. 面向对象是一种思考问题的思维方式。 二、 建立面向对象思维方式： 1. 先整体， 再局部 2. 先抽象， 再具体 3. 能做什么， 再怎么做 三、 如何学习面向对象： 1. 掌握一门面向对象语言</description>
+    </item>
+    <item>
+      <title>注解</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/d1bf35/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/d1bf35/</guid>
+      <pubDate>Sat, 04 Feb 2023 15:47:07 GMT</pubDate>
+      <category>Java基础</category>
+      <description>1、 认识Annotation JDK1.5开始， Java增加了对元数据（即类的组成单元数据） 的支持， 也就是（Annotation）注解， 他是代码里做的特殊标记， 这些标记可以在编译， 类加载， 运行时在不改变原有逻辑的情况下， 被读取， 并执行相应的处理， 通过使用An</description>
+    </item>
+    <item>
+      <title>Servlet</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/0256e7/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/0256e7/</guid>
+      <pubDate>Fri, 03 Feb 2023 23:55:23 GMT</pubDate>
+      <category>JavaWeb</category>
+      <description>1、Servlet 介绍 1. Servlet 是 JavaEE 规范 (接口) 之一 2. Servlet 是 JavaWeb 三大组件之一，三大组件分别是 Servlet 程序、Filter 过滤器、Listener 监听器 3. Servlet 是运行在服务器上的一个 Ja</description>
+    </item>
+    <item>
+      <title>Web项目延伸完善</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/34f4ad/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/34f4ad/</guid>
+      <pubDate>Fri, 03 Feb 2023 23:55:23 GMT</pubDate>
+      <category>JavaWeb</category>
+      <description>1、Html转Jsp实现动态化 1. 在 html 页面顶行添加 page 指令。 2. 修改文件后缀名为：.jsp 3. 使用 IDEA 搜索替换.html 为.jsp(快捷键：Ctrl+Shift+R) 2、抽取页面相同内容（用静态注入） 将页面中相同且需要多次用到的代码块，</description>
+    </item>
+    <item>
+      <title>Web项目架构与数据库使用</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/3a64a7/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/3a64a7/</guid>
+      <pubDate>Fri, 03 Feb 2023 23:55:23 GMT</pubDate>
+      <category>JavaWeb</category>
+      <description>1、JavaEE三层架构 客户端提交发送到后端的数据，会先在Web层获取并封装成Bean对象，然后调用Service层的方法处理业务，再调用Dao层的方法与数据库交互实现数据的持久化存储 分层的目的是为了解耦，所谓的解耦就是降低代码的耦合度，方便项目后期的维护与升级。 在Book</description>
+    </item>
+    <item>
+      <title>EL表达式与JSTL标签库</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/3c627b/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/3c627b/</guid>
+      <pubDate>Fri, 03 Feb 2023 23:55:23 GMT</pubDate>
+      <category>JavaWeb</category>
+      <description>1、EL表达式简介 1. EL表达式全称：Expression Language，即表达式语言 2. EL表达式作用：代替JSP页面中表达式脚本进行数据的输出 3. EL表达式比JSP的表达式脚本简洁很多 4. EL表达式的格式是： ${表达式} ，注：EL表达式写在jsp页面中</description>
+    </item>
+    <item>
+      <title>i18n国际化</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/3ea999/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/3ea999/</guid>
+      <pubDate>Fri, 03 Feb 2023 23:55:23 GMT</pubDate>
+      <category>JavaWeb</category>
+      <description>i18n 国际化 1、什么是 i18n 国际化 国际化（Internationalization）指的是同一个网站可以支持多种不同的语言，以方便不同国家，不同语种的用户访问。 关于国际化我们想到的最简单的方案就是为不同的国家创建不同的网站，比如苹果公司，他的英文官网是： http</description>
+    </item>
+    <item>
+      <title>Jsp与Listener</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/500803/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/500803/</guid>
+      <pubDate>Fri, 03 Feb 2023 23:55:23 GMT</pubDate>
+      <category>JavaWeb</category>
+      <description>1、JSP 的介绍与创建 1. JSP 的全称是 Java Server Pages，即 Java 的服务器页面 2. JSP 的主要作用是代替 Servlet 程序回传 HTML 页面的数据 3. web 目录 (或其他) 右击 new JSP/JSPX 输入文件名 选择 JS</description>
+    </item>
+    <item>
+      <title>cookie与session</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/7844fa/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/7844fa/</guid>
+      <pubDate>Fri, 03 Feb 2023 23:55:23 GMT</pubDate>
+      <category>JavaWeb</category>
+      <description>1、会话技术 会话：一次会话中包含多次请求和响应 ​ 一次会话表示浏览器第一次给服务器发送请求，会话建立，直到有一方断开为止 功能：在一次会话的多次请求间共享数据 方式 客户端会话技术：Cookie 服务器端会话技术：Session 2、什么是 Cookie Cookie 是服务</description>
+    </item>
+    <item>
+      <title>JavaWeb总结</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/a105cd/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/a105cd/</guid>
+      <pubDate>Fri, 03 Feb 2023 23:55:23 GMT</pubDate>
+      <category>JavaWeb</category>
+      <description>1、基本概念 1.1、前言 web开发： web，网页的意思 静态web html、css 提供给所有人看的时候数据始终不会发生任何变化 动态web 提供给所有人看的时候数据会发生变化，每个人在不同时间、不同的地点看到的信息各不相同 几乎所有网站都是动态 在java中，动态web</description>
+    </item>
+    <item>
+      <title>Filter与ThreadLocal</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/c820f1/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/c820f1/</guid>
+      <pubDate>Fri, 03 Feb 2023 23:55:23 GMT</pubDate>
+      <category>JavaWeb</category>
+      <description>1、Filter过滤器的介绍 1、Filter 过滤器它是 JavaWeb 的三大组件之一。三大组件分别是：Servlet 程序、Listener 监听器、Filter 过滤器 2、Filter 过滤器它是 JavaEE 的规范。也就是接口 3、Filter 过滤器它的作用是：拦</description>
+    </item>
+    <item>
+      <title>文件的上传与下载</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/cb4b56/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/cb4b56/</guid>
+      <pubDate>Fri, 03 Feb 2023 23:55:23 GMT</pubDate>
+      <category>JavaWeb</category>
+      <description>文件的上传和下载，是非常常见的功能。很多的系统中，或者软件中都经常使用文件的上传和下载。 比如：QQ头像，就使用了上传。 邮箱中也有附件的上传和下载功能。 OA系统中审批有附件材料的上传。 1、文件的上传介绍（重点） 1. 要有一个 form 标签，method=post 请求 </description>
+    </item>
+    <item>
+      <title>Web项目延伸完善(2)</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/f3f5b3/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/f3f5b3/</guid>
+      <pubDate>Fri, 03 Feb 2023 23:55:23 GMT</pubDate>
+      <category>JavaWeb</category>
+      <description>Web项目延伸与完善 1、登陆 显示用户名 UserServlet 程序中保存用户登录的信息： 修改 login succuess menu.jsp 还要修改首页 index.jsp 页面的菜单 ： 2、登出 注销用户 1. 销毁 Session 中用户登录的信息（或者销毁 Se</description>
+    </item>
+    <item>
+      <title>SpringBoot</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/361b6c/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/361b6c/</guid>
+      <pubDate>Fri, 03 Feb 2023 23:43:36 GMT</pubDate>
+      <category>Spring生态</category>
+      <description>1、项目整合与部署存在的问题 1.1、SSM手动整合存在的问题 SSM整合步骤多、配置繁琐 项目进行服务器部署步骤繁琐 1.2、如何简化这些繁琐的配置和部署步骤？ SpringBoot就是一个可以简化整合过程中复杂配置的框架 2、SpringBoot简介 2.1、概念 随着动态语</description>
+    </item>
+    <item>
+      <title>Spring</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/3d2055/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/3d2055/</guid>
+      <pubDate>Fri, 03 Feb 2023 23:43:36 GMT</pubDate>
+      <category>Spring生态</category>
+      <description>1、Spring概述 1.1、web项目开发中的耦合度问题 在Servlet中需要调用service中的方法，则需要在Servlet类中通过new关键字创建Service的实例 在service实现类中需要调用DAO中的方法，也需要在servcie实现类通过new关键字创建DAO</description>
+    </item>
+    <item>
+      <title>SpringCloud</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/64cd56/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/64cd56/</guid>
+      <pubDate>Fri, 03 Feb 2023 23:43:36 GMT</pubDate>
+      <category>Spring生态</category>
+      <description>1、单体应用存在的问题 1.1、锋迷商城项目架构 为了解决高并发问题，我们的Tomcat采用了集群部署，但是每个Tomcat节点上不是的依然是单体项目（虽然 是前后端分离，但是后端采用的是单体开发——所有的接口都在同⼀个项目中） 1.2、单体项目存在的问题 ⼀个成功的应用必然有⼀</description>
+    </item>
+    <item>
+      <title>SpringSecurity</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/7890a5/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/7890a5/</guid>
+      <pubDate>Fri, 03 Feb 2023 23:43:36 GMT</pubDate>
+      <category>Spring生态</category>
+      <description>0、学习目标 1、SpringSecurity简介 1.1、安全框架概述 什么是安全框架？ 解决系统安全问题的框架。如果没有安全框架，我们需要手动处理每个资源的访问控制，非常麻烦。使用安全框架，我们可以通过配置的方式实现对资源的访问限制。 1.2、常用安全框架 Spring Se</description>
+    </item>
+    <item>
+      <title>SpringSecurity与JWT</title>
+      <link>https://zhangchang47.github.io/BlogVuePress/pages/7e884d/</link>
+      <guid isPermaLink="true">https://zhangchang47.github.io/BlogVuePress/pages/7e884d/</guid>
+      <pubDate>Fri, 03 Feb 2023 23:43:36 GMT</pubDate>
+      <category>Spring生态</category>
+      <description>1、常见的认证机制 1.1、HTTP Basic Auth HTTP Basic Auth简单点说明就是每次请求API时都提供用户的username和password，简言之，Basic Auth是配合RESTful API 使用的最简单的认证方式，只需提供用户名密码即可，但由于</description>
+    </item>
+  </channel>
+</rss>
