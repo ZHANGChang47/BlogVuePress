@@ -185,7 +185,7 @@ next/
 | `category` / `categoryId` | `Announcements` / `DIC_kwDOI3n7Y84DLH62` |
 | `enabled` | 目前 `false` |
 
-`enabled=false` 时互动区显示「前往讨论区」按钮。仓库 Discussions 已开启，访客可以直接到 GitHub 点 👍 或留言，只是多一次跳转；这样不会把 Giscus 的授权错误暴露给访客。
+`enabled=false` 时互动区显示「前往讨论区」按钮。仓库 Discussions 已开启，访客可以前往讨论区参与交流，只是多一次跳转（此时分类下还没有按文章自动创建的讨论串）；这样不会把 Giscus 的授权错误暴露给访客。
 
 **切到 `true` 只需三步**：
 
