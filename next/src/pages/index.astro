@@ -28,7 +28,7 @@ const recent = posts
   .sort((a, b) => String(b.data.updated).localeCompare(String(a.data.updated)))
   .slice(0, 4);
 const dayOf = (s) => ({ day: s.slice(8, 10), ym: s.slice(0, 7).replace('-', '.') });
-const tools = toolsIndex.tools;
+const tools = toolsIndex.tools.slice(0, 6);
 const modeLabel = { link: '外部链接', embed: '嵌入页面', native: '站内组件', page: '站内详情' };
 const statusLabel = { online: '已上线', beta: '公测中', wip: '开发中', demo: '演示版' };
 ---

@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Shot {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
+interface Props {
+  title: string;
+  eyebrow: string;
+  description: string;
+  chips: string[];
+  shots: Shot[];
+  sourceNote?: string;
+}
+
+const { title, eyebrow, description, chips, shots, sourceNote } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout title={title} description={description}>
+  <div class="page-head">
+    <div class="eyebrow">{eyebrow}</div>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <a class="back" href={`${base}tools/`}>← 返回我的工具</a>
+  </div>
+
+  <div class="td-hero">
+    <div class="td-hero-lead">
+      <span class="td-kicker">PRODUCT BRIEF · 2026-11</span>
+      <p>{description}</p>
+    </div>
+    <div class="td-chips">
+      {chips.map((chip) => <span class="td-chip">{chip}</span>)}
+    </div>
+  </div>
+
+  {shots.map((shot) => (
+    <figure class="td-shot">
+      <img class="td-shot-img" src={shot.src} alt={shot.alt} loading="lazy" decoding="async" />
+      <figcaption>{shot.caption}</figcaption>
+    </figure>
+  ))}
+
+  <div class="td-body"><slot /></div>
+
+  <footer class="td-foot">
+    <p>{sourceNote || `内容依据《${title}使用说明》整理，截图取自实际运行界面。`}</p>
+    <a href={`${base}tools/`}>← 返回我的工具</a>
+  </footer>
+</BaseLayout>
+
+<style>
+  .back { display:inline-block; margin-top:16px; font:11px/1 var(--mono); color:var(--violet); }
+  .td-hero { margin-top:40px; border:1px solid var(--card-brd); border-radius:var(--radius);
+    padding:32px 36px; background:var(--glass); backdrop-filter:blur(16px); box-shadow:var(--shadow); }
+  .td-kicker { font:10px/1 var(--mono); letter-spacing:.16em; color:var(--violet); font-weight:700; }
+  .td-hero-lead p { margin:12px 0 0; font-size:18px; line-height:1.7; font-weight:650; color:var(--ink); max-width:60ch; }
+  .td-chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
+  .td-chip { padding:6px 14px; border-radius:999px; font-size:11px; font-weight:600;
+    background:var(--glass-2); border:1px solid var(--line); color:var(--muted); }
+  .td-shot { margin:24px 0 0; }
+  .td-shot-img { display:block; width:100%; height:auto; border-radius:14px;
+    border:1px solid var(--line); box-shadow:var(--shadow); }
+  :global(html[data-theme="dark"]) .td-shot-img { filter:brightness(.9) saturate(.94); }
+  .td-shot figcaption { margin-top:10px; font-size:11px; line-height:1.8; color:var(--faint); }
+  .td-body { margin-top:24px; }
+
+  .td-body :global(.td-ch) { margin-top:56px; }
+  .td-body :global(.td-ch h2) { font-size:22px; margin:0 0 6px; letter-spacing:-.03em; font-weight:740;
+    padding-top:24px; border-top:1px solid var(--line); }
+  .td-body :global(.td-ch h2 .no) { color:var(--violet); font:700 15px/1 var(--mono); margin-right:12px; vertical-align:2px; }
+  .td-body :global(.td-ch .sub) { margin:0 0 22px; font-size:12px; color:var(--faint); }
+  .td-body :global(.td-h3) { margin:28px 0 10px; font-size:14px; font-weight:700; color:var(--ink); }
+  .td-body :global(.td-grid) { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .td-body :global(.td-card) { border:1px solid var(--card-brd); border-radius:var(--radius); padding:22px 24px;
+    background:var(--card); backdrop-filter:blur(14px); box-shadow:var(--shadow); }
+  .td-body :global(.td-card h3) { margin:0 0 12px; font-size:14px; font-weight:700; }
+  .td-body :global(.td-card h4) { margin:0 0 8px; font-size:13px; font-weight:700; }
+  .td-body :global(.td-card ul),
+  .td-body :global(.td-list) { margin:0; padding-left:18px; font-size:12px; line-height:1.95; color:var(--muted); }
+  .td-body :global(.td-card li),
+  .td-body :global(.td-list li) { margin-bottom:6px; }
+  .td-body :global(.td-card strong),
+  .td-body :global(.td-list strong),
+  .td-body :global(.td-callout strong) { color:var(--ink); }
+  .td-body :global(.td-table-wrap) { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); margin-top:18px; }
+  .td-body :global(table) { width:100%; border-collapse:collapse; font-size:12px; background:var(--bg-solid); }
+  .td-body :global(th),
+  .td-body :global(td) { padding:11px 16px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; }
+  .td-body :global(th) { font:700 10px/1.6 var(--mono); letter-spacing:.08em; color:var(--faint); background:var(--glass-2); }
+  .td-body :global(td) { color:var(--muted); }
+  .td-body :global(td strong) { color:var(--ink); }
+  .td-body :global(tbody tr:last-child td) { border-bottom:0; }
+  .td-body :global(.td-callout) { margin:0; padding:20px 24px; border-radius:14px; font-size:12px; line-height:1.95;
+    color:var(--muted); background:var(--glass); border:1px solid var(--card-brd); border-left:3px solid var(--violet); }
+  .td-body :global(.td-callout b) { color:var(--violet); }
+  .td-body :global(.td-spec) { display:grid; grid-template-columns:150px 1fr; gap:10px 24px; font-size:12px;
+    margin:0; padding:22px 24px; border:1px solid var(--card-brd); border-radius:var(--radius); background:var(--card); }
+  .td-body :global(.td-spec dt) { color:var(--faint); }
+  .td-body :global(.td-spec dd) { margin:0; color:var(--muted); line-height:1.8; }
+
+  .td-foot { margin-top:72px; padding-top:24px; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center; }
+  .td-foot p { margin:0; font-size:11px; line-height:1.9; color:var(--faint); max-width:70ch; }
+  .td-foot a { font:11px/1 var(--mono); color:var(--violet); white-space:nowrap; }
+
+  @media(max-width:768px){
+    .td-hero { padding:24px 20px; }
+    .td-hero-lead p { font-size:16px; }
+    .td-body :global(.td-grid) { grid-template-columns:1fr; }
+  }
+  @media(max-width:640px){
+    .td-body :global(.td-spec) { grid-template-columns:1fr; gap:4px; }
+    .td-body :global(.td-ch) { margin-top:44px; }
+    .td-body :global(.td-ch h2) { font-size:19px; }
+    .td-body :global(table) { min-width:520px; }
+  }
+</style>

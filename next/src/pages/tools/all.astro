@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import toolsIndex from '../../data/tools.index.json';
+
+const base = import.meta.env.BASE_URL;
+const tools = toolsIndex.tools;
+const modeLabel = { link: '外部链接', embed: '嵌入页面', native: '站内组件', page: '站内详情' };
+const statusLabel = { online: '已上线', beta: '公测中', wip: '开发中', demo: '演示版' };
+---
+<BaseLayout title="全部工具" description="百里登风博客的全部自制工具清单。">
+  <div class="page-head">
+    <div class="eyebrow">Tools / Complete List</div>
+    <h1>全部工具</h1>
+    <p>这里收录所有已经放进博客的工具。工具页首页最多展示 10 个，这里是完整清单。</p>
+    <a class="back" href={`${base}tools/`}>← 返回工具首页</a>
+  </div>
+
+  <section style="margin-top:48px">
+    <div class="sec-head">
+      <div><div class="eyebrow">Tools / {tools.length} 个 · 可用 {toolsIndex.available} 个</div><h2>完整清单</h2></div>
+      <p>按维护顺序排列；新工具会继续加进来。</p>
+    </div>
+    <div class="tool-grid">
+      {tools.map((t) => (
+        <a class="tool-card" href={t.entry}>
+          <div class="t-top"><span class="t-ico">{t.icon}</span><span class="t-name">{t.title}</span>
+            <span class="t-mode">{modeLabel[t.mode] || t.mode}</span></div>
+          <p class="t-desc">{t.desc}</p>
+          <div class="t-foot"><span class="t-tag">{t.tags[0]}</span><span class="t-tag">v{t.version}</span>
+            <span class="t-status"><i></i>{statusLabel[t.status] || t.status}</span></div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .back { display:inline-block; margin-top:16px; font:11px/1 var(--mono); color:var(--violet); }
+</style>

@@ -50,7 +50,7 @@ const available = sorted.filter((t) => t.status !== 'wip').length;
 const index = {
   generatedBy: 'scripts/sync-tools.mjs',
   contract: {
-    routes: ['/tools/', '/tools/<id>/'],
+    routes: ['/tools/', '/tools/all/', '/tools/<id>/'],
     modes: MODES,
     events: ['tool:ready', 'blog:theme', 'tool:resize'],
     tokens: ['--bg', '--bg-solid', '--ink', '--muted', '--violet', '--mint', '--line', '--radius'],

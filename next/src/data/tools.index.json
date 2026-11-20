@@ -3,6 +3,7 @@
   "contract": {
     "routes": [
       "/tools/",
+      "/tools/all/",
       "/tools/<id>/"
     ],
     "modes": [
@@ -27,13 +28,13 @@
       "--radius"
     ]
   },
-  "count": 1,
-  "available": 1,
+  "count": 3,
+  "available": 3,
   "byMode": {
     "link": 0,
     "embed": 0,
     "native": 0,
-    "page": 1
+    "page": 3
   },
   "tools": [
     {
@@ -51,6 +52,38 @@
       "version": "1.2.2",
       "updated": "2026-11-13",
       "order": 1
+    },
+    {
+      "id": "catcursor",
+      "title": "CatCursor 猫猫指针",
+      "desc": "Windows 鼠标指针主题管理器：5 套内置主题、AI 生成或导入自己的主题，一键安装 17 个光标槽位，随时还原系统默认。",
+      "icon": "🐾",
+      "tags": [
+        "Windows",
+        "工具"
+      ],
+      "mode": "page",
+      "entry": "/BlogVuePress/tools/catcursor/",
+      "status": "online",
+      "version": "1.0.6",
+      "updated": "2026-11-20",
+      "order": 2
+    },
+    {
+      "id": "idlezoom",
+      "title": "IdleZoom 静止放大",
+      "desc": "鼠标停住就把当前光标高清放大成悬浮贴图，鼠标穿透不挡点击；本地抓图、本地放大、退出即恢复。",
+      "icon": "🔍",
+      "tags": [
+        "Windows",
+        "工具"
+      ],
+      "mode": "page",
+      "entry": "/BlogVuePress/tools/idlezoom/",
+      "status": "online",
+      "version": "2.3",
+      "updated": "2026-11-20",
+      "order": 3
     }
   ]
 }

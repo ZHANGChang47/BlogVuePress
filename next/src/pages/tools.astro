@@ -2,8 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import toolsIndex from '../data/tools.index.json';
 
+const base = import.meta.env.BASE_URL;
 const modeLabel = { link: '外部链接', embed: '嵌入页面', native: '站内组件', page: '站内详情' };
 const statusLabel = { online: '已上线', beta: '公测中', wip: '开发中', demo: '演示版' };
+const allTools = toolsIndex.tools;
+const shownTools = allTools.slice(0, 10);
 ---
 <BaseLayout title="我的工具">
   <div class="page-head">
@@ -14,11 +17,12 @@ const statusLabel = { online: '已上线', beta: '公测中', wip: '开发中', 
 
   <section style="margin-top:48px">
     <div class="sec-head">
-      <div><div class="eyebrow">Tools / {toolsIndex.count} 个</div><h2>全部工具</h2></div>
-      <p>有新作品会继续加进来。</p>
+      <div><div class="eyebrow">Tools / 显示 {shownTools.length} 个 · 共 {toolsIndex.count} 个</div><h2>全部工具</h2></div>
+      <p>这里最多展示 10 个；更多作品在完整清单里。</p>
+      <a class="more" href={`${base}tools/all/`}>看全部 →</a>
     </div>
     <div class="tool-grid">
-      {toolsIndex.tools.map((t) => (
+      {shownTools.map((t) => (
         <a class="tool-card" href={t.entry}>
           <div class="t-top"><span class="t-ico">{t.icon}</span><span class="t-name">{t.title}</span>
             <span class="t-mode">{modeLabel[t.mode] || t.mode}</span></div>
