@@ -22,11 +22,34 @@ const sectionCards = sections.map((sec) => {
 
 const featured = [...posts].sort((a, b) => (b.data.words || 0) - (a.data.words || 0)).slice(0, 6);
 // 近期更新只认 updated：旧站迁入的 76 篇 date 是归档标记，不是写作 / 发布时间，
-// 按 date 排序会把 2023 年的旧笔记冒充成最近更新。
-const recent = posts
-  .filter((p) => p.data.updated)
-  .sort((a, b) => String(b.data.updated).localeCompare(String(a.data.updated)))
-  .slice(0, 4);
+// 按 date 排序会把 2023 年的旧笔记冒充成最近更新。工具也带 updated，按同一时间轴混排。
+const stamp = (s) => (s && String(s).length === 10 ? `${s} 00:00:00` : String(s));
+const recent = [
+  ...posts.filter((p) => p.data.updated).map((p) => ({
+    key: `post-${p.data.code}`,
+    stamp: stamp(p.data.updated),
+    title: p.data.title,
+    excerpt: p.data.excerpt || p.data.section,
+    href: `${base}pages/${p.data.code}/`,
+    side: p.data.section,
+    cta: '阅读全文 →',
+    kind: 'post',
+    icon: '',
+  })),
+  ...toolsIndex.tools.filter((t) => t.updated).map((t) => ({
+    key: `tool-${t.id}`,
+    stamp: stamp(t.updated),
+    title: t.title,
+    excerpt: t.desc,
+    href: t.entry,
+    side: '新工具',
+    cta: '查看详情 →',
+    kind: 'tool',
+    icon: t.icon,
+  })),
+]
+  .sort((a, b) => b.stamp.localeCompare(a.stamp))
+  .slice(0, 6);
 const dayOf = (s) => ({ day: s.slice(8, 10), ym: s.slice(0, 7).replace('-', '.') });
 const tools = toolsIndex.tools.slice(0, 6);
 const modeLabel = { link: '外部链接', embed: '嵌入页面', native: '站内组件', page: '站内详情' };
@@ -63,28 +86,28 @@ const statusLabel = { online: '已上线', beta: '公测中', wip: '开发中', 
           <div class="eyebrow">Latest / Updates</div>
           <h2>近期更新</h2>
         </div>
-        <p>新写或修订过的文章，按时间排在最前。</p>
+        <p>新写或修订过的文章，以及刚上架的小工具，按时间排在最前。</p>
         <a class="more" href={`${base}archives/`}>查看归档 →</a>
       </div>
       <div class="updates">
         <div class="update-list">
-          {recent.map((p) => {
-            const d = dayOf(String(p.data.updated));
+          {recent.map((item) => {
+            const d = dayOf(item.stamp);
             return (
-              <a class="update-card reveal" href={`${base}pages/${p.data.code}/`}>
+              <a class={`update-card reveal${item.kind === 'tool' ? ' update-card--tool' : ''}`} href={item.href}>
                 <span class="u-date"><b>{d.day}</b><i>{d.ym}</i></span>
                 <span class="u-body">
-                  <b>{p.data.title}</b>
-                  <span class="u-excerpt">{p.data.excerpt || p.data.section}</span>
+                  <b>{item.icon && <span class="u-ico">{item.icon}</span>}{item.title}</b>
+                  <span class="u-excerpt">{item.excerpt}</span>
                 </span>
-                <span class="u-side">{p.data.section}<span>阅读全文 →</span></span>
+                <span class="u-side">{item.side}<span>{item.cta}</span></span>
               </a>
             );
           })}
         </div>
         <aside class="update-note panel">
-          <h3>关于日期</h3>
-          <p>早期笔记沿用原站归档日期，不代表写作时间；这里只列新写或修订过的文章。想翻旧文，按分区读更顺。</p>
+          <h3>关于这条时间线</h3>
+          <p>早期笔记沿用原站归档日期，不代表写作时间；这里只列新写或修订过的文章，以及刚上架的小工具。想翻旧文，按分区读更顺。</p>
           <a class="more" href={`${base}categories/`}>浏览 {sections.length} 个分区 →</a>
         </aside>
       </div>

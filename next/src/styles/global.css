@@ -242,6 +242,9 @@ html.motion-ok .reveal.in{opacity:1;translate:0 0}
 .u-date i{font:10px/1.4 var(--mono);font-style:normal;color:var(--faint);white-space:nowrap}
 .u-body{flex:1;min-width:0}
 .u-body b{display:block;font-size:14px;font-weight:660;line-height:1.5}
+.u-ico{display:inline-block;font-size:15px;margin-right:8px;vertical-align:-1px}
+.update-card--tool .u-date b{color:var(--mint)}
+.update-card--tool .u-side{color:var(--mint)}
 .u-excerpt{display:block;font-size:11px;line-height:1.8;color:var(--muted);margin-top:6px;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .u-side{flex:none;text-align:right;font:10px/1.8 var(--mono);color:var(--faint)}
