@@ -38,6 +38,19 @@
       "version": "2.3",
       "updated": "2026-11-20",
       "order": 3
+    },
+    {
+      "id": "flyisland",
+      "title": "Fly Island 灵动岛",
+      "desc": "Windows 顶部的轻量灵动岛：消息与 AI Agent 状态、全局文件搜索、音乐歌词、待办、剪贴板和文件中转，需要时展开、用完收起。",
+      "icon": "🏝",
+      "tags": ["Windows", "工具", "开源"],
+      "mode": "page",
+      "entry": "/BlogVuePress/tools/flyisland/",
+      "status": "online",
+      "version": "3.2.10",
+      "updated": "2026-11-21",
+      "order": 4
     }
   ]
 }
